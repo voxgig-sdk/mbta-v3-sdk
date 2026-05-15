@@ -1,0 +1,61 @@
+# Entity: shape
+
+main: kit: entity: shape: {
+
+  alias: field: {}
+
+  name: "shape"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "filter_direction_id"
+                orig: "filter_direction_id"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "filter_route"
+                orig: "filter_route"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "include"
+                orig: "include"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/shapes"
+          parts: [
+            "shapes"
+          ]
+          select: {
+            exist: [
+              "filter_direction_id"
+              "filter_route"
+              "include"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

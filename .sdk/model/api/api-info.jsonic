@@ -1,0 +1,28 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "MBTA Support"
+        url: "https://www.mbta.com/developers/v3-api"
+      }
+      description: "The V3 API provides fast and easy access to Massachusetts Bay Transportation Authority schedules, alerts, and real-time transportation information. It follows the JSON API format, allowing developers to quickly integrate and utilize public transit data. The API presents General Transit Feed Specification (GTFS), GTFS Realtime, and MBTA-specific data."
+      license: {
+        name: "MassDOT Developers License Agreement"
+        url: "https://www.mbta.com/developers"
+      }
+      servers: [
+        {
+          description: "Production API Server"
+          url: "https://api-v3.mbta.com"
+        }
+      ]
+      title: "Massachusetts Bay Transportation Authority V3 API"
+      version: "3.0.0"
+    }
+  }
+}
+
+}

@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "facility": {
+      "FACILITY00": {},
+      "FACILITY01": {},
+      "FACILITY02": {}
+    }
+  },
+  "new": {
+    "facility": {
+      "facility_ref01": {}
+    }
+  }
+}

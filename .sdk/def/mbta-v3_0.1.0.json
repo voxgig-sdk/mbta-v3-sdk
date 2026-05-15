@@ -1,0 +1,2117 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Massachusetts Bay Transportation Authority V3 API",
+    "description": "The V3 API provides fast and easy access to Massachusetts Bay Transportation Authority schedules, alerts, and real-time transportation information. It follows the JSON API format, allowing developers to quickly integrate and utilize public transit data. The API presents General Transit Feed Specification (GTFS), GTFS Realtime, and MBTA-specific data.",
+    "version": "3.0.0",
+    "contact": {
+      "name": "MBTA Support",
+      "url": "https://www.mbta.com/developers/v3-api"
+    },
+    "license": {
+      "name": "MassDOT Developers License Agreement",
+      "url": "https://www.mbta.com/developers"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api-v3.mbta.com",
+      "description": "Production API Server"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/alerts": {
+      "get": {
+        "summary": "Get alerts",
+        "description": "Communications to riders about disrupted MBTA operations",
+        "operationId": "getAlerts",
+        "tags": [
+          "Alerts"
+        ],
+        "parameters": [
+          {
+            "name": "filter[route]",
+            "in": "query",
+            "description": "Filter by route ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[stop]",
+            "in": "query",
+            "description": "Filter by stop ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[activity]",
+            "in": "query",
+            "description": "Filter by activity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Include related resources (comma-separated)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort field",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/facilities": {
+      "get": {
+        "summary": "Get facilities",
+        "description": "Amenities at stops, such as elevators, escalators, parking lots, and bike racks",
+        "operationId": "getFacilities",
+        "tags": [
+          "Facilities"
+        ],
+        "parameters": [
+          {
+            "name": "filter[stop]",
+            "in": "query",
+            "description": "Filter by stop ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[type]",
+            "in": "query",
+            "description": "Filter by facility type",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Include related resources (comma-separated)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FacilitiesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lines": {
+      "get": {
+        "summary": "Get lines",
+        "description": "Lines for all modes (for example, line-Green)",
+        "operationId": "getLines",
+        "tags": [
+          "Lines"
+        ],
+        "parameters": [
+          {
+            "name": "filter[id]",
+            "in": "query",
+            "description": "Filter by line ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Include related resources (comma-separated)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LinesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/predictions": {
+      "get": {
+        "summary": "Get predictions",
+        "description": "Predicted arrival/departure times",
+        "operationId": "getPredictions",
+        "tags": [
+          "Predictions"
+        ],
+        "parameters": [
+          {
+            "name": "filter[stop]",
+            "in": "query",
+            "description": "Filter by stop ID (e.g., place-sstat)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[route]",
+            "in": "query",
+            "description": "Filter by route ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[trip]",
+            "in": "query",
+            "description": "Filter by trip ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[direction_id]",
+            "in": "query",
+            "description": "Filter by direction (0 or 1)",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Include related resources (e.g., stop, route, trip, vehicle)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort field",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictionsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/routes": {
+      "get": {
+        "summary": "Get routes",
+        "description": "Routes for each line (for example, Green-B). Retrieves a list of all routes.",
+        "operationId": "getRoutes",
+        "tags": [
+          "Routes"
+        ],
+        "parameters": [
+          {
+            "name": "filter[type]",
+            "in": "query",
+            "description": "Filter by route type (0=light rail, 1=subway, 2=commuter rail, 3=bus, 4=ferry)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "0,1"
+          },
+          {
+            "name": "filter[stop]",
+            "in": "query",
+            "description": "Filter by stop ID (e.g., place-north)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[id]",
+            "in": "query",
+            "description": "Filter by route ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Include related resources (comma-separated)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort field",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoutesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/routes/{id}": {
+      "get": {
+        "summary": "Get route by ID",
+        "description": "Retrieves only the route with the specified route_id (e.g., Orange)",
+        "operationId": "getRouteById",
+        "tags": [
+          "Routes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Route ID (e.g., Orange)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Include related resources (comma-separated)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RouteResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Route not found",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/route_patterns": {
+      "get": {
+        "summary": "Get route patterns",
+        "description": "Possible patterns of travel for each route",
+        "operationId": "getRoutePatterns",
+        "tags": [
+          "Route Patterns"
+        ],
+        "parameters": [
+          {
+            "name": "filter[route]",
+            "in": "query",
+            "description": "Filter by route ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[direction_id]",
+            "in": "query",
+            "description": "Filter by direction (0 or 1)",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "filter[stop]",
+            "in": "query",
+            "description": "Filter by stop ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Include related resources (comma-separated)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoutePatternsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/schedules": {
+      "get": {
+        "summary": "Get schedules",
+        "description": "Scheduled arrival/departure times (stop_time)",
+        "operationId": "getSchedules",
+        "tags": [
+          "Schedules"
+        ],
+        "parameters": [
+          {
+            "name": "filter[stop]",
+            "in": "query",
+            "description": "Filter by stop ID (e.g., 17094)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[route]",
+            "in": "query",
+            "description": "Filter by route ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[trip]",
+            "in": "query",
+            "description": "Filter by trip ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[direction_id]",
+            "in": "query",
+            "description": "Filter by direction (0 or 1)",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "filter[min_time]",
+            "in": "query",
+            "description": "Minimum time filter (HH:MM format, e.g., 14:00)",
+            "schema": {
+              "type": "string",
+              "pattern": "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"
+            }
+          },
+          {
+            "name": "filter[max_time]",
+            "in": "query",
+            "description": "Maximum time filter (HH:MM format, e.g., 14:30)",
+            "schema": {
+              "type": "string",
+              "pattern": "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"
+            }
+          },
+          {
+            "name": "filter[date]",
+            "in": "query",
+            "description": "Filter by date (YYYY-MM-DD format)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Include related resources (e.g., route, trip, stop, prediction)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort field",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SchedulesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services": {
+      "get": {
+        "summary": "Get services",
+        "description": "Dates when trips occur",
+        "operationId": "getServices",
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "name": "filter[id]",
+            "in": "query",
+            "description": "Filter by service ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[route]",
+            "in": "query",
+            "description": "Filter by route ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Include related resources (comma-separated)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shapes": {
+      "get": {
+        "summary": "Get shapes",
+        "description": "Polylines that describe trip shapes, which can be shown on a map",
+        "operationId": "getShapes",
+        "tags": [
+          "Shapes"
+        ],
+        "parameters": [
+          {
+            "name": "filter[route]",
+            "in": "query",
+            "description": "Filter by route ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[direction_id]",
+            "in": "query",
+            "description": "Filter by direction (0 or 1)",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Include related resources (comma-separated)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShapesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stops": {
+      "get": {
+        "summary": "Get stops",
+        "description": "Places where riders board a vehicle, disembark from a vehicle, or navigate a station",
+        "operationId": "getStops",
+        "tags": [
+          "Stops"
+        ],
+        "parameters": [
+          {
+            "name": "filter[id]",
+            "in": "query",
+            "description": "Filter by stop ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[route]",
+            "in": "query",
+            "description": "Filter by route ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[location_type]",
+            "in": "query",
+            "description": "Filter by location type",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "filter[latitude]",
+            "in": "query",
+            "description": "Filter by latitude",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "filter[longitude]",
+            "in": "query",
+            "description": "Filter by longitude",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "filter[radius]",
+            "in": "query",
+            "description": "Filter by radius (requires latitude and longitude)",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Include related resources (comma-separated)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort field",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StopsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trips": {
+      "get": {
+        "summary": "Get trips",
+        "description": "Movement of vehicles from one route end to the other",
+        "operationId": "getTrips",
+        "tags": [
+          "Trips"
+        ],
+        "parameters": [
+          {
+            "name": "filter[id]",
+            "in": "query",
+            "description": "Filter by trip ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[route]",
+            "in": "query",
+            "description": "Filter by route ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[direction_id]",
+            "in": "query",
+            "description": "Filter by direction (0 or 1)",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "filter[route_pattern]",
+            "in": "query",
+            "description": "Filter by route pattern ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[name]",
+            "in": "query",
+            "description": "Filter by trip name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Include related resources (comma-separated)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort field",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vehicles": {
+      "get": {
+        "summary": "Get vehicles",
+        "description": "Vehicle positions, including direction, latitude, and longitude",
+        "operationId": "getVehicles",
+        "tags": [
+          "Vehicles"
+        ],
+        "parameters": [
+          {
+            "name": "filter[id]",
+            "in": "query",
+            "description": "Filter by vehicle ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[route]",
+            "in": "query",
+            "description": "Filter by route ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[trip]",
+            "in": "query",
+            "description": "Filter by trip ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[label]",
+            "in": "query",
+            "description": "Filter by vehicle label",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[direction_id]",
+            "in": "query",
+            "description": "Filter by direction (0 or 1)",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Include related resources (e.g., route, trip, stop)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort field",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VehiclesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "description": "API key required for requests. Default rate limit is 1,000 requests per minute with a valid key."
+      }
+    },
+    "schemas": {
+      "AlertsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Alert"
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "jsonapi": {
+            "$ref": "#/components/schemas/JsonApi"
+          }
+        }
+      },
+      "Alert": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "alert"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "active_period": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "start": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "end": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    }
+                  }
+                }
+              },
+              "banner": {
+                "type": "string",
+                "nullable": true
+              },
+              "cause": {
+                "type": "string"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "description": {
+                "type": "string"
+              },
+              "effect": {
+                "type": "string"
+              },
+              "header": {
+                "type": "string"
+              },
+              "informed_entity": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "lifecycle": {
+                "type": "string"
+              },
+              "severity": {
+                "type": "integer"
+              },
+              "short_header": {
+                "type": "string"
+              },
+              "timeframe": {
+                "type": "string",
+                "nullable": true
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "url": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          },
+          "relationships": {
+            "type": "object"
+          }
+        }
+      },
+      "FacilitiesResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Facility"
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "jsonapi": {
+            "$ref": "#/components/schemas/JsonApi"
+          }
+        }
+      },
+      "Facility": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "facility"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "latitude": {
+                "type": "number",
+                "format": "double"
+              },
+              "longitude": {
+                "type": "number",
+                "format": "double"
+              },
+              "long_name": {
+                "type": "string"
+              },
+              "short_name": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "properties": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "relationships": {
+            "type": "object"
+          }
+        }
+      },
+      "LinesResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Line"
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "jsonapi": {
+            "$ref": "#/components/schemas/JsonApi"
+          }
+        }
+      },
+      "Line": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "line"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "color": {
+                "type": "string"
+              },
+              "long_name": {
+                "type": "string"
+              },
+              "short_name": {
+                "type": "string"
+              },
+              "sort_order": {
+                "type": "integer"
+              },
+              "text_color": {
+                "type": "string"
+              }
+            }
+          },
+          "relationships": {
+            "type": "object"
+          }
+        }
+      },
+      "PredictionsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Prediction"
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "jsonapi": {
+            "$ref": "#/components/schemas/JsonApi"
+          }
+        }
+      },
+      "Prediction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "prediction"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "arrival_time": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "departure_time": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "direction_id": {
+                "type": "integer",
+                "enum": [
+                  0,
+                  1
+                ]
+              },
+              "schedule_relationship": {
+                "type": "string",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "nullable": true
+              },
+              "stop_sequence": {
+                "type": "integer",
+                "nullable": true
+              }
+            }
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "route": {
+                "type": "object"
+              },
+              "stop": {
+                "type": "object"
+              },
+              "trip": {
+                "type": "object"
+              },
+              "vehicle": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "RoutesResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Route"
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "jsonapi": {
+            "$ref": "#/components/schemas/JsonApi"
+          }
+        }
+      },
+      "RouteResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Route"
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "jsonapi": {
+            "$ref": "#/components/schemas/JsonApi"
+          }
+        }
+      },
+      "Route": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "route"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "color": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "direction_destinations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "direction_names": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "fare_class": {
+                "type": "string"
+              },
+              "long_name": {
+                "type": "string"
+              },
+              "short_name": {
+                "type": "string"
+              },
+              "sort_order": {
+                "type": "integer"
+              },
+              "text_color": {
+                "type": "string"
+              },
+              "type": {
+                "type": "integer",
+                "description": "0=light rail, 1=subway, 2=commuter rail, 3=bus, 4=ferry"
+              }
+            }
+          },
+          "relationships": {
+            "type": "object"
+          }
+        }
+      },
+      "RoutePatternsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoutePattern"
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "jsonapi": {
+            "$ref": "#/components/schemas/JsonApi"
+          }
+        }
+      },
+      "RoutePattern": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "route_pattern"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "direction_id": {
+                "type": "integer",
+                "enum": [
+                  0,
+                  1
+                ]
+              },
+              "name": {
+                "type": "string"
+              },
+              "time_desc": {
+                "type": "string",
+                "nullable": true
+              },
+              "typicality": {
+                "type": "integer"
+              },
+              "sort_order": {
+                "type": "integer"
+              }
+            }
+          },
+          "relationships": {
+            "type": "object"
+          }
+        }
+      },
+      "SchedulesResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Schedule"
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "jsonapi": {
+            "$ref": "#/components/schemas/JsonApi"
+          }
+        }
+      },
+      "Schedule": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "schedule"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "arrival_time": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "departure_time": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "direction_id": {
+                "type": "integer",
+                "enum": [
+                  0,
+                  1
+                ]
+              },
+              "drop_off_type": {
+                "type": "integer"
+              },
+              "pickup_type": {
+                "type": "integer"
+              },
+              "stop_headsign": {
+                "type": "string",
+                "nullable": true
+              },
+              "stop_sequence": {
+                "type": "integer"
+              },
+              "timepoint": {
+                "type": "boolean"
+              }
+            }
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "route": {
+                "type": "object"
+              },
+              "stop": {
+                "type": "object"
+              },
+              "trip": {
+                "type": "object"
+              },
+              "prediction": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "ServicesResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Service"
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "jsonapi": {
+            "$ref": "#/components/schemas/JsonApi"
+          }
+        }
+      },
+      "Service": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "service"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "added_dates": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "date"
+                }
+              },
+              "added_dates_notes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "description": {
+                "type": "string"
+              },
+              "end_date": {
+                "type": "string",
+                "format": "date"
+              },
+              "removed_dates": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "date"
+                }
+              },
+              "removed_dates_notes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "schedule_name": {
+                "type": "string"
+              },
+              "schedule_type": {
+                "type": "string"
+              },
+              "schedule_typicality": {
+                "type": "integer"
+              },
+              "start_date": {
+                "type": "string",
+                "format": "date"
+              },
+              "valid_days": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "relationships": {
+            "type": "object"
+          }
+        }
+      },
+      "ShapesResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Shape"
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "jsonapi": {
+            "$ref": "#/components/schemas/JsonApi"
+          }
+        }
+      },
+      "Shape": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "shape"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "direction_id": {
+                "type": "integer",
+                "enum": [
+                  0,
+                  1
+                ]
+              },
+              "name": {
+                "type": "string"
+              },
+              "polyline": {
+                "type": "string",
+                "description": "Encoded polyline string"
+              },
+              "priority": {
+                "type": "integer"
+              }
+            }
+          },
+          "relationships": {
+            "type": "object"
+          }
+        }
+      },
+      "StopsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Stop"
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "jsonapi": {
+            "$ref": "#/components/schemas/JsonApi"
+          }
+        }
+      },
+      "Stop": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "stop"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "nullable": true
+              },
+              "at_street": {
+                "type": "string",
+                "nullable": true
+              },
+              "description": {
+                "type": "string",
+                "nullable": true
+              },
+              "latitude": {
+                "type": "number",
+                "format": "double"
+              },
+              "location_type": {
+                "type": "integer"
+              },
+              "longitude": {
+                "type": "number",
+                "format": "double"
+              },
+              "municipality": {
+                "type": "string",
+                "nullable": true
+              },
+              "name": {
+                "type": "string"
+              },
+              "on_street": {
+                "type": "string",
+                "nullable": true
+              },
+              "platform_code": {
+                "type": "string",
+                "nullable": true
+              },
+              "platform_name": {
+                "type": "string",
+                "nullable": true
+              },
+              "vehicle_type": {
+                "type": "integer",
+                "nullable": true
+              },
+              "wheelchair_boarding": {
+                "type": "integer"
+              }
+            }
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "parent_station": {
+                "type": "object"
+              },
+              "child_stops": {
+                "type": "object"
+              },
+              "facilities": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "TripsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Trip"
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "jsonapi": {
+            "$ref": "#/components/schemas/JsonApi"
+          }
+        }
+      },
+      "Trip": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "trip"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "bikes_allowed": {
+                "type": "integer"
+              },
+              "block_id": {
+                "type": "string",
+                "nullable": true
+              },
+              "direction_id": {
+                "type": "integer",
+                "enum": [
+                  0,
+                  1
+                ]
+              },
+              "headsign": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "wheelchair_accessible": {
+                "type": "integer"
+              }
+            }
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "route": {
+                "type": "object"
+              },
+              "route_pattern": {
+                "type": "object"
+              },
+              "service": {
+                "type": "object"
+              },
+              "shape": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "VehiclesResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vehicle"
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "jsonapi": {
+            "$ref": "#/components/schemas/JsonApi"
+          }
+        }
+      },
+      "Vehicle": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "vehicle"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "bearing": {
+                "type": "integer",
+                "nullable": true
+              },
+              "current_status": {
+                "type": "string"
+              },
+              "current_stop_sequence": {
+                "type": "integer",
+                "nullable": true
+              },
+              "direction_id": {
+                "type": "integer",
+                "enum": [
+                  0,
+                  1
+                ]
+              },
+              "label": {
+                "type": "string"
+              },
+              "latitude": {
+                "type": "number",
+                "format": "double"
+              },
+              "longitude": {
+                "type": "number",
+                "format": "double"
+              },
+              "speed": {
+                "type": "number",
+                "format": "float",
+                "nullable": true
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "route": {
+                "type": "object"
+              },
+              "stop": {
+                "type": "object"
+              },
+              "trip": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "detail": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "object",
+                  "properties": {
+                    "parameter": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "jsonapi": {
+            "$ref": "#/components/schemas/JsonApi"
+          }
+        }
+      },
+      "JsonApi": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string",
+            "example": "1.0"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Alerts",
+      "description": "Communications to riders about disrupted MBTA operations"
+    },
+    {
+      "name": "Facilities",
+      "description": "Amenities at stops, such as elevators, escalators, parking lots, and bike racks"
+    },
+    {
+      "name": "Lines",
+      "description": "Lines for all modes (for example, line-Green)"
+    },
+    {
+      "name": "Predictions",
+      "description": "Predicted arrival/departure times with real-time information"
+    },
+    {
+      "name": "Routes",
+      "description": "Routes for each line (for example, Green-B)"
+    },
+    {
+      "name": "Route Patterns",
+      "description": "Possible patterns of travel for each route"
+    },
+    {
+      "name": "Schedules",
+      "description": "Scheduled arrival/departure times (stop_time)"
+    },
+    {
+      "name": "Services",
+      "description": "Dates when trips occur"
+    },
+    {
+      "name": "Shapes",
+      "description": "Polylines that describe trip shapes, which can be shown on a map"
+    },
+    {
+      "name": "Stops",
+      "description": "Places where riders board a vehicle, disembark from a vehicle, or navigate a station"
+    },
+    {
+      "name": "Trips",
+      "description": "Movement of vehicles from one route end to the other"
+    },
+    {
+      "name": "Vehicles",
+      "description": "Vehicle positions, including direction, latitude, and longitude"
+    }
+  ]
+}

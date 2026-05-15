@@ -1,0 +1,85 @@
+# Entity: prediction
+
+main: kit: entity: prediction: {
+
+  alias: field: {}
+
+  name: "prediction"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "filter_direction_id"
+                orig: "filter_direction_id"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "filter_route"
+                orig: "filter_route"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "filter_stop"
+                orig: "filter_stop"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "filter_trip"
+                orig: "filter_trip"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "include"
+                orig: "include"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "sort"
+                orig: "sort"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/predictions"
+          parts: [
+            "predictions"
+          ]
+          select: {
+            exist: [
+              "filter_direction_id"
+              "filter_route"
+              "filter_stop"
+              "filter_trip"
+              "include"
+              "sort"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

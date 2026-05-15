@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "trip": {
+      "TRIP00": {},
+      "TRIP01": {},
+      "TRIP02": {}
+    }
+  },
+  "new": {
+    "trip": {
+      "trip_ref01": {}
+    }
+  }
+}

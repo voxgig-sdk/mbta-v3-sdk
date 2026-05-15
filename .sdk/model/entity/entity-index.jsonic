@@ -1,0 +1,14 @@
+# Entity Models
+
+@"alert.jsonic"
+@"facility.jsonic"
+@"line.jsonic"
+@"prediction.jsonic"
+@"route.jsonic"
+@"route_pattern.jsonic"
+@"schedule.jsonic"
+@"service.jsonic"
+@"shape.jsonic"
+@"stop.jsonic"
+@"trip.jsonic"
+@"vehicle.jsonic"

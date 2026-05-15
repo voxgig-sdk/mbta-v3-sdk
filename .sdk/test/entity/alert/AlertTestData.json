@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "alert": {
+      "ALERT00": {},
+      "ALERT01": {},
+      "ALERT02": {}
+    }
+  },
+  "new": {
+    "alert": {
+      "alert_ref01": {}
+    }
+  }
+}

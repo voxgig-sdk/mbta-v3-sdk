@@ -1,0 +1,28 @@
+# BasicShapeFlow
+
+main: kit: flow: BasicShapeFlow:
+{
+  entity: "shape",
+  kind: "basic",
+  name: "BasicShapeFlow",
+  step: [
+    {
+      input: {
+        ref: "shape_ref01",
+        srcdatavar: "shape_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-shape_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicShapeFlow"
+}

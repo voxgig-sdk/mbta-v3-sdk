@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "prediction": {
+      "PREDICTION00": {},
+      "PREDICTION01": {},
+      "PREDICTION02": {}
+    }
+  },
+  "new": {
+    "prediction": {
+      "prediction_ref01": {}
+    }
+  }
+}

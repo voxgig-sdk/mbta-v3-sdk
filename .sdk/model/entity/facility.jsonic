@@ -1,0 +1,61 @@
+# Entity: facility
+
+main: kit: entity: facility: {
+
+  alias: field: {}
+
+  name: "facility"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "filter_stop"
+                orig: "filter_stop"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "filter_type"
+                orig: "filter_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "include"
+                orig: "include"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/facilities"
+          parts: [
+            "facilities"
+          ]
+          select: {
+            exist: [
+              "filter_stop"
+              "filter_type"
+              "include"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

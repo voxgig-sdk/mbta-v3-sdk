@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "shape": {
+      "SHAPE00": {},
+      "SHAPE01": {},
+      "SHAPE02": {}
+    }
+  },
+  "new": {
+    "shape": {
+      "shape_ref01": {}
+    }
+  }
+}

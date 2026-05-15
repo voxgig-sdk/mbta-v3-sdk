@@ -1,0 +1,116 @@
+# Entity: route
+
+main: kit: entity: route: {
+
+  alias: field: {}
+
+  name: "route"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "filter_id"
+                orig: "filter_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "filter_stop"
+                orig: "filter_stop"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "0,1"
+                kind: "query"
+                name: "filter_type"
+                orig: "filter_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "include"
+                orig: "include"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "sort"
+                orig: "sort"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/routes"
+          parts: [
+            "routes"
+          ]
+          select: {
+            exist: [
+              "filter_id"
+              "filter_stop"
+              "filter_type"
+              "include"
+              "sort"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "include"
+                orig: "include"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/routes/{id}"
+          parts: [
+            "routes"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+              "include"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

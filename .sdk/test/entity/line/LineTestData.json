@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "line": {
+      "LINE00": {},
+      "LINE01": {},
+      "LINE02": {}
+    }
+  },
+  "new": {
+    "line": {
+      "line_ref01": {}
+    }
+  }
+}

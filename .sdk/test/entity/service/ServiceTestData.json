@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "service": {
+      "SERVICE00": {},
+      "SERVICE01": {},
+      "SERVICE02": {}
+    }
+  },
+  "new": {
+    "service": {
+      "service_ref01": {}
+    }
+  }
+}

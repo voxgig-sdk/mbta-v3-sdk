@@ -1,0 +1,28 @@
+# BasicPredictionFlow
+
+main: kit: flow: BasicPredictionFlow:
+{
+  entity: "prediction",
+  kind: "basic",
+  name: "BasicPredictionFlow",
+  step: [
+    {
+      input: {
+        ref: "prediction_ref01",
+        srcdatavar: "prediction_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-prediction_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPredictionFlow"
+}

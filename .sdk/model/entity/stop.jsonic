@@ -1,0 +1,101 @@
+# Entity: stop
+
+main: kit: entity: stop: {
+
+  alias: field: {}
+
+  name: "stop"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "filter_id"
+                orig: "filter_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "filter_latitude"
+                orig: "filter_latitude"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                kind: "query"
+                name: "filter_location_type"
+                orig: "filter_location_type"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "filter_longitude"
+                orig: "filter_longitude"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                kind: "query"
+                name: "filter_radius"
+                orig: "filter_radius"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                kind: "query"
+                name: "filter_route"
+                orig: "filter_route"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "include"
+                orig: "include"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "sort"
+                orig: "sort"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/stops"
+          parts: [
+            "stops"
+          ]
+          select: {
+            exist: [
+              "filter_id"
+              "filter_latitude"
+              "filter_location_type"
+              "filter_longitude"
+              "filter_radius"
+              "filter_route"
+              "include"
+              "sort"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

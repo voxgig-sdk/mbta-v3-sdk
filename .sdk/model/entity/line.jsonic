@@ -1,0 +1,53 @@
+# Entity: line
+
+main: kit: entity: line: {
+
+  alias: field: {}
+
+  name: "line"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "filter_id"
+                orig: "filter_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "include"
+                orig: "include"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/lines"
+          parts: [
+            "lines"
+          ]
+          select: {
+            exist: [
+              "filter_id"
+              "include"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

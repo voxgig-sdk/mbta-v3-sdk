@@ -1,0 +1,83 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 12
+  metrics: count: path: 13
+  metrics: count: method: 13
+
+  entity: alert: {
+    path: "/alerts": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: facility: {
+    path: "/facilities": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: line: {
+    path: "/lines": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: prediction: {
+    path: "/predictions": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: route: {
+    path: "/routes": {
+      op: load: method: *GET
+    }
+    path: "/routes/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: route_pattern: {
+    path: "/route_patterns": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: schedule: {
+    path: "/schedules": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: service: {
+    path: "/services": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: shape: {
+    path: "/shapes": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: stop: {
+    path: "/stops": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: trip: {
+    path: "/trips": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: vehicle: {
+    path: "/vehicles": {
+      op: load: method: *GET
+    }
+  }
+
+}

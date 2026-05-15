@@ -1,0 +1,28 @@
+# BasicStopFlow
+
+main: kit: flow: BasicStopFlow:
+{
+  entity: "stop",
+  kind: "basic",
+  name: "BasicStopFlow",
+  step: [
+    {
+      input: {
+        ref: "stop_ref01",
+        srcdatavar: "stop_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-stop_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicStopFlow"
+}

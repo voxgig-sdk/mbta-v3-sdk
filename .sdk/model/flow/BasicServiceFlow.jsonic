@@ -1,0 +1,28 @@
+# BasicServiceFlow
+
+main: kit: flow: BasicServiceFlow:
+{
+  entity: "service",
+  kind: "basic",
+  name: "BasicServiceFlow",
+  step: [
+    {
+      input: {
+        ref: "service_ref01",
+        srcdatavar: "service_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-service_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicServiceFlow"
+}

@@ -1,0 +1,67 @@
+<?php
+declare(strict_types=1);
+
+// MbtaV3 SDK utility registration
+
+require_once __DIR__ . '/../core/UtilityType.php';
+require_once __DIR__ . '/Clean.php';
+require_once __DIR__ . '/Done.php';
+require_once __DIR__ . '/MakeError.php';
+require_once __DIR__ . '/FeatureAdd.php';
+require_once __DIR__ . '/FeatureHook.php';
+require_once __DIR__ . '/FeatureInit.php';
+require_once __DIR__ . '/Fetcher.php';
+require_once __DIR__ . '/MakeFetchDef.php';
+require_once __DIR__ . '/MakeContext.php';
+require_once __DIR__ . '/MakeOptions.php';
+require_once __DIR__ . '/MakeRequest.php';
+require_once __DIR__ . '/MakeResponse.php';
+require_once __DIR__ . '/MakeResult.php';
+require_once __DIR__ . '/MakePoint.php';
+require_once __DIR__ . '/MakeSpec.php';
+require_once __DIR__ . '/MakeUrl.php';
+require_once __DIR__ . '/Param.php';
+require_once __DIR__ . '/PrepareAuth.php';
+require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/PrepareHeaders.php';
+require_once __DIR__ . '/PrepareMethod.php';
+require_once __DIR__ . '/PrepareParams.php';
+require_once __DIR__ . '/PreparePath.php';
+require_once __DIR__ . '/PrepareQuery.php';
+require_once __DIR__ . '/ResultBasic.php';
+require_once __DIR__ . '/ResultBody.php';
+require_once __DIR__ . '/ResultHeaders.php';
+require_once __DIR__ . '/TransformRequest.php';
+require_once __DIR__ . '/TransformResponse.php';
+
+MbtaV3Utility::setRegistrar(function (MbtaV3Utility $u): void {
+    $u->clean = [MbtaV3Clean::class, 'call'];
+    $u->done = [MbtaV3Done::class, 'call'];
+    $u->make_error = [MbtaV3MakeError::class, 'call'];
+    $u->feature_add = [MbtaV3FeatureAdd::class, 'call'];
+    $u->feature_hook = [MbtaV3FeatureHook::class, 'call'];
+    $u->feature_init = [MbtaV3FeatureInit::class, 'call'];
+    $u->fetcher = [MbtaV3Fetcher::class, 'call'];
+    $u->make_fetch_def = [MbtaV3MakeFetchDef::class, 'call'];
+    $u->make_context = [MbtaV3MakeContext::class, 'call'];
+    $u->make_options = [MbtaV3MakeOptions::class, 'call'];
+    $u->make_request = [MbtaV3MakeRequest::class, 'call'];
+    $u->make_response = [MbtaV3MakeResponse::class, 'call'];
+    $u->make_result = [MbtaV3MakeResult::class, 'call'];
+    $u->make_point = [MbtaV3MakePoint::class, 'call'];
+    $u->make_spec = [MbtaV3MakeSpec::class, 'call'];
+    $u->make_url = [MbtaV3MakeUrl::class, 'call'];
+    $u->param = [MbtaV3Param::class, 'call'];
+    $u->prepare_auth = [MbtaV3PrepareAuth::class, 'call'];
+    $u->prepare_body = [MbtaV3PrepareBody::class, 'call'];
+    $u->prepare_headers = [MbtaV3PrepareHeaders::class, 'call'];
+    $u->prepare_method = [MbtaV3PrepareMethod::class, 'call'];
+    $u->prepare_params = [MbtaV3PrepareParams::class, 'call'];
+    $u->prepare_path = [MbtaV3PreparePath::class, 'call'];
+    $u->prepare_query = [MbtaV3PrepareQuery::class, 'call'];
+    $u->result_basic = [MbtaV3ResultBasic::class, 'call'];
+    $u->result_body = [MbtaV3ResultBody::class, 'call'];
+    $u->result_headers = [MbtaV3ResultHeaders::class, 'call'];
+    $u->transform_request = [MbtaV3TransformRequest::class, 'call'];
+    $u->transform_response = [MbtaV3TransformResponse::class, 'call'];
+});

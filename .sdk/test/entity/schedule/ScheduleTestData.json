@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "schedule": {
+      "SCHEDULE00": {},
+      "SCHEDULE01": {},
+      "SCHEDULE02": {}
+    }
+  },
+  "new": {
+    "schedule": {
+      "schedule_ref01": {}
+    }
+  }
+}

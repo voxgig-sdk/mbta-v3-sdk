@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "route_pattern": {
+      "ROUTE_PATTERN00": {},
+      "ROUTE_PATTERN01": {},
+      "ROUTE_PATTERN02": {}
+    }
+  },
+  "new": {
+    "route_pattern": {
+      "route_pattern_ref01": {}
+    }
+  }
+}

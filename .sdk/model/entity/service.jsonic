@@ -1,0 +1,61 @@
+# Entity: service
+
+main: kit: entity: service: {
+
+  alias: field: {}
+
+  name: "service"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "filter_id"
+                orig: "filter_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "filter_route"
+                orig: "filter_route"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "include"
+                orig: "include"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/services"
+          parts: [
+            "services"
+          ]
+          select: {
+            exist: [
+              "filter_id"
+              "filter_route"
+              "include"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

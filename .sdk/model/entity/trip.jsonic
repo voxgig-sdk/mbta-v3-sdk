@@ -1,0 +1,93 @@
+# Entity: trip
+
+main: kit: entity: trip: {
+
+  alias: field: {}
+
+  name: "trip"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "filter_direction_id"
+                orig: "filter_direction_id"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "filter_id"
+                orig: "filter_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "filter_name"
+                orig: "filter_name"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "filter_route"
+                orig: "filter_route"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "filter_route_pattern"
+                orig: "filter_route_pattern"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "include"
+                orig: "include"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "sort"
+                orig: "sort"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/trips"
+          parts: [
+            "trips"
+          ]
+          select: {
+            exist: [
+              "filter_direction_id"
+              "filter_id"
+              "filter_name"
+              "filter_route"
+              "filter_route_pattern"
+              "include"
+              "sort"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,109 @@
+# Entity: schedule
+
+main: kit: entity: schedule: {
+
+  alias: field: {}
+
+  name: "schedule"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "filter_date"
+                orig: "filter_date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "filter_direction_id"
+                orig: "filter_direction_id"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "filter_max_time"
+                orig: "filter_max_time"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "filter_min_time"
+                orig: "filter_min_time"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "filter_route"
+                orig: "filter_route"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "filter_stop"
+                orig: "filter_stop"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "filter_trip"
+                orig: "filter_trip"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "include"
+                orig: "include"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "sort"
+                orig: "sort"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/schedules"
+          parts: [
+            "schedules"
+          ]
+          select: {
+            exist: [
+              "filter_date"
+              "filter_direction_id"
+              "filter_max_time"
+              "filter_min_time"
+              "filter_route"
+              "filter_stop"
+              "filter_trip"
+              "include"
+              "sort"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

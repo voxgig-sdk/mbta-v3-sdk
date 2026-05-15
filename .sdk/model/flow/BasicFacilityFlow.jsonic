@@ -1,0 +1,28 @@
+# BasicFacilityFlow
+
+main: kit: flow: BasicFacilityFlow:
+{
+  entity: "facility",
+  kind: "basic",
+  name: "BasicFacilityFlow",
+  step: [
+    {
+      input: {
+        ref: "facility_ref01",
+        srcdatavar: "facility_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-facility_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicFacilityFlow"
+}
