@@ -29,7 +29,7 @@ class Config {
 
 
   options = {
-    base: 'https://api-v3.mbta.com',
+    base: '$$main.kit.info.servers.0.url$$',
 
     'AUTHBLOCK'headers: 'HEADERS',
 

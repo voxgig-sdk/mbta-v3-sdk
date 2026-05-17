@@ -1,9 +1,15 @@
 {
   "existing": {
     "stop": {
-      "STOP00": {},
-      "STOP01": {},
-      "STOP02": {}
+      "STOP00": {
+        "id": "STOP00"
+      },
+      "STOP01": {
+        "id": "STOP01"
+      },
+      "STOP02": {
+        "id": "STOP02"
+      }
     }
   },
   "new": {

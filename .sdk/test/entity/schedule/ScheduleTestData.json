@@ -1,9 +1,15 @@
 {
   "existing": {
     "schedule": {
-      "SCHEDULE00": {},
-      "SCHEDULE01": {},
-      "SCHEDULE02": {}
+      "SCHEDULE00": {
+        "id": "SCHEDULE00"
+      },
+      "SCHEDULE01": {
+        "id": "SCHEDULE01"
+      },
+      "SCHEDULE02": {
+        "id": "SCHEDULE02"
+      }
     }
   },
   "new": {

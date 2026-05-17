@@ -1,9 +1,15 @@
 {
   "existing": {
     "service": {
-      "SERVICE00": {},
-      "SERVICE01": {},
-      "SERVICE02": {}
+      "SERVICE00": {
+        "id": "SERVICE00"
+      },
+      "SERVICE01": {
+        "id": "SERVICE01"
+      },
+      "SERVICE02": {
+        "id": "SERVICE02"
+      }
     }
   },
   "new": {

@@ -1,9 +1,15 @@
 {
   "existing": {
     "line": {
-      "LINE00": {},
-      "LINE01": {},
-      "LINE02": {}
+      "LINE00": {
+        "id": "LINE00"
+      },
+      "LINE01": {
+        "id": "LINE01"
+      },
+      "LINE02": {
+        "id": "LINE02"
+      }
     }
   },
   "new": {

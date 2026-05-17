@@ -3,7 +3,7 @@ package utility
 import (
 	"reflect"
 
-	"github.com/voxgig-sdk/mbta-v3-sdk/core"
+	"github.com/voxgig-sdk/mbta-v3-sdk/go/core"
 )
 
 func featureHookUtil(ctx *core.Context, name string) {

@@ -1,9 +1,15 @@
 {
   "existing": {
     "shape": {
-      "SHAPE00": {},
-      "SHAPE01": {},
-      "SHAPE02": {}
+      "SHAPE00": {
+        "id": "SHAPE00"
+      },
+      "SHAPE01": {
+        "id": "SHAPE01"
+      },
+      "SHAPE02": {
+        "id": "SHAPE02"
+      }
     }
   },
   "new": {

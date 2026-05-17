@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/mbta-v3-sdk/core"
+	"github.com/voxgig-sdk/mbta-v3-sdk/go/core"
 )
 
 type BaseFeature struct {

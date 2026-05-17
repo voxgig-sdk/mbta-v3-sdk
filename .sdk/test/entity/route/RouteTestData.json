@@ -1,9 +1,15 @@
 {
   "existing": {
     "route": {
-      "ROUTE00": {},
-      "ROUTE01": {},
-      "ROUTE02": {}
+      "ROUTE00": {
+        "id": "ROUTE00"
+      },
+      "ROUTE01": {
+        "id": "ROUTE01"
+      },
+      "ROUTE02": {
+        "id": "ROUTE02"
+      }
     }
   },
   "new": {

@@ -1,9 +1,15 @@
 {
   "existing": {
     "prediction": {
-      "PREDICTION00": {},
-      "PREDICTION01": {},
-      "PREDICTION02": {}
+      "PREDICTION00": {
+        "id": "PREDICTION00"
+      },
+      "PREDICTION01": {
+        "id": "PREDICTION01"
+      },
+      "PREDICTION02": {
+        "id": "PREDICTION02"
+      }
     }
   },
   "new": {

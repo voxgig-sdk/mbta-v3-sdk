@@ -1,9 +1,15 @@
 {
   "existing": {
     "alert": {
-      "ALERT00": {},
-      "ALERT01": {},
-      "ALERT02": {}
+      "ALERT00": {
+        "id": "ALERT00"
+      },
+      "ALERT01": {
+        "id": "ALERT01"
+      },
+      "ALERT02": {
+        "id": "ALERT02"
+      }
     }
   },
   "new": {

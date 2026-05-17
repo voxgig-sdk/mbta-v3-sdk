@@ -1,9 +1,15 @@
 {
   "existing": {
     "route_pattern": {
-      "ROUTE_PATTERN00": {},
-      "ROUTE_PATTERN01": {},
-      "ROUTE_PATTERN02": {}
+      "ROUTE_PATTERN00": {
+        "id": "ROUTE_PATTERN00"
+      },
+      "ROUTE_PATTERN01": {
+        "id": "ROUTE_PATTERN01"
+      },
+      "ROUTE_PATTERN02": {
+        "id": "ROUTE_PATTERN02"
+      }
     }
   },
   "new": {

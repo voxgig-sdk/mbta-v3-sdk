@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/mbta-v3-sdk"
-	"github.com/voxgig-sdk/mbta-v3-sdk/core"
+	sdk "github.com/voxgig-sdk/mbta-v3-sdk/go"
+	"github.com/voxgig-sdk/mbta-v3-sdk/go/core"
 )
 
 func TestRoutePatternDirect(t *testing.T) {

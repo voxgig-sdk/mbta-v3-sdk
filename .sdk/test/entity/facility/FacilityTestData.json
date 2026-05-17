@@ -1,9 +1,15 @@
 {
   "existing": {
     "facility": {
-      "FACILITY00": {},
-      "FACILITY01": {},
-      "FACILITY02": {}
+      "FACILITY00": {
+        "id": "FACILITY00"
+      },
+      "FACILITY01": {
+        "id": "FACILITY01"
+      },
+      "FACILITY02": {
+        "id": "FACILITY02"
+      }
     }
   },
   "new": {

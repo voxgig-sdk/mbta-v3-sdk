@@ -1,9 +1,15 @@
 {
   "existing": {
     "trip": {
-      "TRIP00": {},
-      "TRIP01": {},
-      "TRIP02": {}
+      "TRIP00": {
+        "id": "TRIP00"
+      },
+      "TRIP01": {
+        "id": "TRIP01"
+      },
+      "TRIP02": {
+        "id": "TRIP02"
+      }
     }
   },
   "new": {

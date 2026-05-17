@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/mbta-v3-sdk/go/utility/struct"
 )
 
 type MbtaV3SDK struct {
