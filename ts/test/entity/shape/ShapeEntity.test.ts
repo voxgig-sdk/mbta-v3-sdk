@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'MBTA_V__TEST_SHAPE_ENTID': idmap,
     'MBTA_V__TEST_LIVE': 'FALSE',
     'MBTA_V__TEST_EXPLAIN': 'FALSE',
-    'MBTA_V__APIKEY': 'NONE',
   })
 
   idmap = env['MBTA_V__TEST_SHAPE_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new MbtaV3SDK(merge([
       {
-        apikey: env.MBTA_V__APIKEY,
       },
       extra
     ]))

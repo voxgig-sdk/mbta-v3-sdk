@@ -59,14 +59,12 @@ def _line_direct_setup(mockres):
     env = runner.env_override({
         "MBTAV__TEST_LINE_ENTID": {},
         "MBTAV__TEST_LIVE": "FALSE",
-        "MBTAV__APIKEY": "NONE",
     })
 
     live = env.get("MBTAV__TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("MBTAV__APIKEY"),
         }
         client = MbtaV3SDK(merged_opts)
         return {

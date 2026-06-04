@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://api-v3.mbta.com",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },

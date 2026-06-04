@@ -91,7 +91,6 @@ def _vehicle_basic_setup(extra):
         "MBTAV__TEST_VEHICLE_ENTID": idmap,
         "MBTAV__TEST_LIVE": "FALSE",
         "MBTAV__TEST_EXPLAIN": "FALSE",
-        "MBTAV__APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +101,6 @@ def _vehicle_basic_setup(extra):
     if env.get("MBTAV__TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("MBTAV__APIKEY"),
             },
             extra or {},
         ])

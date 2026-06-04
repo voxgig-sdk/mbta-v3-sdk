@@ -99,14 +99,12 @@ func serviceDirectSetup(mockres any) *serviceDirectSetupResult {
 	env := envOverride(map[string]any{
 		"MBTAV__TEST_SERVICE_ENTID": map[string]any{},
 		"MBTAV__TEST_LIVE":    "FALSE",
-		"MBTAV__APIKEY":       "NONE",
 	})
 
 	live := env["MBTAV__TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["MBTAV__APIKEY"],
 		}
 		client := sdk.NewMbtaV3SDK(mergedOpts)
 

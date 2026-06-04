@@ -91,7 +91,6 @@ function service_basic_setup(extra)
     ["MBTAV__TEST_SERVICE_ENTID"] = idmap,
     ["MBTAV__TEST_LIVE"] = "FALSE",
     ["MBTAV__TEST_EXPLAIN"] = "FALSE",
-    ["MBTAV__APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,7 +102,6 @@ function service_basic_setup(extra)
   if env["MBTAV__TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["MBTAV__APIKEY"],
       },
       extra or {},
     })

@@ -85,7 +85,6 @@ function stop_basic_setup($extra)
         "MBTAV__TEST_STOP_ENTID" => $idmap,
         "MBTAV__TEST_LIVE" => "FALSE",
         "MBTAV__TEST_EXPLAIN" => "FALSE",
-        "MBTAV__APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +96,6 @@ function stop_basic_setup($extra)
     if ($env["MBTAV__TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["MBTAV__APIKEY"],
             ],
             $extra ?? [],
         ]);

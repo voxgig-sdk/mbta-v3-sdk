@@ -117,7 +117,6 @@ func route_patternBasicSetup(extra map[string]any) *entityTestSetup {
 		"MBTAV__TEST_ROUTE_PATTERN_ENTID": idmap,
 		"MBTAV__TEST_LIVE":      "FALSE",
 		"MBTAV__TEST_EXPLAIN":   "FALSE",
-		"MBTAV__APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["MBTAV__TEST_ROUTE_PATTERN_ENTID"])
@@ -128,7 +127,6 @@ func route_patternBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["MBTAV__TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["MBTAV__APIKEY"],
 			},
 			extra,
 		})
