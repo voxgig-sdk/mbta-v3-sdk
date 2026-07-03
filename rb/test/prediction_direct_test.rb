@@ -61,12 +61,14 @@ def prediction_direct_setup(mockres)
   env = Runner.env_override({
     "MBTAV__TEST_PREDICTION_ENTID" => {},
     "MBTAV__TEST_LIVE" => "FALSE",
+    "MBTAV__APIKEY" => "NONE",
   })
 
   live = env["MBTAV__TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["MBTAV__APIKEY"],
     }
     client = MbtaV3SDK.new(merged_opts)
     return {

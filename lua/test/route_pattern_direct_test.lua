@@ -62,12 +62,14 @@ function route_pattern_direct_setup(mockres)
   local env = runner.env_override({
     ["MBTAV__TEST_ROUTE_PATTERN_ENTID"] = {},
     ["MBTAV__TEST_LIVE"] = "FALSE",
+    ["MBTAV__APIKEY"] = "NONE",
   })
 
   local live = env["MBTAV__TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["MBTAV__APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

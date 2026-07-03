@@ -74,12 +74,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'MBTAV__TEST_LINE_ENTID': {},
     'MBTAV__TEST_LIVE': 'FALSE',
+    'MBTAV__APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.MBTAV__TEST_LIVE
 
   if (live) {
     const client = new MbtaV3SDK({
+      apikey: env.MBTAV__APIKEY,
     })
 
     let idmap: any = env['MBTAV__TEST_LINE_ENTID']

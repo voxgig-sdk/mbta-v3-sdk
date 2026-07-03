@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -138,7 +138,7 @@ local alert = client:Alert(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Alert(nil):load({ id = "alert_id" }, nil)
+local result, err = client:Alert():load({ id = "alert_id" })
 ```
 
 ### Common Methods
@@ -184,7 +184,7 @@ local facility = client:Facility(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Facility(nil):load({ id = "facility_id" }, nil)
+local result, err = client:Facility():load({ id = "facility_id" })
 ```
 
 ### Common Methods
@@ -230,7 +230,7 @@ local line = client:Line(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Line(nil):load({ id = "line_id" }, nil)
+local result, err = client:Line():load({ id = "line_id" })
 ```
 
 ### Common Methods
@@ -276,7 +276,7 @@ local prediction = client:Prediction(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Prediction(nil):load({ id = "prediction_id" }, nil)
+local result, err = client:Prediction():load({ id = "prediction_id" })
 ```
 
 ### Common Methods
@@ -322,7 +322,7 @@ local route = client:Route(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Route(nil):load({ id = "route_id" }, nil)
+local result, err = client:Route():load({ id = "route_id" })
 ```
 
 ### Common Methods
@@ -368,7 +368,7 @@ local route_pattern = client:RoutePattern(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:RoutePattern(nil):load({ id = "route_pattern_id" }, nil)
+local result, err = client:RoutePattern():load({ id = "route_pattern_id" })
 ```
 
 ### Common Methods
@@ -414,7 +414,7 @@ local schedule = client:Schedule(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Schedule(nil):load({ id = "schedule_id" }, nil)
+local result, err = client:Schedule():load({ id = "schedule_id" })
 ```
 
 ### Common Methods
@@ -460,7 +460,7 @@ local service = client:Service(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Service(nil):load({ id = "service_id" }, nil)
+local result, err = client:Service():load({ id = "service_id" })
 ```
 
 ### Common Methods
@@ -506,7 +506,7 @@ local shape = client:Shape(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Shape(nil):load({ id = "shape_id" }, nil)
+local result, err = client:Shape():load({ id = "shape_id" })
 ```
 
 ### Common Methods
@@ -552,7 +552,7 @@ local stop = client:Stop(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Stop(nil):load({ id = "stop_id" }, nil)
+local result, err = client:Stop():load({ id = "stop_id" })
 ```
 
 ### Common Methods
@@ -598,7 +598,7 @@ local trip = client:Trip(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Trip(nil):load({ id = "trip_id" }, nil)
+local result, err = client:Trip():load({ id = "trip_id" })
 ```
 
 ### Common Methods
@@ -644,7 +644,7 @@ local vehicle = client:Vehicle(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Vehicle(nil):load({ id = "vehicle_id" }, nil)
+local result, err = client:Vehicle():load({ id = "vehicle_id" })
 ```
 
 ### Common Methods

@@ -1,21 +1,8 @@
 # MbtaV3 SDK
 
-Schedules, real-time predictions, and service alerts for the Massachusetts Bay Transportation Authority in JSON:API format
+Massachusetts Bay Transportation Authority V3 API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Massachusetts Bay Transportation Authority V3 API
-
-The V3 API is the official developer interface for the [Massachusetts Bay Transportation Authority](https://www.mbta.com/) (MBTA), the public transit agency serving the Greater Boston region. It exposes static schedule data, real-time vehicle positions and predictions, and service alerts via a single [JSON:API](https://jsonapi.org/) endpoint at `https://api-v3.mbta.com`.
-
-What you get from the API:
-
-- General Transit Feed Specification (GTFS) reference data: routes, stops, trips, shapes, schedules, and services.
-- GTFS Realtime feeds reshaped as predictions, vehicle positions, and alerts.
-- MBTA-specific extensions covering lines, route patterns, and station facilities (elevators, bike racks, parking).
-- JSON:API features for filtering, sparse fieldsets, sorting, pagination, and including related resources in one request.
-
-An API key is recommended: anonymous use is rate-limited, while a free registered key raises the default cap to roughly 1,000 requests per minute and is also required for versioning and streaming requests. Keys can be requested at [api-v3.mbta.com](https://api-v3.mbta.com/). Source code and issue tracking live in the [mbta/api](https://github.com/mbta/api) GitHub repository.
 
 ## Try it
 
@@ -49,27 +36,31 @@ gem install mbta-v3-sdk
 luarocks install mbta-v3-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { MbtaV3SDK } from 'mbta-v3'
 
-const client = new MbtaV3SDK({})
+const client = new MbtaV3SDK({
+  apikey: process.env.MBTA-V3_APIKEY,
+})
 
+// Load alert data
+const alert = await client.Alert().load({})
+console.log(alert.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -99,18 +90,18 @@ The API exposes 12 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Alert** | Service disruption and advisory notices affecting routes, stops, trips, or facilities, served from `/alerts`. | `/alerts` |
-| **Facility** | Station amenities such as elevators, escalators, bike racks, and parking lots, served from `/facilities`. | `/facilities` |
-| **Line** | A grouping of related routes presented to riders as a single line (e.g. the Red Line), served from `/lines`. | `/lines` |
-| **Prediction** | Real-time arrival and departure estimates for upcoming trips at stops, served from `/predictions`. | `/predictions` |
-| **Route** | A named transit route across bus, subway, commuter rail, ferry, or trolley modes, served from `/routes`. | `/routes` |
-| **RoutePattern** | A specific travel pattern (sequence of stops and direction) within a route, served from `/route_patterns`. | `/route_patterns` |
-| **Schedule** | Scheduled arrival and departure times for stops along trips, served from `/schedules`. | `/schedules` |
-| **Service** | Operating-day definitions describing when trips run (weekdays, weekends, holidays), served from `/services`. | `/services` |
-| **Shape** | Polyline geometry used to draw a trip's path on a map, served from `/shapes`. | `/shapes` |
-| **Stop** | Boarding and alighting locations including stations, platforms, and stop areas, served from `/stops`. | `/stops` |
-| **Trip** | An individual scheduled vehicle run along a route pattern, served from `/trips`. | `/trips` |
-| **Vehicle** | Real-time position, bearing, and status of in-service vehicles, served from `/vehicles`. | `/vehicles` |
+| **Alert** |  | `/alerts` |
+| **Facility** |  | `/facilities` |
+| **Line** |  | `/lines` |
+| **Prediction** |  | `/predictions` |
+| **Route** |  | `/routes` |
+| **RoutePattern** |  | `/route_patterns` |
+| **Schedule** |  | `/schedules` |
+| **Service** |  | `/services` |
+| **Shape** |  | `/shapes` |
+| **Stop** |  | `/stops` |
+| **Trip** |  | `/trips` |
+| **Vehicle** |  | `/vehicles` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -120,15 +111,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from mbtav3_sdk import MbtaV3SDK
 
-client = MbtaV3SDK({})
+client = MbtaV3SDK({
+    "apikey": os.environ.get("MBTA-V3_APIKEY"),
+})
 
 
 # Load a specific alert
-alert, err = client.Alert(None).load(
-    {"id": "example_id"}, None
-)
+alert, err = client.Alert().load({"id": "example_id"})
+print(alert)
 ```
 
 ### PHP
@@ -137,13 +130,14 @@ alert, err = client.Alert(None).load(
 <?php
 require_once 'mbtav3_sdk.php';
 
-$client = new MbtaV3SDK([]);
+$client = new MbtaV3SDK([
+    "apikey" => getenv("MBTA-V3_APIKEY"),
+]);
 
 
 // Load a specific alert
-[$alert, $err] = $client->Alert(null)->load(
-    ["id" => "example_id"], null
-);
+[$alert, $err] = $client->Alert()->load(["id" => "example_id"]);
+print_r($alert);
 ```
 
 ### Golang
@@ -151,8 +145,13 @@ $client = new MbtaV3SDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/mbta-v3-sdk/go"
 
-client := sdk.NewMbtaV3SDK(map[string]any{})
+client := sdk.NewMbtaV3SDK(map[string]any{
+    "apikey": os.Getenv("MBTA-V3_APIKEY"),
+})
 
+// Load alert data
+alert, err := client.Alert(nil).Load(map[string]any{}, nil)
+fmt.Println(alert)
 ```
 
 ### Ruby
@@ -160,13 +159,14 @@ client := sdk.NewMbtaV3SDK(map[string]any{})
 ```ruby
 require_relative "MbtaV3_sdk"
 
-client = MbtaV3SDK.new({})
+client = MbtaV3SDK.new({
+  "apikey" => ENV["MBTA-V3_APIKEY"],
+})
 
 
 # Load a specific alert
-alert, err = client.Alert(nil).load(
-  { "id" => "example_id" }, nil
-)
+alert, err = client.Alert().load({ "id" => "example_id" })
+puts alert
 ```
 
 ### Lua
@@ -174,13 +174,14 @@ alert, err = client.Alert(nil).load(
 ```lua
 local sdk = require("mbta-v3_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("MBTA-V3_APIKEY"),
+})
 
 
 -- Load a specific alert
-local alert, err = client:Alert(nil):load(
-  { id = "example_id" }, nil
-)
+local alert, err = client:Alert():load({ id = "example_id" })
+print(alert)
 ```
 
 ## Unit testing in offline mode
@@ -199,25 +200,21 @@ const result = await client.Alert().load({ id: 'test01' })
 ### Python
 
 ```python
-client = MbtaV3SDK.test(None, None)
-result, err = client.Alert(None).load(
-    {"id": "test01"}, None
-)
+client = MbtaV3SDK.test()
+result, err = client.Alert().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = MbtaV3SDK::test(null, null);
-[$result, $err] = $client->Alert(null)->load(
-    ["id" => "test01"], null
-);
+$client = MbtaV3SDK::test();
+[$result, $err] = $client->Alert()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Alert(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -226,19 +223,15 @@ result, err := client.Alert(nil).Load(
 ### Ruby
 
 ```ruby
-client = MbtaV3SDK.test(nil, nil)
-result, err = client.Alert(nil).load(
-  { "id" => "test01" }, nil
-)
+client = MbtaV3SDK.test
+result, err = client.Alert().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Alert(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Alert():load({ id = "test01" })
 ```
 
 ## How it works
@@ -342,16 +335,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Massachusetts Bay Transportation Authority V3 API
-
-- Upstream: [https://www.mbta.com/developers/v3-api](https://www.mbta.com/developers/v3-api)
-- API docs: [https://api-v3.mbta.com/docs/swagger](https://api-v3.mbta.com/docs/swagger)
-
-- Data is provided under the [MassDOT Developers License Agreement](https://www.mbta.com/developers/v3-api).
-- Underlying transit data follows the [GTFS](https://gtfs.org/) and GTFS Realtime specifications.
-- Free API keys are issued per application; attribution to the MBTA is expected for redistributed data.
-- Check the official agreement for caveats on commercial use and liability before shipping.
 
 ---
 

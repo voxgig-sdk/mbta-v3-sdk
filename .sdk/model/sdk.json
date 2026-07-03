@@ -1,55 +1,13 @@
 {
-  "name": "mbta-v3",
-  "origin": "voxgig-sdk",
   "def": "mbta-v3_0.1.0.json",
   "main": {
+    "def": {
+      "desc": ""
+    },
     "kit": {
-      "info": {
-        "contact": {
-          "name": "MBTA Support",
-          "url": "https://www.mbta.com/developers/v3-api"
-        },
-        "description": "The V3 API provides fast and easy access to Massachusetts Bay Transportation Authority schedules, alerts, and real-time transportation information. It follows the JSON API format, allowing developers to quickly integrate and utilize public transit data. The API presents General Transit Feed Specification (GTFS), GTFS Realtime, and MBTA-specific data.",
-        "license": {
-          "name": "MassDOT Developers License Agreement",
-          "url": "https://www.mbta.com/developers"
-        },
-        "servers": [
-          {
-            "description": "Production API Server",
-            "url": "https://api-v3.mbta.com"
-          }
-        ],
-        "title": "Massachusetts Bay Transportation Authority V3 API",
-        "version": "3.0.0",
-        "tagline": "Schedules, real-time predictions, and service alerts for the Massachusetts Bay Transportation Authority in JSON:API format",
-        "homepage": "https://www.mbta.com/developers/v3-api",
-        "docs_url": "https://api-v3.mbta.com/docs/swagger",
-        "license_short": "Use governed by the MassDOT Developers License Agreement",
-        "license_md": "- Data is provided under the [MassDOT Developers License Agreement](https://www.mbta.com/developers/v3-api).\n- Underlying transit data follows the [GTFS](https://gtfs.org/) and GTFS Realtime specifications.\n- Free API keys are issued per application; attribution to the MBTA is expected for redistributed data.\n- Check the official agreement for caveats on commercial use and liability before shipping.",
-        "about_md": "The V3 API is the official developer interface for the [Massachusetts Bay Transportation Authority](https://www.mbta.com/) (MBTA), the public transit agency serving the Greater Boston region. It exposes static schedule data, real-time vehicle positions and predictions, and service alerts via a single [JSON:API](https://jsonapi.org/) endpoint at `https://api-v3.mbta.com`.\n\nWhat you get from the API:\n\n- General Transit Feed Specification (GTFS) reference data: routes, stops, trips, shapes, schedules, and services.\n- GTFS Realtime feeds reshaped as predictions, vehicle positions, and alerts.\n- MBTA-specific extensions covering lines, route patterns, and station facilities (elevators, bike racks, parking).\n- JSON:API features for filtering, sparse fieldsets, sorting, pagination, and including related resources in one request.\n\nAn API key is recommended: anonymous use is rate-limited, while a free registered key raises the default cap to roughly 1,000 requests per minute and is also required for versioning and streaming requests. Keys can be requested at [api-v3.mbta.com](https://api-v3.mbta.com/). Source code and issue tracking live in the [mbta/api](https://github.com/mbta/api) GitHub repository.",
-        "entity_desc": {
-          "alert": "Service disruption and advisory notices affecting routes, stops, trips, or facilities, served from `/alerts`.",
-          "facility": "Station amenities such as elevators, escalators, bike racks, and parking lots, served from `/facilities`.",
-          "line": "A grouping of related routes presented to riders as a single line (e.g. the Red Line), served from `/lines`.",
-          "prediction": "Real-time arrival and departure estimates for upcoming trips at stops, served from `/predictions`.",
-          "route": "A named transit route across bus, subway, commuter rail, ferry, or trolley modes, served from `/routes`.",
-          "route_pattern": "A specific travel pattern (sequence of stops and direction) within a route, served from `/route_patterns`.",
-          "schedule": "Scheduled arrival and departure times for stops along trips, served from `/schedules`.",
-          "service": "Operating-day definitions describing when trips run (weekdays, weekends, holidays), served from `/services`.",
-          "shape": "Polyline geometry used to draw a trip's path on a map, served from `/shapes`.",
-          "stop": "Boarding and alighting locations including stations, platforms, and stop areas, served from `/stops`.",
-          "trip": "An individual scheduled vehicle run along a route pattern, served from `/trips`.",
-          "vehicle": "Real-time position, bearing, and status of in-service vehicles, served from `/vehicles`."
-        },
-        "auth": false
-      },
       "config": {
         "auth": {
           "prefix": "Bearer"
-        },
-        "headers": {
-          "content-type": "application/json"
         },
         "docs_order": [
           "ts",
@@ -58,60 +16,67 @@
           "go",
           "rb",
           "lua"
-        ]
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
       },
       "entity": {
         "alert": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "alert",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_activity",
                         "orig": "filter_activity",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_route",
                         "orig": "filter_route",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_stop",
                         "orig": "filter_stop",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "include",
                         "orig": "include",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "sort",
                         "orig": "sort",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -132,54 +97,54 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "facility": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "facility",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_stop",
                         "orig": "filter_stop",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_type",
                         "orig": "filter_type",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "include",
                         "orig": "include",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -198,46 +163,46 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "line": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "line",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_id",
                         "orig": "filter_id",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "include",
                         "orig": "include",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -255,78 +220,78 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "prediction": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "prediction",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_direction_id",
                         "orig": "filter_direction_id",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_route",
                         "orig": "filter_route",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_stop",
                         "orig": "filter_stop",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_trip",
                         "orig": "filter_trip",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "include",
                         "orig": "include",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "sort",
                         "orig": "sort",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -348,71 +313,71 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "route": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "route",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_id",
                         "orig": "filter_id",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_stop",
                         "orig": "filter_stop",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "0,1",
                         "kind": "query",
                         "name": "filter_type",
                         "orig": "filter_type",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "include",
                         "orig": "include",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "sort",
                         "orig": "sort",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -433,29 +398,29 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 },
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "kind": "param",
                         "name": "id",
                         "orig": "id",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "include",
                         "orig": "include",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -474,62 +439,62 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "route_pattern": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "route_pattern",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_direction_id",
                         "orig": "filter_direction_id",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_route",
                         "orig": "filter_route",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_stop",
                         "orig": "filter_stop",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "include",
                         "orig": "include",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -549,102 +514,102 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "schedule": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "schedule",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_date",
                         "orig": "filter_date",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_direction_id",
                         "orig": "filter_direction_id",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_max_time",
                         "orig": "filter_max_time",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_min_time",
                         "orig": "filter_min_time",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_route",
                         "orig": "filter_route",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_stop",
                         "orig": "filter_stop",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_trip",
                         "orig": "filter_trip",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "include",
                         "orig": "include",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "sort",
                         "orig": "sort",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -669,54 +634,54 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "service": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "service",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_id",
                         "orig": "filter_id",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_route",
                         "orig": "filter_route",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "include",
                         "orig": "include",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -735,54 +700,54 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "shape": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "shape",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_direction_id",
                         "orig": "filter_direction_id",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_route",
                         "orig": "filter_route",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "include",
                         "orig": "include",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -801,94 +766,94 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "stop": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "stop",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_id",
                         "orig": "filter_id",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_latitude",
                         "orig": "filter_latitude",
                         "reqd": false,
-                        "type": "`$NUMBER`",
-                        "active": true
+                        "type": "`$NUMBER`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_location_type",
                         "orig": "filter_location_type",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_longitude",
                         "orig": "filter_longitude",
                         "reqd": false,
-                        "type": "`$NUMBER`",
-                        "active": true
+                        "type": "`$NUMBER`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_radius",
                         "orig": "filter_radius",
                         "reqd": false,
-                        "type": "`$NUMBER`",
-                        "active": true
+                        "type": "`$NUMBER`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_route",
                         "orig": "filter_route",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "include",
                         "orig": "include",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "sort",
                         "orig": "sort",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -912,86 +877,86 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "trip": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "trip",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_direction_id",
                         "orig": "filter_direction_id",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_id",
                         "orig": "filter_id",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_name",
                         "orig": "filter_name",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_route",
                         "orig": "filter_route",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_route_pattern",
                         "orig": "filter_route_pattern",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "include",
                         "orig": "include",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "sort",
                         "orig": "sort",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -1014,86 +979,86 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "vehicle": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "vehicle",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_direction_id",
                         "orig": "filter_direction_id",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_id",
                         "orig": "filter_id",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_label",
                         "orig": "filter_label",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_route",
                         "orig": "filter_route",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "filter_trip",
                         "orig": "filter_trip",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "include",
                         "orig": "include",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "sort",
                         "orig": "sort",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -1116,15 +1081,11 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
@@ -1132,9 +1093,6 @@
       },
       "feature": {
         "test": {
-          "name": "test",
-          "title": "In-memory mock transport for testing without a live server",
-          "version": "0.0.1",
           "active": true,
           "config": {
             "options": {
@@ -1142,6 +1100,14 @@
             }
           },
           "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
             "PostConstruct": {
               "active": true,
               "await": false
@@ -1150,25 +1116,11 @@
               "active": true,
               "await": false
             },
-            "SetData": {
-              "active": true,
-              "await": false
-            },
-            "GetData": {
-              "active": true,
-              "await": false
-            },
-            "SetMatch": {
-              "active": true
-            },
-            "GetMatch": {
-              "active": true,
+            "PostOperation": {
+              "active": false,
               "await": false
             },
             "PrePoint": {
-              "active": true
-            },
-            "PreSpec": {
               "active": true,
               "await": false
             },
@@ -1184,20 +1136,32 @@
               "active": true,
               "await": false
             },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
             "PreTarget": {
               "active": false,
               "await": false
             },
-            "PostOperation": {
-              "active": false,
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
               "await": false
             }
           },
+          "name": "test",
           "target": {
-            "ts": {
+            "go": {
               "deps": {}
             },
-            "go": {
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
               "deps": {}
             },
             "lua": {
@@ -1212,28 +1176,34 @@
             "rb": {
               "deps": {}
             },
-            "go-cli": {
-              "deps": {}
-            },
-            "go-mcp": {
+            "ts": {
               "deps": {}
             }
-          }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
         }
       },
       "flow": {
         "BasicAlertFlow": {
+          "active": true,
           "entity": "alert",
+          "key$": "BasicAlertFlow",
           "kind": "basic",
           "name": "BasicAlertFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "alert_ref01",
                 "srcdatavar": "alert_ref01_data",
                 "suffix": "_dt0"
               },
+              "match": {},
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1241,29 +1211,29 @@
                     "mark": "Mark01-alert_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicAlertFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicFacilityFlow": {
+          "active": true,
           "entity": "facility",
+          "key$": "BasicFacilityFlow",
           "kind": "basic",
           "name": "BasicFacilityFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "facility_ref01",
                 "srcdatavar": "facility_ref01_data",
                 "suffix": "_dt0"
               },
+              "match": {},
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1271,29 +1241,29 @@
                     "mark": "Mark01-facility_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicFacilityFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicLineFlow": {
+          "active": true,
           "entity": "line",
+          "key$": "BasicLineFlow",
           "kind": "basic",
           "name": "BasicLineFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "line_ref01",
                 "srcdatavar": "line_ref01_data",
                 "suffix": "_dt0"
               },
+              "match": {},
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1301,29 +1271,29 @@
                     "mark": "Mark01-line_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicLineFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicPredictionFlow": {
+          "active": true,
           "entity": "prediction",
+          "key$": "BasicPredictionFlow",
           "kind": "basic",
           "name": "BasicPredictionFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "prediction_ref01",
                 "srcdatavar": "prediction_ref01_data",
                 "suffix": "_dt0"
               },
+              "match": {},
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1331,23 +1301,21 @@
                     "mark": "Mark01-prediction_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicPredictionFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicRouteFlow": {
+          "active": true,
           "entity": "route",
+          "key$": "BasicRouteFlow",
           "kind": "basic",
           "name": "BasicRouteFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "route_ref01",
                 "srcdatavar": "route_ref01_data",
@@ -1357,6 +1325,7 @@
                 "id": "route01"
               },
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1364,28 +1333,29 @@
                     "mark": "Mark01-route_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicRouteFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicRoutePatternFlow": {
+          "active": true,
           "entity": "route_pattern",
+          "key$": "BasicRoutePatternFlow",
           "kind": "basic",
           "name": "BasicRoutePatternFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "route_pattern_ref01",
                 "srcdatavar": "route_pattern_ref01_data",
                 "suffix": "_dt0"
               },
+              "match": {},
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1393,29 +1363,29 @@
                     "mark": "Mark01-route_pattern_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicRoutePatternFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicScheduleFlow": {
+          "active": true,
           "entity": "schedule",
+          "key$": "BasicScheduleFlow",
           "kind": "basic",
           "name": "BasicScheduleFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "schedule_ref01",
                 "srcdatavar": "schedule_ref01_data",
                 "suffix": "_dt0"
               },
+              "match": {},
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1423,29 +1393,29 @@
                     "mark": "Mark01-schedule_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicScheduleFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicServiceFlow": {
+          "active": true,
           "entity": "service",
+          "key$": "BasicServiceFlow",
           "kind": "basic",
           "name": "BasicServiceFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "service_ref01",
                 "srcdatavar": "service_ref01_data",
                 "suffix": "_dt0"
               },
+              "match": {},
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1453,29 +1423,29 @@
                     "mark": "Mark01-service_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicServiceFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicShapeFlow": {
+          "active": true,
           "entity": "shape",
+          "key$": "BasicShapeFlow",
           "kind": "basic",
           "name": "BasicShapeFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "shape_ref01",
                 "srcdatavar": "shape_ref01_data",
                 "suffix": "_dt0"
               },
+              "match": {},
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1483,29 +1453,29 @@
                     "mark": "Mark01-shape_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicShapeFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicStopFlow": {
+          "active": true,
           "entity": "stop",
+          "key$": "BasicStopFlow",
           "kind": "basic",
           "name": "BasicStopFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "stop_ref01",
                 "srcdatavar": "stop_ref01_data",
                 "suffix": "_dt0"
               },
+              "match": {},
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1513,29 +1483,29 @@
                     "mark": "Mark01-stop_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicStopFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicTripFlow": {
+          "active": true,
           "entity": "trip",
+          "key$": "BasicTripFlow",
           "kind": "basic",
           "name": "BasicTripFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "trip_ref01",
                 "srcdatavar": "trip_ref01_data",
                 "suffix": "_dt0"
               },
+              "match": {},
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1543,29 +1513,29 @@
                     "mark": "Mark01-trip_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicTripFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicVehicleFlow": {
+          "active": true,
           "entity": "vehicle",
+          "key$": "BasicVehicleFlow",
           "kind": "basic",
           "name": "BasicVehicleFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "vehicle_ref01",
                 "srcdatavar": "vehicle_ref01_data",
                 "suffix": "_dt0"
               },
+              "match": {},
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1573,28 +1543,57 @@
                     "mark": "Mark01-vehicle_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicVehicleFlow",
-          "active": true,
-          "param": {}
+          ]
         }
       },
+      "info": {
+        "contact": {
+          "name": "MBTA Support",
+          "url": "https://www.mbta.com/developers/v3-api"
+        },
+        "description": "The V3 API provides fast and easy access to Massachusetts Bay Transportation Authority schedules, alerts, and real-time transportation information. It follows the JSON API format, allowing developers to quickly integrate and utilize public transit data. The API presents General Transit Feed Specification (GTFS), GTFS Realtime, and MBTA-specific data.",
+        "license": {
+          "name": "MassDOT Developers License Agreement",
+          "url": "https://www.mbta.com/developers"
+        },
+        "servers": [
+          {
+            "description": "Production API Server",
+            "url": "https://api-v3.mbta.com"
+          }
+        ],
+        "title": "Massachusetts Bay Transportation Authority V3 API",
+        "version": "3.0.0"
+      },
+      "option": {},
       "target": {
-        "go-cli": {
-          "title": "Go CLI",
-          "ext": "go",
+        "go": {
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "mbta-v3"
           },
+          "name": "go",
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "mbta-v3"
+          },
+          "name": "go-cli",
           "phase": {
             "entity": {
               "active": false
@@ -1609,19 +1608,19 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-cli",
-          "active": true
+          "title": "Go CLI"
         },
         "go-mcp": {
-          "title": "Go MCP server",
-          "ext": "go",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "mbta-v3"
           },
+          "name": "go-mcp",
           "phase": {
             "entity": {
               "active": false
@@ -1636,138 +1635,120 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-mcp",
-          "active": true
-        },
-        "ts": {
-          "title": "TypeScript",
-          "ext": "ts",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "mbta-v3"
-          },
-          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
-          "deps": {
-            "dotenv": {
-              "active": true,
-              "version": "^17.4.2",
-              "kind": "dev"
-            },
-            "typescript": {
-              "active": true,
-              "version": "^5.9.3",
-              "kind": "dev"
-            },
-            "@types/node": {
-              "active": true,
-              "version": "^25.6.0",
-              "kind": "dev"
-            }
-          },
-          "name": "ts",
-          "active": true
-        },
-        "go": {
-          "title": "Golang",
-          "ext": "go",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "mbta-v3"
-          },
-          "srcfeature": false,
-          "deps": {},
-          "name": "go",
-          "active": true
+          "title": "Go MCP server"
         },
         "lua": {
-          "title": "Lua",
-          "ext": "lua",
+          "active": true,
           "comment": {
             "line": "--"
           },
-          "module": {
-            "name": "mbta-v3"
-          },
-          "srcfeature": false,
           "deps": {
             "dkjson": {
               "active": true,
-              "version": "2.5",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.5"
             }
           },
+          "ext": "lua",
+          "module": {
+            "name": "mbta-v3"
+          },
           "name": "lua",
-          "active": true
+          "srcfeature": false,
+          "title": "Lua"
         },
         "php": {
-          "title": "PHP",
-          "ext": "php",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "php",
           "module": {
             "name": "mbta-v3"
           },
-          "srcfeature": false,
-          "deps": {},
           "name": "php",
-          "active": true
+          "srcfeature": false,
+          "title": "PHP"
         },
         "py": {
-          "title": "Python",
-          "ext": "py",
+          "active": true,
           "comment": {
             "line": "#"
           },
-          "module": {
-            "name": "mbta-v3"
-          },
-          "srcfeature": false,
           "deps": {
             "requests": {
               "active": true,
-              "version": "2.33",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.33"
             }
           },
-          "name": "py",
-          "active": true
-        },
-        "rb": {
-          "title": "Ruby",
-          "ext": "rb",
-          "comment": {
-            "line": "#"
-          },
+          "ext": "py",
           "module": {
             "name": "mbta-v3"
           },
+          "name": "py",
           "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
           "deps": {
-            "voxgig-struct": {
-              "active": true,
-              "version": "0.0.10",
-              "kind": "prod"
-            },
             "json": {
               "active": true,
-              "version": "0",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
             }
           },
+          "ext": "rb",
+          "module": {
+            "name": "mbta-v3"
+          },
           "name": "rb",
-          "active": true
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "mbta-v3"
+          },
+          "name": "ts",
+          "title": "TypeScript"
         }
-      },
-      "option": {}
-    },
-    "def": {
-      "desc": ""
+      }
     }
-  }
+  },
+  "name": "mbta-v3",
+  "origin": "voxgig-sdk"
 }

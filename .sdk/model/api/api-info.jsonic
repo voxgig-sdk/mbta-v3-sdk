@@ -21,39 +21,7 @@ main: {
       ]
       title: "Massachusetts Bay Transportation Authority V3 API"
       version: "3.0.0"
-      tagline: "Schedules, real-time predictions, and service alerts for the Massachusetts Bay Transportation Authority in JSON:API format"
-      homepage: "https://www.mbta.com/developers/v3-api"
-      docs_url: "https://api-v3.mbta.com/docs/swagger"
-      license_short: "Use governed by the MassDOT Developers License Agreement"
-      license_md: `- Data is provided under the [MassDOT Developers License Agreement](https://www.mbta.com/developers/v3-api).
-- Underlying transit data follows the [GTFS](https://gtfs.org/) and GTFS Realtime specifications.
-- Free API keys are issued per application; attribution to the MBTA is expected for redistributed data.
-- Check the official agreement for caveats on commercial use and liability before shipping.`
-      about_md: `The V3 API is the official developer interface for the [Massachusetts Bay Transportation Authority](https://www.mbta.com/) (MBTA), the public transit agency serving the Greater Boston region. It exposes static schedule data, real-time vehicle positions and predictions, and service alerts via a single [JSON:API](https://jsonapi.org/) endpoint at \`https://api-v3.mbta.com\`.
-
-What you get from the API:
-
-- General Transit Feed Specification (GTFS) reference data: routes, stops, trips, shapes, schedules, and services.
-- GTFS Realtime feeds reshaped as predictions, vehicle positions, and alerts.
-- MBTA-specific extensions covering lines, route patterns, and station facilities (elevators, bike racks, parking).
-- JSON:API features for filtering, sparse fieldsets, sorting, pagination, and including related resources in one request.
-
-An API key is recommended: anonymous use is rate-limited, while a free registered key raises the default cap to roughly 1,000 requests per minute and is also required for versioning and streaming requests. Keys can be requested at [api-v3.mbta.com](https://api-v3.mbta.com/). Source code and issue tracking live in the [mbta/api](https://github.com/mbta/api) GitHub repository.`
-      entity_desc: {
-        alert: "Service disruption and advisory notices affecting routes, stops, trips, or facilities, served from `/alerts`."
-        facility: "Station amenities such as elevators, escalators, bike racks, and parking lots, served from `/facilities`."
-        line: "A grouping of related routes presented to riders as a single line (e.g. the Red Line), served from `/lines`."
-        prediction: "Real-time arrival and departure estimates for upcoming trips at stops, served from `/predictions`."
-        route: "A named transit route across bus, subway, commuter rail, ferry, or trolley modes, served from `/routes`."
-        route_pattern: "A specific travel pattern (sequence of stops and direction) within a route, served from `/route_patterns`."
-        schedule: "Scheduled arrival and departure times for stops along trips, served from `/schedules`."
-        service: "Operating-day definitions describing when trips run (weekdays, weekends, holidays), served from `/services`."
-        shape: "Polyline geometry used to draw a trip's path on a map, served from `/shapes`."
-        stop: "Boarding and alighting locations including stations, platforms, and stop areas, served from `/stops`."
-        trip: "An individual scheduled vehicle run along a route pattern, served from `/trips`."
-        vehicle: "Real-time position, bearing, and status of in-service vehicles, served from `/vehicles`."
-      }
-      auth: false
     }
   }
 }
+
