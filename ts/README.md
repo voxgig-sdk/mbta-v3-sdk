@@ -10,7 +10,7 @@ The TypeScript SDK for the MbtaV3 API — a type-safe, entity-oriented client wi
 
 ## Install
 ```bash
-npm install mbta-v3
+npm install @voxgig-sdk/mbta-v3
 ```
 ## Tutorial: your first API call
 

@@ -10,7 +10,7 @@ The Lua SDK for the MbtaV3 API — an entity-oriented client using Lua conventio
 
 ## Install
 ```bash
-luarocks install mbta-v3-sdk
+luarocks install voxgig-sdk-mbta-v3
 ```
 
 If the module is not yet published, add the source directory to

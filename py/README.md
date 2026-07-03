@@ -10,7 +10,7 @@ The Python SDK for the MbtaV3 API — an entity-oriented client following Python
 
 ## Install
 ```bash
-pip install mbta-v3-sdk
+pip install voxgig-sdk-mbta-v3
 ```
 
 Or install from source:

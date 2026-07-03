@@ -10,13 +10,13 @@ The Ruby SDK for the MbtaV3 API — an entity-oriented client using idiomatic Ru
 
 ## Install
 ```bash
-gem install mbta-v3-sdk
+gem install voxgig-sdk-mbta-v3
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "mbta-v3-sdk"
+gem "voxgig-sdk-mbta-v3"
 ```
 
 Then run:

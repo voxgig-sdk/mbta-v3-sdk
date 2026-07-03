@@ -10,7 +10,7 @@ The PHP SDK for the MbtaV3 API — an entity-oriented client using PHP conventio
 
 ## Install
 ```bash
-composer require voxgig/mbta-v3-sdk
+composer require voxgig-sdk/mbta-v3
 ```
 
 
