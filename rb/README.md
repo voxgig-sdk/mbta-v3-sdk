@@ -34,8 +34,9 @@ client = MbtaV3SDK.new({
 
 ```ruby
 begin
-  result = client.alert.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Alert record (raises on error).
+  alert = client.Alert.load({ "id" => "example_id" })
+  puts alert
 rescue => err
   warn "load failed: #{err}"
 end
@@ -82,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = MbtaV3SDK.test
+client = MbtaV3SDK.test({
+  "entity" => { "alert" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.alert.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+alert = client.Alert.load({ "id" => "test01" })
+puts alert
 ```
 
 ### Use a custom fetch function
@@ -166,7 +171,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Alert` | `(data) -> AlertEntity` | Create a Alert entity instance. |
+| `Alert` | `(data) -> AlertEntity` | Create an Alert entity instance. |
 | `Facility` | `(data) -> FacilityEntity` | Create a Facility entity instance. |
 | `Line` | `(data) -> LineEntity` | Create a Line entity instance. |
 | `Prediction` | `(data) -> PredictionEntity` | Create a Prediction entity instance. |
@@ -331,7 +336,7 @@ API path: `/vehicles`
 
 ### Alert
 
-Create an instance: `const alert = client.alert`
+Create an instance: `alert = client.Alert`
 
 #### Operations
 
@@ -341,14 +346,15 @@ Create an instance: `const alert = client.alert`
 
 #### Example: Load
 
-```ts
-const alert = await client.alert.load({ id: 'alert_id' })
+```ruby
+# load returns the bare Alert record (raises on error).
+alert = client.Alert.load({ "id" => "alert_id" })
 ```
 
 
 ### Facility
 
-Create an instance: `const facility = client.facility`
+Create an instance: `facility = client.Facility`
 
 #### Operations
 
@@ -358,14 +364,15 @@ Create an instance: `const facility = client.facility`
 
 #### Example: Load
 
-```ts
-const facility = await client.facility.load({ id: 'facility_id' })
+```ruby
+# load returns the bare Facility record (raises on error).
+facility = client.Facility.load({ "id" => "facility_id" })
 ```
 
 
 ### Line
 
-Create an instance: `const line = client.line`
+Create an instance: `line = client.Line`
 
 #### Operations
 
@@ -375,14 +382,15 @@ Create an instance: `const line = client.line`
 
 #### Example: Load
 
-```ts
-const line = await client.line.load({ id: 'line_id' })
+```ruby
+# load returns the bare Line record (raises on error).
+line = client.Line.load({ "id" => "line_id" })
 ```
 
 
 ### Prediction
 
-Create an instance: `const prediction = client.prediction`
+Create an instance: `prediction = client.Prediction`
 
 #### Operations
 
@@ -392,14 +400,15 @@ Create an instance: `const prediction = client.prediction`
 
 #### Example: Load
 
-```ts
-const prediction = await client.prediction.load({ id: 'prediction_id' })
+```ruby
+# load returns the bare Prediction record (raises on error).
+prediction = client.Prediction.load({ "id" => "prediction_id" })
 ```
 
 
 ### Route
 
-Create an instance: `const route = client.route`
+Create an instance: `route = client.Route`
 
 #### Operations
 
@@ -409,14 +418,15 @@ Create an instance: `const route = client.route`
 
 #### Example: Load
 
-```ts
-const route = await client.route.load({ id: 'route_id' })
+```ruby
+# load returns the bare Route record (raises on error).
+route = client.Route.load({ "id" => "route_id" })
 ```
 
 
 ### RoutePattern
 
-Create an instance: `const route_pattern = client.route_pattern`
+Create an instance: `route_pattern = client.RoutePattern`
 
 #### Operations
 
@@ -426,14 +436,15 @@ Create an instance: `const route_pattern = client.route_pattern`
 
 #### Example: Load
 
-```ts
-const route_pattern = await client.route_pattern.load({ id: 'route_pattern_id' })
+```ruby
+# load returns the bare RoutePattern record (raises on error).
+route_pattern = client.RoutePattern.load({ "id" => "route_pattern_id" })
 ```
 
 
 ### Schedule
 
-Create an instance: `const schedule = client.schedule`
+Create an instance: `schedule = client.Schedule`
 
 #### Operations
 
@@ -443,14 +454,15 @@ Create an instance: `const schedule = client.schedule`
 
 #### Example: Load
 
-```ts
-const schedule = await client.schedule.load({ id: 'schedule_id' })
+```ruby
+# load returns the bare Schedule record (raises on error).
+schedule = client.Schedule.load({ "id" => "schedule_id" })
 ```
 
 
 ### Service
 
-Create an instance: `const service = client.service`
+Create an instance: `service = client.Service`
 
 #### Operations
 
@@ -460,14 +472,15 @@ Create an instance: `const service = client.service`
 
 #### Example: Load
 
-```ts
-const service = await client.service.load({ id: 'service_id' })
+```ruby
+# load returns the bare Service record (raises on error).
+service = client.Service.load({ "id" => "service_id" })
 ```
 
 
 ### Shape
 
-Create an instance: `const shape = client.shape`
+Create an instance: `shape = client.Shape`
 
 #### Operations
 
@@ -477,14 +490,15 @@ Create an instance: `const shape = client.shape`
 
 #### Example: Load
 
-```ts
-const shape = await client.shape.load({ id: 'shape_id' })
+```ruby
+# load returns the bare Shape record (raises on error).
+shape = client.Shape.load({ "id" => "shape_id" })
 ```
 
 
 ### Stop
 
-Create an instance: `const stop = client.stop`
+Create an instance: `stop = client.Stop`
 
 #### Operations
 
@@ -494,14 +508,15 @@ Create an instance: `const stop = client.stop`
 
 #### Example: Load
 
-```ts
-const stop = await client.stop.load({ id: 'stop_id' })
+```ruby
+# load returns the bare Stop record (raises on error).
+stop = client.Stop.load({ "id" => "stop_id" })
 ```
 
 
 ### Trip
 
-Create an instance: `const trip = client.trip`
+Create an instance: `trip = client.Trip`
 
 #### Operations
 
@@ -511,14 +526,15 @@ Create an instance: `const trip = client.trip`
 
 #### Example: Load
 
-```ts
-const trip = await client.trip.load({ id: 'trip_id' })
+```ruby
+# load returns the bare Trip record (raises on error).
+trip = client.Trip.load({ "id" => "trip_id" })
 ```
 
 
 ### Vehicle
 
-Create an instance: `const vehicle = client.vehicle`
+Create an instance: `vehicle = client.Vehicle`
 
 #### Operations
 
@@ -528,8 +544,9 @@ Create an instance: `const vehicle = client.vehicle`
 
 #### Example: Load
 
-```ts
-const vehicle = await client.vehicle.load({ id: 'vehicle_id' })
+```ruby
+# load returns the bare Vehicle record (raises on error).
+vehicle = client.Vehicle.load({ "id" => "vehicle_id" })
 ```
 
 
@@ -604,7 +621,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-alert = client.alert
+alert = client.Alert
 alert.load({ "id" => "example_id" })
 
 # alert.data_get now returns the loaded alert data

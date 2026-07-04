@@ -35,9 +35,10 @@ $client = new MbtaV3SDK([
 
 ```php
 try {
-    $result = $client->alert()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Alert record (throws on error).
+    $alert = $client->Alert()->load(["id" => "example_id"]);
+    print_r($alert);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -83,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = MbtaV3SDK::test();
+$client = MbtaV3SDK::test([
+    "entity" => ["alert" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->alert()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$alert = $client->Alert()->load(["id" => "test01"]);
+print_r($alert);
 ```
 
 ### Use a custom fetch function
@@ -170,7 +175,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Alert` | `($data): AlertEntity` | Create a Alert entity instance. |
+| `Alert` | `($data): AlertEntity` | Create an Alert entity instance. |
 | `Facility` | `($data): FacilityEntity` | Create a Facility entity instance. |
 | `Line` | `($data): LineEntity` | Create a Line entity instance. |
 | `Prediction` | `($data): PredictionEntity` | Create a Prediction entity instance. |
@@ -336,7 +341,7 @@ API path: `/vehicles`
 
 ### Alert
 
-Create an instance: `const alert = client.alert`
+Create an instance: `$alert = $client->Alert();`
 
 #### Operations
 
@@ -346,14 +351,15 @@ Create an instance: `const alert = client.alert`
 
 #### Example: Load
 
-```ts
-const alert = await client.alert.load({ id: 'alert_id' })
+```php
+// load() returns the bare Alert record (throws on error).
+$alert = $client->Alert()->load(["id" => "alert_id"]);
 ```
 
 
 ### Facility
 
-Create an instance: `const facility = client.facility`
+Create an instance: `$facility = $client->Facility();`
 
 #### Operations
 
@@ -363,14 +369,15 @@ Create an instance: `const facility = client.facility`
 
 #### Example: Load
 
-```ts
-const facility = await client.facility.load({ id: 'facility_id' })
+```php
+// load() returns the bare Facility record (throws on error).
+$facility = $client->Facility()->load(["id" => "facility_id"]);
 ```
 
 
 ### Line
 
-Create an instance: `const line = client.line`
+Create an instance: `$line = $client->Line();`
 
 #### Operations
 
@@ -380,14 +387,15 @@ Create an instance: `const line = client.line`
 
 #### Example: Load
 
-```ts
-const line = await client.line.load({ id: 'line_id' })
+```php
+// load() returns the bare Line record (throws on error).
+$line = $client->Line()->load(["id" => "line_id"]);
 ```
 
 
 ### Prediction
 
-Create an instance: `const prediction = client.prediction`
+Create an instance: `$prediction = $client->Prediction();`
 
 #### Operations
 
@@ -397,14 +405,15 @@ Create an instance: `const prediction = client.prediction`
 
 #### Example: Load
 
-```ts
-const prediction = await client.prediction.load({ id: 'prediction_id' })
+```php
+// load() returns the bare Prediction record (throws on error).
+$prediction = $client->Prediction()->load(["id" => "prediction_id"]);
 ```
 
 
 ### Route
 
-Create an instance: `const route = client.route`
+Create an instance: `$route = $client->Route();`
 
 #### Operations
 
@@ -414,14 +423,15 @@ Create an instance: `const route = client.route`
 
 #### Example: Load
 
-```ts
-const route = await client.route.load({ id: 'route_id' })
+```php
+// load() returns the bare Route record (throws on error).
+$route = $client->Route()->load(["id" => "route_id"]);
 ```
 
 
 ### RoutePattern
 
-Create an instance: `const route_pattern = client.route_pattern`
+Create an instance: `$route_pattern = $client->RoutePattern();`
 
 #### Operations
 
@@ -431,14 +441,15 @@ Create an instance: `const route_pattern = client.route_pattern`
 
 #### Example: Load
 
-```ts
-const route_pattern = await client.route_pattern.load({ id: 'route_pattern_id' })
+```php
+// load() returns the bare RoutePattern record (throws on error).
+$route_pattern = $client->RoutePattern()->load(["id" => "route_pattern_id"]);
 ```
 
 
 ### Schedule
 
-Create an instance: `const schedule = client.schedule`
+Create an instance: `$schedule = $client->Schedule();`
 
 #### Operations
 
@@ -448,14 +459,15 @@ Create an instance: `const schedule = client.schedule`
 
 #### Example: Load
 
-```ts
-const schedule = await client.schedule.load({ id: 'schedule_id' })
+```php
+// load() returns the bare Schedule record (throws on error).
+$schedule = $client->Schedule()->load(["id" => "schedule_id"]);
 ```
 
 
 ### Service
 
-Create an instance: `const service = client.service`
+Create an instance: `$service = $client->Service();`
 
 #### Operations
 
@@ -465,14 +477,15 @@ Create an instance: `const service = client.service`
 
 #### Example: Load
 
-```ts
-const service = await client.service.load({ id: 'service_id' })
+```php
+// load() returns the bare Service record (throws on error).
+$service = $client->Service()->load(["id" => "service_id"]);
 ```
 
 
 ### Shape
 
-Create an instance: `const shape = client.shape`
+Create an instance: `$shape = $client->Shape();`
 
 #### Operations
 
@@ -482,14 +495,15 @@ Create an instance: `const shape = client.shape`
 
 #### Example: Load
 
-```ts
-const shape = await client.shape.load({ id: 'shape_id' })
+```php
+// load() returns the bare Shape record (throws on error).
+$shape = $client->Shape()->load(["id" => "shape_id"]);
 ```
 
 
 ### Stop
 
-Create an instance: `const stop = client.stop`
+Create an instance: `$stop = $client->Stop();`
 
 #### Operations
 
@@ -499,14 +513,15 @@ Create an instance: `const stop = client.stop`
 
 #### Example: Load
 
-```ts
-const stop = await client.stop.load({ id: 'stop_id' })
+```php
+// load() returns the bare Stop record (throws on error).
+$stop = $client->Stop()->load(["id" => "stop_id"]);
 ```
 
 
 ### Trip
 
-Create an instance: `const trip = client.trip`
+Create an instance: `$trip = $client->Trip();`
 
 #### Operations
 
@@ -516,14 +531,15 @@ Create an instance: `const trip = client.trip`
 
 #### Example: Load
 
-```ts
-const trip = await client.trip.load({ id: 'trip_id' })
+```php
+// load() returns the bare Trip record (throws on error).
+$trip = $client->Trip()->load(["id" => "trip_id"]);
 ```
 
 
 ### Vehicle
 
-Create an instance: `const vehicle = client.vehicle`
+Create an instance: `$vehicle = $client->Vehicle();`
 
 #### Operations
 
@@ -533,8 +549,9 @@ Create an instance: `const vehicle = client.vehicle`
 
 #### Example: Load
 
-```ts
-const vehicle = await client.vehicle.load({ id: 'vehicle_id' })
+```php
+// load() returns the bare Vehicle record (throws on error).
+$vehicle = $client->Vehicle()->load(["id" => "vehicle_id"]);
 ```
 
 
@@ -609,7 +626,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$alert = $client->alert();
+$alert = $client->Alert();
 $alert->load(["id" => "example_id"]);
 
 // $alert->dataGet() now returns the loaded alert data

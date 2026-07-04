@@ -30,7 +30,12 @@ go mod edit -replace github.com/voxgig-sdk/mbta-v3-sdk/go=../mbta-v3-sdk/go
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
@@ -38,31 +43,20 @@ package main
 import (
     "fmt"
     "os"
-
     sdk "github.com/voxgig-sdk/mbta-v3-sdk/go"
-    "github.com/voxgig-sdk/mbta-v3-sdk/go/core"
 )
 
 func main() {
     client := sdk.NewMbtaV3SDK(map[string]any{
         "apikey": os.Getenv("MBTA_V3_APIKEY"),
     })
-```
 
-### 3. Load an alert
-
-```go
-    result, err = client.Alert(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single alert — the value is the loaded record.
+    alert, err := client.Alert(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(alert)
 }
 ```
 
@@ -113,10 +107,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Alert(nil).Load(
+alert, err := client.Alert(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(alert) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -195,7 +192,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `Alert` | `(data map[string]any) MbtaV3Entity` | Create a Alert entity instance. |
+| `Alert` | `(data map[string]any) MbtaV3Entity` | Create an Alert entity instance. |
 | `Facility` | `(data map[string]any) MbtaV3Entity` | Create a Facility entity instance. |
 | `Line` | `(data map[string]any) MbtaV3Entity` | Create a Line entity instance. |
 | `Prediction` | `(data map[string]any) MbtaV3Entity` | Create a Prediction entity instance. |
@@ -226,17 +223,24 @@ All entities implement the `MbtaV3Entity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    alert, err := client.Alert(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // alert is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -366,7 +370,11 @@ Create an instance: `alert := client.Alert(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Alert(nil).Load(map[string]any{"id": "alert_id"}, nil)
+alert, err := client.Alert(nil).Load(map[string]any{"id": "alert_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(alert) // the loaded record
 ```
 
 
@@ -383,7 +391,11 @@ Create an instance: `facility := client.Facility(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Facility(nil).Load(map[string]any{"id": "facility_id"}, nil)
+facility, err := client.Facility(nil).Load(map[string]any{"id": "facility_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(facility) // the loaded record
 ```
 
 
@@ -400,7 +412,11 @@ Create an instance: `line := client.Line(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Line(nil).Load(map[string]any{"id": "line_id"}, nil)
+line, err := client.Line(nil).Load(map[string]any{"id": "line_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(line) // the loaded record
 ```
 
 
@@ -417,7 +433,11 @@ Create an instance: `prediction := client.Prediction(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Prediction(nil).Load(map[string]any{"id": "prediction_id"}, nil)
+prediction, err := client.Prediction(nil).Load(map[string]any{"id": "prediction_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(prediction) // the loaded record
 ```
 
 
@@ -434,7 +454,11 @@ Create an instance: `route := client.Route(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Route(nil).Load(map[string]any{"id": "route_id"}, nil)
+route, err := client.Route(nil).Load(map[string]any{"id": "route_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(route) // the loaded record
 ```
 
 
@@ -451,7 +475,11 @@ Create an instance: `route_pattern := client.RoutePattern(nil)`
 #### Example: Load
 
 ```go
-result, err := client.RoutePattern(nil).Load(map[string]any{"id": "route_pattern_id"}, nil)
+route_pattern, err := client.RoutePattern(nil).Load(map[string]any{"id": "route_pattern_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(route_pattern) // the loaded record
 ```
 
 
@@ -468,7 +496,11 @@ Create an instance: `schedule := client.Schedule(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Schedule(nil).Load(map[string]any{"id": "schedule_id"}, nil)
+schedule, err := client.Schedule(nil).Load(map[string]any{"id": "schedule_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(schedule) // the loaded record
 ```
 
 
@@ -485,7 +517,11 @@ Create an instance: `service := client.Service(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Service(nil).Load(map[string]any{"id": "service_id"}, nil)
+service, err := client.Service(nil).Load(map[string]any{"id": "service_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(service) // the loaded record
 ```
 
 
@@ -502,7 +538,11 @@ Create an instance: `shape := client.Shape(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Shape(nil).Load(map[string]any{"id": "shape_id"}, nil)
+shape, err := client.Shape(nil).Load(map[string]any{"id": "shape_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(shape) // the loaded record
 ```
 
 
@@ -519,7 +559,11 @@ Create an instance: `stop := client.Stop(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Stop(nil).Load(map[string]any{"id": "stop_id"}, nil)
+stop, err := client.Stop(nil).Load(map[string]any{"id": "stop_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(stop) // the loaded record
 ```
 
 
@@ -536,7 +580,11 @@ Create an instance: `trip := client.Trip(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Trip(nil).Load(map[string]any{"id": "trip_id"}, nil)
+trip, err := client.Trip(nil).Load(map[string]any{"id": "trip_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(trip) // the loaded record
 ```
 
 
@@ -553,7 +601,11 @@ Create an instance: `vehicle := client.Vehicle(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Vehicle(nil).Load(map[string]any{"id": "vehicle_id"}, nil)
+vehicle, err := client.Vehicle(nil).Load(map[string]any{"id": "vehicle_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(vehicle) // the loaded record
 ```
 
 

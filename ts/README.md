@@ -32,11 +32,14 @@ const client = new MbtaV3SDK({
 
 ### 3. Load an alert
 
-```ts
-const result = await client.alert.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const alert = await client.Alert().load({ id: 'example_id' })
+  console.log(alert)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -54,6 +57,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -82,9 +88,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MbtaV3SDK.test()
 
-const result = await client.alert.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const alert = await client.Alert().load({ id: 'test01' })
+// alert is a bare entity populated with mock response data
+console.log(alert)
 ```
 
 You can also use the instance method:
@@ -99,7 +105,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.alert
+const entity = client.Alert()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -181,7 +187,7 @@ new MbtaV3SDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `Alert(data?)` | `AlertEntity` | Create a Alert entity instance. |
+| `Alert(data?)` | `AlertEntity` | Create an Alert entity instance. |
 | `Facility(data?)` | `FacilityEntity` | Create a Facility entity instance. |
 | `Line(data?)` | `LineEntity` | Create a Line entity instance. |
 | `Prediction(data?)` | `PredictionEntity` | Create a Prediction entity instance. |
@@ -209,29 +215,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): MbtaV3SDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -378,7 +385,7 @@ API path: `/vehicles`
 
 ### Alert
 
-Create an instance: `const alert = client.alert`
+Create an instance: `const alert = client.Alert()`
 
 #### Operations
 
@@ -389,13 +396,13 @@ Create an instance: `const alert = client.alert`
 #### Example: Load
 
 ```ts
-const alert = await client.alert.load({ id: 'alert_id' })
+const alert = await client.Alert().load({ id: 'alert_id' })
 ```
 
 
 ### Facility
 
-Create an instance: `const facility = client.facility`
+Create an instance: `const facility = client.Facility()`
 
 #### Operations
 
@@ -406,13 +413,13 @@ Create an instance: `const facility = client.facility`
 #### Example: Load
 
 ```ts
-const facility = await client.facility.load({ id: 'facility_id' })
+const facility = await client.Facility().load({ id: 'facility_id' })
 ```
 
 
 ### Line
 
-Create an instance: `const line = client.line`
+Create an instance: `const line = client.Line()`
 
 #### Operations
 
@@ -423,13 +430,13 @@ Create an instance: `const line = client.line`
 #### Example: Load
 
 ```ts
-const line = await client.line.load({ id: 'line_id' })
+const line = await client.Line().load({ id: 'line_id' })
 ```
 
 
 ### Prediction
 
-Create an instance: `const prediction = client.prediction`
+Create an instance: `const prediction = client.Prediction()`
 
 #### Operations
 
@@ -440,13 +447,13 @@ Create an instance: `const prediction = client.prediction`
 #### Example: Load
 
 ```ts
-const prediction = await client.prediction.load({ id: 'prediction_id' })
+const prediction = await client.Prediction().load({ id: 'prediction_id' })
 ```
 
 
 ### Route
 
-Create an instance: `const route = client.route`
+Create an instance: `const route = client.Route()`
 
 #### Operations
 
@@ -457,13 +464,13 @@ Create an instance: `const route = client.route`
 #### Example: Load
 
 ```ts
-const route = await client.route.load({ id: 'route_id' })
+const route = await client.Route().load({ id: 'route_id' })
 ```
 
 
 ### RoutePattern
 
-Create an instance: `const route_pattern = client.route_pattern`
+Create an instance: `const route_pattern = client.RoutePattern()`
 
 #### Operations
 
@@ -474,13 +481,13 @@ Create an instance: `const route_pattern = client.route_pattern`
 #### Example: Load
 
 ```ts
-const route_pattern = await client.route_pattern.load({ id: 'route_pattern_id' })
+const route_pattern = await client.RoutePattern().load({ id: 'route_pattern_id' })
 ```
 
 
 ### Schedule
 
-Create an instance: `const schedule = client.schedule`
+Create an instance: `const schedule = client.Schedule()`
 
 #### Operations
 
@@ -491,13 +498,13 @@ Create an instance: `const schedule = client.schedule`
 #### Example: Load
 
 ```ts
-const schedule = await client.schedule.load({ id: 'schedule_id' })
+const schedule = await client.Schedule().load({ id: 'schedule_id' })
 ```
 
 
 ### Service
 
-Create an instance: `const service = client.service`
+Create an instance: `const service = client.Service()`
 
 #### Operations
 
@@ -508,13 +515,13 @@ Create an instance: `const service = client.service`
 #### Example: Load
 
 ```ts
-const service = await client.service.load({ id: 'service_id' })
+const service = await client.Service().load({ id: 'service_id' })
 ```
 
 
 ### Shape
 
-Create an instance: `const shape = client.shape`
+Create an instance: `const shape = client.Shape()`
 
 #### Operations
 
@@ -525,13 +532,13 @@ Create an instance: `const shape = client.shape`
 #### Example: Load
 
 ```ts
-const shape = await client.shape.load({ id: 'shape_id' })
+const shape = await client.Shape().load({ id: 'shape_id' })
 ```
 
 
 ### Stop
 
-Create an instance: `const stop = client.stop`
+Create an instance: `const stop = client.Stop()`
 
 #### Operations
 
@@ -542,13 +549,13 @@ Create an instance: `const stop = client.stop`
 #### Example: Load
 
 ```ts
-const stop = await client.stop.load({ id: 'stop_id' })
+const stop = await client.Stop().load({ id: 'stop_id' })
 ```
 
 
 ### Trip
 
-Create an instance: `const trip = client.trip`
+Create an instance: `const trip = client.Trip()`
 
 #### Operations
 
@@ -559,13 +566,13 @@ Create an instance: `const trip = client.trip`
 #### Example: Load
 
 ```ts
-const trip = await client.trip.load({ id: 'trip_id' })
+const trip = await client.Trip().load({ id: 'trip_id' })
 ```
 
 
 ### Vehicle
 
-Create an instance: `const vehicle = client.vehicle`
+Create an instance: `const vehicle = client.Vehicle()`
 
 #### Operations
 
@@ -576,7 +583,7 @@ Create an instance: `const vehicle = client.vehicle`
 #### Example: Load
 
 ```ts
-const vehicle = await client.vehicle.load({ id: 'vehicle_id' })
+const vehicle = await client.Vehicle().load({ id: 'vehicle_id' })
 ```
 
 
@@ -647,7 +654,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const alert = client.alert
+const alert = client.Alert()
 await alert.load({ id: "example_id" })
 
 // alert.data() now returns the loaded alert data

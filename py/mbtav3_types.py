@@ -4,129 +4,109 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Alert:
+class Alert(TypedDict):
     pass
 
 
-@dataclass
-class AlertLoadMatch:
+class AlertLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class Facility:
+class Facility(TypedDict):
     pass
 
 
-@dataclass
-class FacilityLoadMatch:
+class FacilityLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class Line:
+class Line(TypedDict):
     pass
 
 
-@dataclass
-class LineLoadMatch:
+class LineLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class Prediction:
+class Prediction(TypedDict):
     pass
 
 
-@dataclass
-class PredictionLoadMatch:
+class PredictionLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class Route:
+class Route(TypedDict):
     pass
 
 
-@dataclass
-class RouteLoadMatch:
+class RouteLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class RoutePattern:
+class RoutePattern(TypedDict):
     pass
 
 
-@dataclass
-class RoutePatternLoadMatch:
+class RoutePatternLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class Schedule:
+class Schedule(TypedDict):
     pass
 
 
-@dataclass
-class ScheduleLoadMatch:
+class ScheduleLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class Service:
+class Service(TypedDict):
     pass
 
 
-@dataclass
-class ServiceLoadMatch:
+class ServiceLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class Shape:
+class Shape(TypedDict):
     pass
 
 
-@dataclass
-class ShapeLoadMatch:
+class ShapeLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class Stop:
+class Stop(TypedDict):
     pass
 
 
-@dataclass
-class StopLoadMatch:
+class StopLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class Trip:
+class Trip(TypedDict):
     pass
 
 
-@dataclass
-class TripLoadMatch:
+class TripLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class Vehicle:
+class Vehicle(TypedDict):
     pass
 
 
-@dataclass
-class VehicleLoadMatch:
+class VehicleLoadMatch(TypedDict):
     pass
-

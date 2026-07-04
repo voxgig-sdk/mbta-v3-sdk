@@ -125,7 +125,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## AlertEntity
 
 ```python
-alert = client.alert
+alert = client.Alert()
 ```
 
 ### Operations
@@ -135,7 +135,7 @@ alert = client.alert
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.alert.load({"id": "alert_id"})
+result = client.Alert().load({"id": "alert_id"})
 ```
 
 ### Common Methods
@@ -170,7 +170,7 @@ Return the entity name.
 ## FacilityEntity
 
 ```python
-facility = client.facility
+facility = client.Facility()
 ```
 
 ### Operations
@@ -180,7 +180,7 @@ facility = client.facility
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.facility.load({"id": "facility_id"})
+result = client.Facility().load({"id": "facility_id"})
 ```
 
 ### Common Methods
@@ -215,7 +215,7 @@ Return the entity name.
 ## LineEntity
 
 ```python
-line = client.line
+line = client.Line()
 ```
 
 ### Operations
@@ -225,7 +225,7 @@ line = client.line
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.line.load({"id": "line_id"})
+result = client.Line().load({"id": "line_id"})
 ```
 
 ### Common Methods
@@ -260,7 +260,7 @@ Return the entity name.
 ## PredictionEntity
 
 ```python
-prediction = client.prediction
+prediction = client.Prediction()
 ```
 
 ### Operations
@@ -270,7 +270,7 @@ prediction = client.prediction
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.prediction.load({"id": "prediction_id"})
+result = client.Prediction().load({"id": "prediction_id"})
 ```
 
 ### Common Methods
@@ -305,7 +305,7 @@ Return the entity name.
 ## RouteEntity
 
 ```python
-route = client.route
+route = client.Route()
 ```
 
 ### Operations
@@ -315,7 +315,7 @@ route = client.route
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.route.load({"id": "route_id"})
+result = client.Route().load({"id": "route_id"})
 ```
 
 ### Common Methods
@@ -350,7 +350,7 @@ Return the entity name.
 ## RoutePatternEntity
 
 ```python
-route_pattern = client.route_pattern
+route_pattern = client.RoutePattern()
 ```
 
 ### Operations
@@ -360,7 +360,7 @@ route_pattern = client.route_pattern
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.route_pattern.load({"id": "route_pattern_id"})
+result = client.RoutePattern().load({"id": "route_pattern_id"})
 ```
 
 ### Common Methods
@@ -395,7 +395,7 @@ Return the entity name.
 ## ScheduleEntity
 
 ```python
-schedule = client.schedule
+schedule = client.Schedule()
 ```
 
 ### Operations
@@ -405,7 +405,7 @@ schedule = client.schedule
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.schedule.load({"id": "schedule_id"})
+result = client.Schedule().load({"id": "schedule_id"})
 ```
 
 ### Common Methods
@@ -440,7 +440,7 @@ Return the entity name.
 ## ServiceEntity
 
 ```python
-service = client.service
+service = client.Service()
 ```
 
 ### Operations
@@ -450,7 +450,7 @@ service = client.service
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.service.load({"id": "service_id"})
+result = client.Service().load({"id": "service_id"})
 ```
 
 ### Common Methods
@@ -485,7 +485,7 @@ Return the entity name.
 ## ShapeEntity
 
 ```python
-shape = client.shape
+shape = client.Shape()
 ```
 
 ### Operations
@@ -495,7 +495,7 @@ shape = client.shape
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.shape.load({"id": "shape_id"})
+result = client.Shape().load({"id": "shape_id"})
 ```
 
 ### Common Methods
@@ -530,7 +530,7 @@ Return the entity name.
 ## StopEntity
 
 ```python
-stop = client.stop
+stop = client.Stop()
 ```
 
 ### Operations
@@ -540,7 +540,7 @@ stop = client.stop
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.stop.load({"id": "stop_id"})
+result = client.Stop().load({"id": "stop_id"})
 ```
 
 ### Common Methods
@@ -575,7 +575,7 @@ Return the entity name.
 ## TripEntity
 
 ```python
-trip = client.trip
+trip = client.Trip()
 ```
 
 ### Operations
@@ -585,7 +585,7 @@ trip = client.trip
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.trip.load({"id": "trip_id"})
+result = client.Trip().load({"id": "trip_id"})
 ```
 
 ### Common Methods
@@ -620,7 +620,7 @@ Return the entity name.
 ## VehicleEntity
 
 ```python
-vehicle = client.vehicle
+vehicle = client.Vehicle()
 ```
 
 ### Operations
@@ -630,7 +630,7 @@ vehicle = client.vehicle
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.vehicle.load({"id": "vehicle_id"})
+result = client.Vehicle().load({"id": "vehicle_id"})
 ```
 
 ### Common Methods

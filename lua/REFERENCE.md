@@ -128,7 +128,7 @@ same parameters as `direct()`.
 ## AlertEntity
 
 ```lua
-local alert = client:alert(nil)
+local alert = client:Alert(nil)
 ```
 
 ### Operations
@@ -138,7 +138,7 @@ local alert = client:alert(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:alert():load({ id = "alert_id" })
+local result, err = client:Alert():load({ id = "alert_id" })
 ```
 
 ### Common Methods
@@ -174,7 +174,7 @@ Return the entity name.
 ## FacilityEntity
 
 ```lua
-local facility = client:facility(nil)
+local facility = client:Facility(nil)
 ```
 
 ### Operations
@@ -184,7 +184,7 @@ local facility = client:facility(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:facility():load({ id = "facility_id" })
+local result, err = client:Facility():load({ id = "facility_id" })
 ```
 
 ### Common Methods
@@ -220,7 +220,7 @@ Return the entity name.
 ## LineEntity
 
 ```lua
-local line = client:line(nil)
+local line = client:Line(nil)
 ```
 
 ### Operations
@@ -230,7 +230,7 @@ local line = client:line(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:line():load({ id = "line_id" })
+local result, err = client:Line():load({ id = "line_id" })
 ```
 
 ### Common Methods
@@ -266,7 +266,7 @@ Return the entity name.
 ## PredictionEntity
 
 ```lua
-local prediction = client:prediction(nil)
+local prediction = client:Prediction(nil)
 ```
 
 ### Operations
@@ -276,7 +276,7 @@ local prediction = client:prediction(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:prediction():load({ id = "prediction_id" })
+local result, err = client:Prediction():load({ id = "prediction_id" })
 ```
 
 ### Common Methods
@@ -312,7 +312,7 @@ Return the entity name.
 ## RouteEntity
 
 ```lua
-local route = client:route(nil)
+local route = client:Route(nil)
 ```
 
 ### Operations
@@ -322,7 +322,7 @@ local route = client:route(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:route():load({ id = "route_id" })
+local result, err = client:Route():load({ id = "route_id" })
 ```
 
 ### Common Methods
@@ -358,7 +358,7 @@ Return the entity name.
 ## RoutePatternEntity
 
 ```lua
-local route_pattern = client:route_pattern(nil)
+local route_pattern = client:RoutePattern(nil)
 ```
 
 ### Operations
@@ -368,7 +368,7 @@ local route_pattern = client:route_pattern(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:route_pattern():load({ id = "route_pattern_id" })
+local result, err = client:RoutePattern():load({ id = "route_pattern_id" })
 ```
 
 ### Common Methods
@@ -404,7 +404,7 @@ Return the entity name.
 ## ScheduleEntity
 
 ```lua
-local schedule = client:schedule(nil)
+local schedule = client:Schedule(nil)
 ```
 
 ### Operations
@@ -414,7 +414,7 @@ local schedule = client:schedule(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:schedule():load({ id = "schedule_id" })
+local result, err = client:Schedule():load({ id = "schedule_id" })
 ```
 
 ### Common Methods
@@ -450,7 +450,7 @@ Return the entity name.
 ## ServiceEntity
 
 ```lua
-local service = client:service(nil)
+local service = client:Service(nil)
 ```
 
 ### Operations
@@ -460,7 +460,7 @@ local service = client:service(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:service():load({ id = "service_id" })
+local result, err = client:Service():load({ id = "service_id" })
 ```
 
 ### Common Methods
@@ -496,7 +496,7 @@ Return the entity name.
 ## ShapeEntity
 
 ```lua
-local shape = client:shape(nil)
+local shape = client:Shape(nil)
 ```
 
 ### Operations
@@ -506,7 +506,7 @@ local shape = client:shape(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:shape():load({ id = "shape_id" })
+local result, err = client:Shape():load({ id = "shape_id" })
 ```
 
 ### Common Methods
@@ -542,7 +542,7 @@ Return the entity name.
 ## StopEntity
 
 ```lua
-local stop = client:stop(nil)
+local stop = client:Stop(nil)
 ```
 
 ### Operations
@@ -552,7 +552,7 @@ local stop = client:stop(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:stop():load({ id = "stop_id" })
+local result, err = client:Stop():load({ id = "stop_id" })
 ```
 
 ### Common Methods
@@ -588,7 +588,7 @@ Return the entity name.
 ## TripEntity
 
 ```lua
-local trip = client:trip(nil)
+local trip = client:Trip(nil)
 ```
 
 ### Operations
@@ -598,7 +598,7 @@ local trip = client:trip(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:trip():load({ id = "trip_id" })
+local result, err = client:Trip():load({ id = "trip_id" })
 ```
 
 ### Common Methods
@@ -634,7 +634,7 @@ Return the entity name.
 ## VehicleEntity
 
 ```lua
-local vehicle = client:vehicle(nil)
+local vehicle = client:Vehicle(nil)
 ```
 
 ### Operations
@@ -644,7 +644,7 @@ local vehicle = client:vehicle(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:vehicle():load({ id = "vehicle_id" })
+local result, err = client:Vehicle():load({ id = "vehicle_id" })
 ```
 
 ### Common Methods

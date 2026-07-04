@@ -208,156 +208,84 @@ class MbtaV3SDK
   end
 
 
-  # Idiomatic facade: client.alert.list / client.alert.load({ "id" => ... })
-  def alert
-    require_relative 'entity/alert_entity'
-    @alert ||= AlertEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.alert instead.
+  # Canonical facade: client.Alert.list / client.Alert.load({ "id" => ... })
   def Alert(data = nil)
     require_relative 'entity/alert_entity'
     AlertEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.facility.list / client.facility.load({ "id" => ... })
-  def facility
-    require_relative 'entity/facility_entity'
-    @facility ||= FacilityEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.facility instead.
+  # Canonical facade: client.Facility.list / client.Facility.load({ "id" => ... })
   def Facility(data = nil)
     require_relative 'entity/facility_entity'
     FacilityEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.line.list / client.line.load({ "id" => ... })
-  def line
-    require_relative 'entity/line_entity'
-    @line ||= LineEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.line instead.
+  # Canonical facade: client.Line.list / client.Line.load({ "id" => ... })
   def Line(data = nil)
     require_relative 'entity/line_entity'
     LineEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.prediction.list / client.prediction.load({ "id" => ... })
-  def prediction
-    require_relative 'entity/prediction_entity'
-    @prediction ||= PredictionEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.prediction instead.
+  # Canonical facade: client.Prediction.list / client.Prediction.load({ "id" => ... })
   def Prediction(data = nil)
     require_relative 'entity/prediction_entity'
     PredictionEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.route.list / client.route.load({ "id" => ... })
-  def route
-    require_relative 'entity/route_entity'
-    @route ||= RouteEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.route instead.
+  # Canonical facade: client.Route.list / client.Route.load({ "id" => ... })
   def Route(data = nil)
     require_relative 'entity/route_entity'
     RouteEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.route_pattern.list / client.route_pattern.load({ "id" => ... })
-  def route_pattern
-    require_relative 'entity/route_pattern_entity'
-    @route_pattern ||= RoutePatternEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.route_pattern instead.
+  # Canonical facade: client.RoutePattern.list / client.RoutePattern.load({ "id" => ... })
   def RoutePattern(data = nil)
     require_relative 'entity/route_pattern_entity'
     RoutePatternEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.schedule.list / client.schedule.load({ "id" => ... })
-  def schedule
-    require_relative 'entity/schedule_entity'
-    @schedule ||= ScheduleEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.schedule instead.
+  # Canonical facade: client.Schedule.list / client.Schedule.load({ "id" => ... })
   def Schedule(data = nil)
     require_relative 'entity/schedule_entity'
     ScheduleEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.service.list / client.service.load({ "id" => ... })
-  def service
-    require_relative 'entity/service_entity'
-    @service ||= ServiceEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.service instead.
+  # Canonical facade: client.Service.list / client.Service.load({ "id" => ... })
   def Service(data = nil)
     require_relative 'entity/service_entity'
     ServiceEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.shape.list / client.shape.load({ "id" => ... })
-  def shape
-    require_relative 'entity/shape_entity'
-    @shape ||= ShapeEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.shape instead.
+  # Canonical facade: client.Shape.list / client.Shape.load({ "id" => ... })
   def Shape(data = nil)
     require_relative 'entity/shape_entity'
     ShapeEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.stop.list / client.stop.load({ "id" => ... })
-  def stop
-    require_relative 'entity/stop_entity'
-    @stop ||= StopEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.stop instead.
+  # Canonical facade: client.Stop.list / client.Stop.load({ "id" => ... })
   def Stop(data = nil)
     require_relative 'entity/stop_entity'
     StopEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.trip.list / client.trip.load({ "id" => ... })
-  def trip
-    require_relative 'entity/trip_entity'
-    @trip ||= TripEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.trip instead.
+  # Canonical facade: client.Trip.list / client.Trip.load({ "id" => ... })
   def Trip(data = nil)
     require_relative 'entity/trip_entity'
     TripEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.vehicle.list / client.vehicle.load({ "id" => ... })
-  def vehicle
-    require_relative 'entity/vehicle_entity'
-    @vehicle ||= VehicleEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.vehicle instead.
+  # Canonical facade: client.Vehicle.list / client.Vehicle.load({ "id" => ... })
   def Vehicle(data = nil)
     require_relative 'entity/vehicle_entity'
     VehicleEntity.new(self, data)

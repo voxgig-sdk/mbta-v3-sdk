@@ -233,10 +233,10 @@ class MbtaV3SDK
 
     private $_alert = null;
 
-    // Idiomatic facade: $client->alert()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Alert() (PHP method
-    // names are case-insensitive).
-    public function alert($data = null)
+    // Canonical facade: $client->Alert()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->alert()
+    // resolves here too.
+    public function Alert($data = null)
     {
         require_once __DIR__ . '/entity/alert_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class MbtaV3SDK
 
     private $_facility = null;
 
-    // Idiomatic facade: $client->facility()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Facility() (PHP method
-    // names are case-insensitive).
-    public function facility($data = null)
+    // Canonical facade: $client->Facility()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->facility()
+    // resolves here too.
+    public function Facility($data = null)
     {
         require_once __DIR__ . '/entity/facility_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class MbtaV3SDK
 
     private $_line = null;
 
-    // Idiomatic facade: $client->line()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Line() (PHP method
-    // names are case-insensitive).
-    public function line($data = null)
+    // Canonical facade: $client->Line()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->line()
+    // resolves here too.
+    public function Line($data = null)
     {
         require_once __DIR__ . '/entity/line_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class MbtaV3SDK
 
     private $_prediction = null;
 
-    // Idiomatic facade: $client->prediction()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Prediction() (PHP method
-    // names are case-insensitive).
-    public function prediction($data = null)
+    // Canonical facade: $client->Prediction()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->prediction()
+    // resolves here too.
+    public function Prediction($data = null)
     {
         require_once __DIR__ . '/entity/prediction_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class MbtaV3SDK
 
     private $_route = null;
 
-    // Idiomatic facade: $client->route()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Route() (PHP method
-    // names are case-insensitive).
-    public function route($data = null)
+    // Canonical facade: $client->Route()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->route()
+    // resolves here too.
+    public function Route($data = null)
     {
         require_once __DIR__ . '/entity/route_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class MbtaV3SDK
 
     private $_route_pattern = null;
 
-    // Idiomatic facade: $client->route_pattern()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias RoutePattern() (PHP method
-    // names are case-insensitive).
-    public function route_pattern($data = null)
+    // Canonical facade: $client->RoutePattern()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->route_pattern()
+    // resolves here too.
+    public function RoutePattern($data = null)
     {
         require_once __DIR__ . '/entity/route_pattern_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class MbtaV3SDK
 
     private $_schedule = null;
 
-    // Idiomatic facade: $client->schedule()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Schedule() (PHP method
-    // names are case-insensitive).
-    public function schedule($data = null)
+    // Canonical facade: $client->Schedule()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->schedule()
+    // resolves here too.
+    public function Schedule($data = null)
     {
         require_once __DIR__ . '/entity/schedule_entity.php';
         if ($data === null) {
@@ -359,10 +359,10 @@ class MbtaV3SDK
 
     private $_service = null;
 
-    // Idiomatic facade: $client->service()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Service() (PHP method
-    // names are case-insensitive).
-    public function service($data = null)
+    // Canonical facade: $client->Service()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->service()
+    // resolves here too.
+    public function Service($data = null)
     {
         require_once __DIR__ . '/entity/service_entity.php';
         if ($data === null) {
@@ -377,10 +377,10 @@ class MbtaV3SDK
 
     private $_shape = null;
 
-    // Idiomatic facade: $client->shape()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Shape() (PHP method
-    // names are case-insensitive).
-    public function shape($data = null)
+    // Canonical facade: $client->Shape()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->shape()
+    // resolves here too.
+    public function Shape($data = null)
     {
         require_once __DIR__ . '/entity/shape_entity.php';
         if ($data === null) {
@@ -395,10 +395,10 @@ class MbtaV3SDK
 
     private $_stop = null;
 
-    // Idiomatic facade: $client->stop()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Stop() (PHP method
-    // names are case-insensitive).
-    public function stop($data = null)
+    // Canonical facade: $client->Stop()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->stop()
+    // resolves here too.
+    public function Stop($data = null)
     {
         require_once __DIR__ . '/entity/stop_entity.php';
         if ($data === null) {
@@ -413,10 +413,10 @@ class MbtaV3SDK
 
     private $_trip = null;
 
-    // Idiomatic facade: $client->trip()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Trip() (PHP method
-    // names are case-insensitive).
-    public function trip($data = null)
+    // Canonical facade: $client->Trip()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->trip()
+    // resolves here too.
+    public function Trip($data = null)
     {
         require_once __DIR__ . '/entity/trip_entity.php';
         if ($data === null) {
@@ -431,10 +431,10 @@ class MbtaV3SDK
 
     private $_vehicle = null;
 
-    // Idiomatic facade: $client->vehicle()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Vehicle() (PHP method
-    // names are case-insensitive).
-    public function vehicle($data = null)
+    // Canonical facade: $client->Vehicle()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->vehicle()
+    // resolves here too.
+    public function Vehicle($data = null)
     {
         require_once __DIR__ . '/entity/vehicle_entity.php';
         if ($data === null) {

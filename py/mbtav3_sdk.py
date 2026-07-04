@@ -220,201 +220,81 @@ class MbtaV3SDK:
         }
 
 
-    @property
-    def alert(self):
-        """Idiomatic facade: client.alert.list() / client.alert.load({"id": ...})."""
-        from entity.alert_entity import AlertEntity
-        cached = getattr(self, "_alert", None)
-        if cached is None:
-            cached = AlertEntity(self, None)
-            self._alert = cached
-        return cached
-
-    def Alert(self, data=None):
-        # Deprecated: use client.alert instead.
+    def Alert(self, data=None) -> "AlertEntity":
+        """Entity factory: client.Alert().list({}) / client.Alert().load({"id": ...})."""
         from entity.alert_entity import AlertEntity
         return AlertEntity(self, data)
 
 
-    @property
-    def facility(self):
-        """Idiomatic facade: client.facility.list() / client.facility.load({"id": ...})."""
-        from entity.facility_entity import FacilityEntity
-        cached = getattr(self, "_facility", None)
-        if cached is None:
-            cached = FacilityEntity(self, None)
-            self._facility = cached
-        return cached
-
-    def Facility(self, data=None):
-        # Deprecated: use client.facility instead.
+    def Facility(self, data=None) -> "FacilityEntity":
+        """Entity factory: client.Facility().list({}) / client.Facility().load({"id": ...})."""
         from entity.facility_entity import FacilityEntity
         return FacilityEntity(self, data)
 
 
-    @property
-    def line(self):
-        """Idiomatic facade: client.line.list() / client.line.load({"id": ...})."""
-        from entity.line_entity import LineEntity
-        cached = getattr(self, "_line", None)
-        if cached is None:
-            cached = LineEntity(self, None)
-            self._line = cached
-        return cached
-
-    def Line(self, data=None):
-        # Deprecated: use client.line instead.
+    def Line(self, data=None) -> "LineEntity":
+        """Entity factory: client.Line().list({}) / client.Line().load({"id": ...})."""
         from entity.line_entity import LineEntity
         return LineEntity(self, data)
 
 
-    @property
-    def prediction(self):
-        """Idiomatic facade: client.prediction.list() / client.prediction.load({"id": ...})."""
-        from entity.prediction_entity import PredictionEntity
-        cached = getattr(self, "_prediction", None)
-        if cached is None:
-            cached = PredictionEntity(self, None)
-            self._prediction = cached
-        return cached
-
-    def Prediction(self, data=None):
-        # Deprecated: use client.prediction instead.
+    def Prediction(self, data=None) -> "PredictionEntity":
+        """Entity factory: client.Prediction().list({}) / client.Prediction().load({"id": ...})."""
         from entity.prediction_entity import PredictionEntity
         return PredictionEntity(self, data)
 
 
-    @property
-    def route(self):
-        """Idiomatic facade: client.route.list() / client.route.load({"id": ...})."""
-        from entity.route_entity import RouteEntity
-        cached = getattr(self, "_route", None)
-        if cached is None:
-            cached = RouteEntity(self, None)
-            self._route = cached
-        return cached
-
-    def Route(self, data=None):
-        # Deprecated: use client.route instead.
+    def Route(self, data=None) -> "RouteEntity":
+        """Entity factory: client.Route().list({}) / client.Route().load({"id": ...})."""
         from entity.route_entity import RouteEntity
         return RouteEntity(self, data)
 
 
-    @property
-    def route_pattern(self):
-        """Idiomatic facade: client.route_pattern.list() / client.route_pattern.load({"id": ...})."""
-        from entity.route_pattern_entity import RoutePatternEntity
-        cached = getattr(self, "_route_pattern", None)
-        if cached is None:
-            cached = RoutePatternEntity(self, None)
-            self._route_pattern = cached
-        return cached
-
-    def RoutePattern(self, data=None):
-        # Deprecated: use client.route_pattern instead.
+    def RoutePattern(self, data=None) -> "RoutePatternEntity":
+        """Entity factory: client.RoutePattern().list({}) / client.RoutePattern().load({"id": ...})."""
         from entity.route_pattern_entity import RoutePatternEntity
         return RoutePatternEntity(self, data)
 
 
-    @property
-    def schedule(self):
-        """Idiomatic facade: client.schedule.list() / client.schedule.load({"id": ...})."""
-        from entity.schedule_entity import ScheduleEntity
-        cached = getattr(self, "_schedule", None)
-        if cached is None:
-            cached = ScheduleEntity(self, None)
-            self._schedule = cached
-        return cached
-
-    def Schedule(self, data=None):
-        # Deprecated: use client.schedule instead.
+    def Schedule(self, data=None) -> "ScheduleEntity":
+        """Entity factory: client.Schedule().list({}) / client.Schedule().load({"id": ...})."""
         from entity.schedule_entity import ScheduleEntity
         return ScheduleEntity(self, data)
 
 
-    @property
-    def service(self):
-        """Idiomatic facade: client.service.list() / client.service.load({"id": ...})."""
-        from entity.service_entity import ServiceEntity
-        cached = getattr(self, "_service", None)
-        if cached is None:
-            cached = ServiceEntity(self, None)
-            self._service = cached
-        return cached
-
-    def Service(self, data=None):
-        # Deprecated: use client.service instead.
+    def Service(self, data=None) -> "ServiceEntity":
+        """Entity factory: client.Service().list({}) / client.Service().load({"id": ...})."""
         from entity.service_entity import ServiceEntity
         return ServiceEntity(self, data)
 
 
-    @property
-    def shape(self):
-        """Idiomatic facade: client.shape.list() / client.shape.load({"id": ...})."""
-        from entity.shape_entity import ShapeEntity
-        cached = getattr(self, "_shape", None)
-        if cached is None:
-            cached = ShapeEntity(self, None)
-            self._shape = cached
-        return cached
-
-    def Shape(self, data=None):
-        # Deprecated: use client.shape instead.
+    def Shape(self, data=None) -> "ShapeEntity":
+        """Entity factory: client.Shape().list({}) / client.Shape().load({"id": ...})."""
         from entity.shape_entity import ShapeEntity
         return ShapeEntity(self, data)
 
 
-    @property
-    def stop(self):
-        """Idiomatic facade: client.stop.list() / client.stop.load({"id": ...})."""
-        from entity.stop_entity import StopEntity
-        cached = getattr(self, "_stop", None)
-        if cached is None:
-            cached = StopEntity(self, None)
-            self._stop = cached
-        return cached
-
-    def Stop(self, data=None):
-        # Deprecated: use client.stop instead.
+    def Stop(self, data=None) -> "StopEntity":
+        """Entity factory: client.Stop().list({}) / client.Stop().load({"id": ...})."""
         from entity.stop_entity import StopEntity
         return StopEntity(self, data)
 
 
-    @property
-    def trip(self):
-        """Idiomatic facade: client.trip.list() / client.trip.load({"id": ...})."""
-        from entity.trip_entity import TripEntity
-        cached = getattr(self, "_trip", None)
-        if cached is None:
-            cached = TripEntity(self, None)
-            self._trip = cached
-        return cached
-
-    def Trip(self, data=None):
-        # Deprecated: use client.trip instead.
+    def Trip(self, data=None) -> "TripEntity":
+        """Entity factory: client.Trip().list({}) / client.Trip().load({"id": ...})."""
         from entity.trip_entity import TripEntity
         return TripEntity(self, data)
 
 
-    @property
-    def vehicle(self):
-        """Idiomatic facade: client.vehicle.list() / client.vehicle.load({"id": ...})."""
-        from entity.vehicle_entity import VehicleEntity
-        cached = getattr(self, "_vehicle", None)
-        if cached is None:
-            cached = VehicleEntity(self, None)
-            self._vehicle = cached
-        return cached
-
-    def Vehicle(self, data=None):
-        # Deprecated: use client.vehicle instead.
+    def Vehicle(self, data=None) -> "VehicleEntity":
+        """Entity factory: client.Vehicle().list({}) / client.Vehicle().load({"id": ...})."""
         from entity.vehicle_entity import VehicleEntity
         return VehicleEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "MbtaV3SDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -434,3 +314,20 @@ class MbtaV3SDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.alert_entity import AlertEntity
+    from entity.facility_entity import FacilityEntity
+    from entity.line_entity import LineEntity
+    from entity.prediction_entity import PredictionEntity
+    from entity.route_entity import RouteEntity
+    from entity.route_pattern_entity import RoutePatternEntity
+    from entity.schedule_entity import ScheduleEntity
+    from entity.service_entity import ServiceEntity
+    from entity.shape_entity import ShapeEntity
+    from entity.stop_entity import StopEntity
+    from entity.trip_entity import TripEntity
+    from entity.vehicle_entity import VehicleEntity

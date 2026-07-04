@@ -28,9 +28,9 @@ const client = new MbtaV3SDK({
   apikey: process.env.MBTA_V3_APIKEY,
 })
 
-// Load alert data
-const alert = await client.alert.load({})
-console.log(alert.data)
+// Load alert data (returns a Alert)
+const alert = await client.Alert().load()
+console.log(alert)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -100,8 +100,8 @@ client = MbtaV3SDK({
 })
 
 
-# Load a specific alert
-alert = client.alert.load({"id": "example_id"})
+# Load a specific alert (returns the record, raises on error)
+alert = client.Alert().load({"id": "example_id"})
 print(alert)
 ```
 
@@ -116,8 +116,8 @@ $client = new MbtaV3SDK([
 ]);
 
 
-// Load a specific alert
-$alert = $client->alert()->load(["id" => "example_id"]);
+// Load a specific alert (returns the bare record; throws on error)
+$alert = $client->Alert()->load(["id" => "example_id"]);
 print_r($alert);
 ```
 
@@ -145,8 +145,8 @@ client = MbtaV3SDK.new({
 })
 
 
-# Load a specific alert
-alert = client.alert.load({ "id" => "example_id" })
+# Load a specific alert (returns the bare record; raises on error)
+alert = client.Alert.load({ "id" => "example_id" })
 puts alert
 ```
 
@@ -161,7 +161,7 @@ local client = sdk.new({
 
 
 -- Load a specific alert
-local alert, err = client:alert():load({ id = "example_id" })
+local alert, err = client:Alert():load({ id = "example_id" })
 print(alert)
 ```
 
@@ -174,22 +174,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = MbtaV3SDK.test()
-const result = await client.alert.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const alert = await client.Alert().load({ id: 'test01' })
+// alert is a bare Alert populated with mock data
+console.log(alert)
 ```
 
 ### Python
 
 ```python
 client = MbtaV3SDK.test()
-result = client.alert.load({"id": "test01"})
+alert = client.Alert().load({"id": "test01"})
+print(alert)
 ```
 
 ### PHP
 
 ```php
-$client = MbtaV3SDK::test();
-$result = $client->alert()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = MbtaV3SDK::test([
+    "entity" => ["alert" => ["test01" => ["id" => "test01"]]],
+]);
+$alert = $client->Alert()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -204,15 +209,18 @@ result, err := client.Alert(nil).Load(
 ### Ruby
 
 ```ruby
-client = MbtaV3SDK.test
-result = client.alert.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = MbtaV3SDK.test({
+  "entity" => { "alert" => { "test01" => { "id" => "test01" } } },
+})
+alert = client.Alert.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:alert():load({ id = "test01" })
+local result, err = client:Alert():load({ id = "test01" })
 ```
 
 ## How it works
@@ -260,6 +268,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

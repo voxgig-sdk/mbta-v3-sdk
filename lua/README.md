@@ -36,9 +36,9 @@ local client = sdk.new({
 ### 3. Load an alert
 
 ```lua
-local result, err = client:alert():load({ id = "example_id" })
+local alert, err = client:Alert():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(alert)
 ```
 
 
@@ -84,8 +84,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:alert():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Alert():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -165,7 +165,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `Alert` | `(data) -> AlertEntity` | Create a Alert entity instance. |
+| `Alert` | `(data) -> AlertEntity` | Create an Alert entity instance. |
 | `Facility` | `(data) -> FacilityEntity` | Create a Facility entity instance. |
 | `Line` | `(data) -> LineEntity` | Create a Line entity instance. |
 | `Prediction` | `(data) -> PredictionEntity` | Create a Prediction entity instance. |
@@ -198,17 +198,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local alert, err = client:Alert():load({ id = "example_id" })
+    if err then error(err) end
+    -- alert is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -327,7 +332,7 @@ API path: `/vehicles`
 
 ### Alert
 
-Create an instance: `const alert = client.alert`
+Create an instance: `local alert = client:Alert(nil)`
 
 #### Operations
 
@@ -337,14 +342,14 @@ Create an instance: `const alert = client.alert`
 
 #### Example: Load
 
-```ts
-const alert = await client.alert.load({ id: 'alert_id' })
+```lua
+local alert, err = client:Alert():load({ id = "alert_id" })
 ```
 
 
 ### Facility
 
-Create an instance: `const facility = client.facility`
+Create an instance: `local facility = client:Facility(nil)`
 
 #### Operations
 
@@ -354,14 +359,14 @@ Create an instance: `const facility = client.facility`
 
 #### Example: Load
 
-```ts
-const facility = await client.facility.load({ id: 'facility_id' })
+```lua
+local facility, err = client:Facility():load({ id = "facility_id" })
 ```
 
 
 ### Line
 
-Create an instance: `const line = client.line`
+Create an instance: `local line = client:Line(nil)`
 
 #### Operations
 
@@ -371,14 +376,14 @@ Create an instance: `const line = client.line`
 
 #### Example: Load
 
-```ts
-const line = await client.line.load({ id: 'line_id' })
+```lua
+local line, err = client:Line():load({ id = "line_id" })
 ```
 
 
 ### Prediction
 
-Create an instance: `const prediction = client.prediction`
+Create an instance: `local prediction = client:Prediction(nil)`
 
 #### Operations
 
@@ -388,14 +393,14 @@ Create an instance: `const prediction = client.prediction`
 
 #### Example: Load
 
-```ts
-const prediction = await client.prediction.load({ id: 'prediction_id' })
+```lua
+local prediction, err = client:Prediction():load({ id = "prediction_id" })
 ```
 
 
 ### Route
 
-Create an instance: `const route = client.route`
+Create an instance: `local route = client:Route(nil)`
 
 #### Operations
 
@@ -405,14 +410,14 @@ Create an instance: `const route = client.route`
 
 #### Example: Load
 
-```ts
-const route = await client.route.load({ id: 'route_id' })
+```lua
+local route, err = client:Route():load({ id = "route_id" })
 ```
 
 
 ### RoutePattern
 
-Create an instance: `const route_pattern = client.route_pattern`
+Create an instance: `local route_pattern = client:RoutePattern(nil)`
 
 #### Operations
 
@@ -422,14 +427,14 @@ Create an instance: `const route_pattern = client.route_pattern`
 
 #### Example: Load
 
-```ts
-const route_pattern = await client.route_pattern.load({ id: 'route_pattern_id' })
+```lua
+local route_pattern, err = client:RoutePattern():load({ id = "route_pattern_id" })
 ```
 
 
 ### Schedule
 
-Create an instance: `const schedule = client.schedule`
+Create an instance: `local schedule = client:Schedule(nil)`
 
 #### Operations
 
@@ -439,14 +444,14 @@ Create an instance: `const schedule = client.schedule`
 
 #### Example: Load
 
-```ts
-const schedule = await client.schedule.load({ id: 'schedule_id' })
+```lua
+local schedule, err = client:Schedule():load({ id = "schedule_id" })
 ```
 
 
 ### Service
 
-Create an instance: `const service = client.service`
+Create an instance: `local service = client:Service(nil)`
 
 #### Operations
 
@@ -456,14 +461,14 @@ Create an instance: `const service = client.service`
 
 #### Example: Load
 
-```ts
-const service = await client.service.load({ id: 'service_id' })
+```lua
+local service, err = client:Service():load({ id = "service_id" })
 ```
 
 
 ### Shape
 
-Create an instance: `const shape = client.shape`
+Create an instance: `local shape = client:Shape(nil)`
 
 #### Operations
 
@@ -473,14 +478,14 @@ Create an instance: `const shape = client.shape`
 
 #### Example: Load
 
-```ts
-const shape = await client.shape.load({ id: 'shape_id' })
+```lua
+local shape, err = client:Shape():load({ id = "shape_id" })
 ```
 
 
 ### Stop
 
-Create an instance: `const stop = client.stop`
+Create an instance: `local stop = client:Stop(nil)`
 
 #### Operations
 
@@ -490,14 +495,14 @@ Create an instance: `const stop = client.stop`
 
 #### Example: Load
 
-```ts
-const stop = await client.stop.load({ id: 'stop_id' })
+```lua
+local stop, err = client:Stop():load({ id = "stop_id" })
 ```
 
 
 ### Trip
 
-Create an instance: `const trip = client.trip`
+Create an instance: `local trip = client:Trip(nil)`
 
 #### Operations
 
@@ -507,14 +512,14 @@ Create an instance: `const trip = client.trip`
 
 #### Example: Load
 
-```ts
-const trip = await client.trip.load({ id: 'trip_id' })
+```lua
+local trip, err = client:Trip():load({ id = "trip_id" })
 ```
 
 
 ### Vehicle
 
-Create an instance: `const vehicle = client.vehicle`
+Create an instance: `local vehicle = client:Vehicle(nil)`
 
 #### Operations
 
@@ -524,8 +529,8 @@ Create an instance: `const vehicle = client.vehicle`
 
 #### Example: Load
 
-```ts
-const vehicle = await client.vehicle.load({ id: 'vehicle_id' })
+```lua
+local vehicle, err = client:Vehicle():load({ id = "vehicle_id" })
 ```
 
 
@@ -600,7 +605,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local alert = client:alert()
+local alert = client:Alert()
 alert:load({ id = "example_id" })
 
 -- alert:data_get() now returns the loaded alert data
