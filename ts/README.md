@@ -9,9 +9,12 @@ The TypeScript SDK for the MbtaV3 API — a type-safe, entity-oriented client wi
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/mbta-v3
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/mbta-v3-sdk/releases](https://github.com/voxgig-sdk/mbta-v3-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,17 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { MbtaV3SDK } from 'mbta-v3'
+import { MbtaV3SDK } from '@voxgig-sdk/mbta-v3'
 
 const client = new MbtaV3SDK({
-  apikey: process.env.MBTA-V3_APIKEY,
+  apikey: process.env.MBTA_V3_APIKEY,
 })
 ```
 
-### 3. Load a alert
+### 3. Load an alert
 
 ```ts
-const result = await client.Alert().load({ id: 'example_id' })
+const result = await client.alert.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MbtaV3SDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.alert.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -96,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.alert
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -133,8 +136,8 @@ const client = new MbtaV3SDK({
 Create a `.env.local` file at the project root:
 
 ```
-MBTA-V3_TEST_LIVE=TRUE
-MBTA-V3_APIKEY=<your-key>
+MBTA_V3_TEST_LIVE=TRUE
+MBTA_V3_APIKEY=<your-key>
 ```
 
 Then run:
@@ -375,7 +378,7 @@ API path: `/vehicles`
 
 ### Alert
 
-Create an instance: `const alert = client.Alert()`
+Create an instance: `const alert = client.alert`
 
 #### Operations
 
@@ -386,13 +389,13 @@ Create an instance: `const alert = client.Alert()`
 #### Example: Load
 
 ```ts
-const alert = await client.Alert().load({ id: 'alert_id' })
+const alert = await client.alert.load({ id: 'alert_id' })
 ```
 
 
 ### Facility
 
-Create an instance: `const facility = client.Facility()`
+Create an instance: `const facility = client.facility`
 
 #### Operations
 
@@ -403,13 +406,13 @@ Create an instance: `const facility = client.Facility()`
 #### Example: Load
 
 ```ts
-const facility = await client.Facility().load({ id: 'facility_id' })
+const facility = await client.facility.load({ id: 'facility_id' })
 ```
 
 
 ### Line
 
-Create an instance: `const line = client.Line()`
+Create an instance: `const line = client.line`
 
 #### Operations
 
@@ -420,13 +423,13 @@ Create an instance: `const line = client.Line()`
 #### Example: Load
 
 ```ts
-const line = await client.Line().load({ id: 'line_id' })
+const line = await client.line.load({ id: 'line_id' })
 ```
 
 
 ### Prediction
 
-Create an instance: `const prediction = client.Prediction()`
+Create an instance: `const prediction = client.prediction`
 
 #### Operations
 
@@ -437,13 +440,13 @@ Create an instance: `const prediction = client.Prediction()`
 #### Example: Load
 
 ```ts
-const prediction = await client.Prediction().load({ id: 'prediction_id' })
+const prediction = await client.prediction.load({ id: 'prediction_id' })
 ```
 
 
 ### Route
 
-Create an instance: `const route = client.Route()`
+Create an instance: `const route = client.route`
 
 #### Operations
 
@@ -454,13 +457,13 @@ Create an instance: `const route = client.Route()`
 #### Example: Load
 
 ```ts
-const route = await client.Route().load({ id: 'route_id' })
+const route = await client.route.load({ id: 'route_id' })
 ```
 
 
 ### RoutePattern
 
-Create an instance: `const route_pattern = client.RoutePattern()`
+Create an instance: `const route_pattern = client.route_pattern`
 
 #### Operations
 
@@ -471,13 +474,13 @@ Create an instance: `const route_pattern = client.RoutePattern()`
 #### Example: Load
 
 ```ts
-const route_pattern = await client.RoutePattern().load({ id: 'route_pattern_id' })
+const route_pattern = await client.route_pattern.load({ id: 'route_pattern_id' })
 ```
 
 
 ### Schedule
 
-Create an instance: `const schedule = client.Schedule()`
+Create an instance: `const schedule = client.schedule`
 
 #### Operations
 
@@ -488,13 +491,13 @@ Create an instance: `const schedule = client.Schedule()`
 #### Example: Load
 
 ```ts
-const schedule = await client.Schedule().load({ id: 'schedule_id' })
+const schedule = await client.schedule.load({ id: 'schedule_id' })
 ```
 
 
 ### Service
 
-Create an instance: `const service = client.Service()`
+Create an instance: `const service = client.service`
 
 #### Operations
 
@@ -505,13 +508,13 @@ Create an instance: `const service = client.Service()`
 #### Example: Load
 
 ```ts
-const service = await client.Service().load({ id: 'service_id' })
+const service = await client.service.load({ id: 'service_id' })
 ```
 
 
 ### Shape
 
-Create an instance: `const shape = client.Shape()`
+Create an instance: `const shape = client.shape`
 
 #### Operations
 
@@ -522,13 +525,13 @@ Create an instance: `const shape = client.Shape()`
 #### Example: Load
 
 ```ts
-const shape = await client.Shape().load({ id: 'shape_id' })
+const shape = await client.shape.load({ id: 'shape_id' })
 ```
 
 
 ### Stop
 
-Create an instance: `const stop = client.Stop()`
+Create an instance: `const stop = client.stop`
 
 #### Operations
 
@@ -539,13 +542,13 @@ Create an instance: `const stop = client.Stop()`
 #### Example: Load
 
 ```ts
-const stop = await client.Stop().load({ id: 'stop_id' })
+const stop = await client.stop.load({ id: 'stop_id' })
 ```
 
 
 ### Trip
 
-Create an instance: `const trip = client.Trip()`
+Create an instance: `const trip = client.trip`
 
 #### Operations
 
@@ -556,13 +559,13 @@ Create an instance: `const trip = client.Trip()`
 #### Example: Load
 
 ```ts
-const trip = await client.Trip().load({ id: 'trip_id' })
+const trip = await client.trip.load({ id: 'trip_id' })
 ```
 
 
 ### Vehicle
 
-Create an instance: `const vehicle = client.Vehicle()`
+Create an instance: `const vehicle = client.vehicle`
 
 #### Operations
 
@@ -573,7 +576,7 @@ Create an instance: `const vehicle = client.Vehicle()`
 #### Example: Load
 
 ```ts
-const vehicle = await client.Vehicle().load({ id: 'vehicle_id' })
+const vehicle = await client.vehicle.load({ id: 'vehicle_id' })
 ```
 
 
@@ -634,7 +637,7 @@ mbta-v3/
 Import the SDK from the package root:
 
 ```ts
-import { MbtaV3SDK } from 'mbta-v3'
+import { MbtaV3SDK } from '@voxgig-sdk/mbta-v3'
 ```
 
 ### Entity state
@@ -644,11 +647,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const alert = client.alert
+await alert.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// alert.data() now returns the loaded alert data
+// alert.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -98,9 +98,9 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs=None) -> tuple`
+#### `direct(fetchargs=None) -> dict`
 
-Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
+Make a direct HTTP request to any API endpoint. Returns a result `dict` with `ok`, `status`, `headers`, and `data` (or `err` on failure). This escape hatch never raises — branch on `result["ok"]`.
 
 **Parameters:**
 
@@ -113,11 +113,11 @@ Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
 | `fetchargs["headers"]` | `dict` | Request headers (merged with defaults). |
 | `fetchargs["body"]` | `any` | Request body (dicts are JSON-serialized). |
 
-**Returns:** `(result_dict, err)`
+**Returns:** `result_dict`
 
-#### `prepare(fetchargs=None) -> tuple`
+#### `prepare(fetchargs=None) -> dict`
 
-Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
+Prepare a fetch definition without sending. Returns the `fetchdef` and raises on error.
 
 
 ---
@@ -125,17 +125,17 @@ Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
 ## AlertEntity
 
 ```python
-alert = client.Alert()
+alert = client.alert
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Alert().load({"id": "alert_id"})
+result = client.alert.load({"id": "alert_id"})
 ```
 
 ### Common Methods
@@ -170,17 +170,17 @@ Return the entity name.
 ## FacilityEntity
 
 ```python
-facility = client.Facility()
+facility = client.facility
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Facility().load({"id": "facility_id"})
+result = client.facility.load({"id": "facility_id"})
 ```
 
 ### Common Methods
@@ -215,17 +215,17 @@ Return the entity name.
 ## LineEntity
 
 ```python
-line = client.Line()
+line = client.line
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Line().load({"id": "line_id"})
+result = client.line.load({"id": "line_id"})
 ```
 
 ### Common Methods
@@ -260,17 +260,17 @@ Return the entity name.
 ## PredictionEntity
 
 ```python
-prediction = client.Prediction()
+prediction = client.prediction
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Prediction().load({"id": "prediction_id"})
+result = client.prediction.load({"id": "prediction_id"})
 ```
 
 ### Common Methods
@@ -305,17 +305,17 @@ Return the entity name.
 ## RouteEntity
 
 ```python
-route = client.Route()
+route = client.route
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Route().load({"id": "route_id"})
+result = client.route.load({"id": "route_id"})
 ```
 
 ### Common Methods
@@ -350,17 +350,17 @@ Return the entity name.
 ## RoutePatternEntity
 
 ```python
-route_pattern = client.RoutePattern()
+route_pattern = client.route_pattern
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.RoutePattern().load({"id": "route_pattern_id"})
+result = client.route_pattern.load({"id": "route_pattern_id"})
 ```
 
 ### Common Methods
@@ -395,17 +395,17 @@ Return the entity name.
 ## ScheduleEntity
 
 ```python
-schedule = client.Schedule()
+schedule = client.schedule
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Schedule().load({"id": "schedule_id"})
+result = client.schedule.load({"id": "schedule_id"})
 ```
 
 ### Common Methods
@@ -440,17 +440,17 @@ Return the entity name.
 ## ServiceEntity
 
 ```python
-service = client.Service()
+service = client.service
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Service().load({"id": "service_id"})
+result = client.service.load({"id": "service_id"})
 ```
 
 ### Common Methods
@@ -485,17 +485,17 @@ Return the entity name.
 ## ShapeEntity
 
 ```python
-shape = client.Shape()
+shape = client.shape
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Shape().load({"id": "shape_id"})
+result = client.shape.load({"id": "shape_id"})
 ```
 
 ### Common Methods
@@ -530,17 +530,17 @@ Return the entity name.
 ## StopEntity
 
 ```python
-stop = client.Stop()
+stop = client.stop
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Stop().load({"id": "stop_id"})
+result = client.stop.load({"id": "stop_id"})
 ```
 
 ### Common Methods
@@ -575,17 +575,17 @@ Return the entity name.
 ## TripEntity
 
 ```python
-trip = client.Trip()
+trip = client.trip
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Trip().load({"id": "trip_id"})
+result = client.trip.load({"id": "trip_id"})
 ```
 
 ### Common Methods
@@ -620,17 +620,17 @@ Return the entity name.
 ## VehicleEntity
 
 ```python
-vehicle = client.Vehicle()
+vehicle = client.vehicle
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Vehicle().load({"id": "vehicle_id"})
+result = client.vehicle.load({"id": "vehicle_id"})
 ```
 
 ### Common Methods

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch LineLoadMatch
+---@param ctrl? table
+---@return Line
+---@return string? err
 function LineEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

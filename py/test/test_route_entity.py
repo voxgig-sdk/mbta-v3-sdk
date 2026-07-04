@@ -49,8 +49,7 @@ class TestRouteEntity:
         # LOAD
         route_ref01_ent = client.Route(None)
         route_ref01_match_dt0 = {}
-        route_ref01_data_dt0_loaded, err = route_ref01_ent.load(route_ref01_match_dt0, None)
-        assert err is None
+        route_ref01_data_dt0_loaded = route_ref01_ent.load(route_ref01_match_dt0, None)
         assert route_ref01_data_dt0_loaded is not None
 
 

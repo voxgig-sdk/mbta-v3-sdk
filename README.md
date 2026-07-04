@@ -10,26 +10,26 @@ This is an unofficial SDK for the Massachusetts Bay Transportation Authority V3 
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/mbta-v3` | `npm install @voxgig-sdk/mbta-v3` |
-| Python | `voxgig-sdk-mbta-v3` | `pip install voxgig-sdk-mbta-v3` |
-| PHP | `voxgig-sdk/mbta-v3` | `composer require voxgig-sdk/mbta-v3` |
-| Golang | `github.com/voxgig-sdk/mbta-v3-sdk/go` | `go get github.com/voxgig-sdk/mbta-v3-sdk/go` |
-| Ruby | `voxgig-sdk-mbta-v3` | `gem install voxgig-sdk-mbta-v3` |
-| Lua | `voxgig-sdk-mbta-v3` | `luarocks install voxgig-sdk-mbta-v3` |
+| TypeScript | `@voxgig-sdk/mbta-v3` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/releases) |
+| Python | `voxgig-sdk-mbta-v3` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/releases) |
+| PHP | `voxgig-sdk/mbta-v3` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/releases) |
+| Golang | `github.com/voxgig-sdk/mbta-v3-sdk/go` | `go get github.com/voxgig-sdk/mbta-v3-sdk/go@latest` |
+| Ruby | `voxgig-sdk-mbta-v3` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/releases) |
+| Lua | `voxgig-sdk-mbta-v3` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/releases) |
 
 ## Quickstart
 
 ### TypeScript
 
 ```ts
-import { MbtaV3SDK } from 'mbta-v3'
+import { MbtaV3SDK } from '@voxgig-sdk/mbta-v3'
 
 const client = new MbtaV3SDK({
-  apikey: process.env.MBTA-V3_APIKEY,
+  apikey: process.env.MBTA_V3_APIKEY,
 })
 
 // Load alert data
-const alert = await client.Alert().load({})
+const alert = await client.alert.load({})
 console.log(alert.data)
 ```
 
@@ -71,18 +71,18 @@ The API exposes 12 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Alert** |  | `/alerts` |
-| **Facility** |  | `/facilities` |
-| **Line** |  | `/lines` |
-| **Prediction** |  | `/predictions` |
-| **Route** |  | `/routes` |
-| **RoutePattern** |  | `/route_patterns` |
-| **Schedule** |  | `/schedules` |
-| **Service** |  | `/services` |
-| **Shape** |  | `/shapes` |
-| **Stop** |  | `/stops` |
-| **Trip** |  | `/trips` |
-| **Vehicle** |  | `/vehicles` |
+| **Alert** | The Alert entity (load). | `/alerts` |
+| **Facility** | The Facility entity (load). | `/facilities` |
+| **Line** | The Line entity (load). | `/lines` |
+| **Prediction** | The Prediction entity (load). | `/predictions` |
+| **Route** | The Route entity (load). | `/routes` |
+| **RoutePattern** | The RoutePattern entity (load). | `/route_patterns` |
+| **Schedule** | The Schedule entity (load). | `/schedules` |
+| **Service** | The Service entity (load). | `/services` |
+| **Shape** | The Shape entity (load). | `/shapes` |
+| **Stop** | The Stop entity (load). | `/stops` |
+| **Trip** | The Trip entity (load). | `/trips` |
+| **Vehicle** | The Vehicle entity (load). | `/vehicles` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -96,12 +96,12 @@ import os
 from mbtav3_sdk import MbtaV3SDK
 
 client = MbtaV3SDK({
-    "apikey": os.environ.get("MBTA-V3_APIKEY"),
+    "apikey": os.environ.get("MBTA_V3_APIKEY"),
 })
 
 
 # Load a specific alert
-alert, err = client.Alert().load({"id": "example_id"})
+alert = client.alert.load({"id": "example_id"})
 print(alert)
 ```
 
@@ -112,12 +112,12 @@ print(alert)
 require_once 'mbtav3_sdk.php';
 
 $client = new MbtaV3SDK([
-    "apikey" => getenv("MBTA-V3_APIKEY"),
+    "apikey" => getenv("MBTA_V3_APIKEY"),
 ]);
 
 
 // Load a specific alert
-[$alert, $err] = $client->Alert()->load(["id" => "example_id"]);
+$alert = $client->alert()->load(["id" => "example_id"]);
 print_r($alert);
 ```
 
@@ -127,7 +127,7 @@ print_r($alert);
 import sdk "github.com/voxgig-sdk/mbta-v3-sdk/go"
 
 client := sdk.NewMbtaV3SDK(map[string]any{
-    "apikey": os.Getenv("MBTA-V3_APIKEY"),
+    "apikey": os.Getenv("MBTA_V3_APIKEY"),
 })
 
 // Load alert data
@@ -141,12 +141,12 @@ fmt.Println(alert)
 require_relative "MbtaV3_sdk"
 
 client = MbtaV3SDK.new({
-  "apikey" => ENV["MBTA-V3_APIKEY"],
+  "apikey" => ENV["MBTA_V3_APIKEY"],
 })
 
 
 # Load a specific alert
-alert, err = client.Alert().load({ "id" => "example_id" })
+alert = client.alert.load({ "id" => "example_id" })
 puts alert
 ```
 
@@ -156,12 +156,12 @@ puts alert
 local sdk = require("mbta-v3_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("MBTA-V3_APIKEY"),
+  apikey = os.getenv("MBTA_V3_APIKEY"),
 })
 
 
 -- Load a specific alert
-local alert, err = client:Alert():load({ id = "example_id" })
+local alert, err = client:alert():load({ id = "example_id" })
 print(alert)
 ```
 
@@ -174,7 +174,7 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = MbtaV3SDK.test()
-const result = await client.Alert().load({ id: 'test01' })
+const result = await client.alert.load({ id: 'test01' })
 // result.ok === true, result.data contains mock data
 ```
 
@@ -182,14 +182,14 @@ const result = await client.Alert().load({ id: 'test01' })
 
 ```python
 client = MbtaV3SDK.test()
-result, err = client.Alert().load({"id": "test01"})
+result = client.alert.load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
 $client = MbtaV3SDK::test();
-[$result, $err] = $client->Alert()->load(["id" => "test01"]);
+$result = $client->alert()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -205,14 +205,14 @@ result, err := client.Alert(nil).Load(
 
 ```ruby
 client = MbtaV3SDK.test
-result, err = client.Alert().load({ "id" => "test01" })
+result = client.alert.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Alert():load({ id = "test01" })
+local result, err = client:alert():load({ id = "test01" })
 ```
 
 ## How it works
@@ -265,7 +265,7 @@ console.log(result.data)
 
 **Python:**
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
@@ -274,7 +274,7 @@ result, err = client.direct({
 
 **PHP:**
 ```php
-[$result, $err] = $client->direct([
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
@@ -292,7 +292,7 @@ result, err := client.Direct(map[string]any{
 
 **Ruby:**
 ```ruby
-result, err = client.direct({
+result = client.direct({
   "path" => "/api/resource/{id}",
   "method" => "GET",
   "params" => { "id" => "example" },

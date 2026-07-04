@@ -85,6 +85,27 @@ func (e *PredictionEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Prediction; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *PredictionEntity) DataTyped(data ...Prediction) Prediction {
+	if len(data) > 0 {
+		return typedFrom[Prediction](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Prediction](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Prediction (all fields
+// optional at the wire level).
+func (e *PredictionEntity) MatchTyped(match ...Prediction) Prediction {
+	if len(match) > 0 {
+		return typedFrom[Prediction](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Prediction](e.Match())
+}
+
 
 func (e *PredictionEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *PredictionEntity) Load(reqmatch map[string]any, ctrl map[string]any) (a
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// PredictionLoadMatch and returns an Prediction. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *PredictionEntity) LoadTyped(reqmatch PredictionLoadMatch, ctrl map[string]any) (Prediction, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Prediction{}, err
+	}
+	return typedFrom[Prediction](res), nil
 }
 
 

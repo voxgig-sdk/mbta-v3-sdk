@@ -49,8 +49,7 @@ class TestPredictionEntity:
         # LOAD
         prediction_ref01_ent = client.Prediction(None)
         prediction_ref01_match_dt0 = {}
-        prediction_ref01_data_dt0_loaded, err = prediction_ref01_ent.load(prediction_ref01_match_dt0, None)
-        assert err is None
+        prediction_ref01_data_dt0_loaded = prediction_ref01_ent.load(prediction_ref01_match_dt0, None)
         assert prediction_ref01_data_dt0_loaded is not None
 
 

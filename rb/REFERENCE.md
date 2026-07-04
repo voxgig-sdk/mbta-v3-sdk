@@ -98,9 +98,11 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs = {}) -> Hash, err`
+#### `direct(fetchargs = {}) -> Hash`
 
-Make a direct HTTP request to any API endpoint.
+Make a direct HTTP request to any API endpoint. Returns a result hash
+(`{ "ok" => ..., "status" => ..., "data" => ..., "err" => ... }`); it
+does not raise — inspect `result["ok"]`.
 
 **Parameters:**
 
@@ -114,14 +116,14 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs["body"]` | `any` | Request body (hashes are JSON-serialized). |
 | `fetchargs["ctrl"]` | `Hash` | Control options (e.g. `{ "explain" => true }`). |
 
-**Returns:** `Hash, err`
+**Returns:** `Hash`
 
-#### `prepare(fetchargs = {}) -> Hash, err`
+#### `prepare(fetchargs = {}) -> Hash`
 
 Prepare a fetch definition without sending the request. Accepts the
-same parameters as `direct()`.
+same parameters as `direct()`. Raises on error.
 
-**Returns:** `Hash, err`
+**Returns:** `Hash` (the fetch definition; raises on error)
 
 
 ---
@@ -129,17 +131,17 @@ same parameters as `direct()`.
 ## AlertEntity
 
 ```ruby
-alert = client.Alert
+alert = client.alert
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Alert.load({ "id" => "alert_id" })
+result = client.alert.load({ "id" => "alert_id" })
 ```
 
 ### Common Methods
@@ -175,17 +177,17 @@ Return the entity name.
 ## FacilityEntity
 
 ```ruby
-facility = client.Facility
+facility = client.facility
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Facility.load({ "id" => "facility_id" })
+result = client.facility.load({ "id" => "facility_id" })
 ```
 
 ### Common Methods
@@ -221,17 +223,17 @@ Return the entity name.
 ## LineEntity
 
 ```ruby
-line = client.Line
+line = client.line
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Line.load({ "id" => "line_id" })
+result = client.line.load({ "id" => "line_id" })
 ```
 
 ### Common Methods
@@ -267,17 +269,17 @@ Return the entity name.
 ## PredictionEntity
 
 ```ruby
-prediction = client.Prediction
+prediction = client.prediction
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Prediction.load({ "id" => "prediction_id" })
+result = client.prediction.load({ "id" => "prediction_id" })
 ```
 
 ### Common Methods
@@ -313,17 +315,17 @@ Return the entity name.
 ## RouteEntity
 
 ```ruby
-route = client.Route
+route = client.route
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Route.load({ "id" => "route_id" })
+result = client.route.load({ "id" => "route_id" })
 ```
 
 ### Common Methods
@@ -359,17 +361,17 @@ Return the entity name.
 ## RoutePatternEntity
 
 ```ruby
-route_pattern = client.RoutePattern
+route_pattern = client.route_pattern
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.RoutePattern.load({ "id" => "route_pattern_id" })
+result = client.route_pattern.load({ "id" => "route_pattern_id" })
 ```
 
 ### Common Methods
@@ -405,17 +407,17 @@ Return the entity name.
 ## ScheduleEntity
 
 ```ruby
-schedule = client.Schedule
+schedule = client.schedule
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Schedule.load({ "id" => "schedule_id" })
+result = client.schedule.load({ "id" => "schedule_id" })
 ```
 
 ### Common Methods
@@ -451,17 +453,17 @@ Return the entity name.
 ## ServiceEntity
 
 ```ruby
-service = client.Service
+service = client.service
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Service.load({ "id" => "service_id" })
+result = client.service.load({ "id" => "service_id" })
 ```
 
 ### Common Methods
@@ -497,17 +499,17 @@ Return the entity name.
 ## ShapeEntity
 
 ```ruby
-shape = client.Shape
+shape = client.shape
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Shape.load({ "id" => "shape_id" })
+result = client.shape.load({ "id" => "shape_id" })
 ```
 
 ### Common Methods
@@ -543,17 +545,17 @@ Return the entity name.
 ## StopEntity
 
 ```ruby
-stop = client.Stop
+stop = client.stop
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Stop.load({ "id" => "stop_id" })
+result = client.stop.load({ "id" => "stop_id" })
 ```
 
 ### Common Methods
@@ -589,17 +591,17 @@ Return the entity name.
 ## TripEntity
 
 ```ruby
-trip = client.Trip
+trip = client.trip
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Trip.load({ "id" => "trip_id" })
+result = client.trip.load({ "id" => "trip_id" })
 ```
 
 ### Common Methods
@@ -635,17 +637,17 @@ Return the entity name.
 ## VehicleEntity
 
 ```ruby
-vehicle = client.Vehicle
+vehicle = client.vehicle
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Vehicle.load({ "id" => "vehicle_id" })
+result = client.vehicle.load({ "id" => "vehicle_id" })
 ```
 
 ### Common Methods

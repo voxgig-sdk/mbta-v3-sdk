@@ -49,8 +49,7 @@ class ServiceEntityTest extends TestCase
         // LOAD
         $service_ref01_ent = $client->Service(null);
         $service_ref01_match_dt0 = [];
-        [$service_ref01_data_dt0_loaded, $err] = $service_ref01_ent->load($service_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $service_ref01_data_dt0_loaded = $service_ref01_ent->load($service_ref01_match_dt0, null);
         $this->assertNotNull($service_ref01_data_dt0_loaded);
 
     }

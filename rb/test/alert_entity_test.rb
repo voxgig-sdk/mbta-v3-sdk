@@ -42,8 +42,7 @@ class AlertEntityTest < Minitest::Test
     # LOAD
     alert_ref01_ent = client.Alert(nil)
     alert_ref01_match_dt0 = {}
-    alert_ref01_data_dt0_loaded, err = alert_ref01_ent.load(alert_ref01_match_dt0, nil)
-    assert_nil err
+    alert_ref01_data_dt0_loaded = alert_ref01_ent.load(alert_ref01_match_dt0, nil)
     assert !alert_ref01_data_dt0_loaded.nil?
 
   end

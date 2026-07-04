@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ScheduleLoadMatch
+---@param ctrl? table
+---@return Schedule
+---@return string? err
 function ScheduleEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

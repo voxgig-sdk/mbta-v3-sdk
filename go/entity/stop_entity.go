@@ -85,6 +85,27 @@ func (e *StopEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Stop; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *StopEntity) DataTyped(data ...Stop) Stop {
+	if len(data) > 0 {
+		return typedFrom[Stop](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Stop](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Stop (all fields
+// optional at the wire level).
+func (e *StopEntity) MatchTyped(match ...Stop) Stop {
+	if len(match) > 0 {
+		return typedFrom[Stop](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Stop](e.Match())
+}
+
 
 func (e *StopEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *StopEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, er
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// StopLoadMatch and returns an Stop. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *StopEntity) LoadTyped(reqmatch StopLoadMatch, ctrl map[string]any) (Stop, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Stop{}, err
+	}
+	return typedFrom[Stop](res), nil
 }
 
 

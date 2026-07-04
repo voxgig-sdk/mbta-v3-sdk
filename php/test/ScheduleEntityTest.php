@@ -49,8 +49,7 @@ class ScheduleEntityTest extends TestCase
         // LOAD
         $schedule_ref01_ent = $client->Schedule(null);
         $schedule_ref01_match_dt0 = [];
-        [$schedule_ref01_data_dt0_loaded, $err] = $schedule_ref01_ent->load($schedule_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $schedule_ref01_data_dt0_loaded = $schedule_ref01_ent->load($schedule_ref01_match_dt0, null);
         $this->assertNotNull($schedule_ref01_data_dt0_loaded);
 
     }

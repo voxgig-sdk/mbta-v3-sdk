@@ -42,8 +42,7 @@ class RoutePatternEntityTest < Minitest::Test
     # LOAD
     route_pattern_ref01_ent = client.RoutePattern(nil)
     route_pattern_ref01_match_dt0 = {}
-    route_pattern_ref01_data_dt0_loaded, err = route_pattern_ref01_ent.load(route_pattern_ref01_match_dt0, nil)
-    assert_nil err
+    route_pattern_ref01_data_dt0_loaded = route_pattern_ref01_ent.load(route_pattern_ref01_match_dt0, nil)
     assert !route_pattern_ref01_data_dt0_loaded.nil?
 
   end

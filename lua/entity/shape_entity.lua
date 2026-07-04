@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ShapeLoadMatch
+---@param ctrl? table
+---@return Shape
+---@return string? err
 function ShapeEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

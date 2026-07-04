@@ -13,6 +13,8 @@ import { StopEntity } from './entity/StopEntity'
 import { TripEntity } from './entity/TripEntity'
 import { VehicleEntity } from './entity/VehicleEntity'
 
+export type * from './MbtaV3Types'
+
 
 import { inspect } from 'node:util'
 
@@ -213,72 +215,168 @@ class MbtaV3SDK {
 
 
 
+  _alert?: AlertEntity
+
+  // Idiomatic facade: `client.alert.list()` / `client.alert.load({ id })`.
+  get alert(): AlertEntity {
+    return (this._alert ??= new AlertEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.alert` instead. */
   Alert(data?: any) {
     const self = this
     return new AlertEntity(self,data)
   }
 
 
+  _facility?: FacilityEntity
+
+  // Idiomatic facade: `client.facility.list()` / `client.facility.load({ id })`.
+  get facility(): FacilityEntity {
+    return (this._facility ??= new FacilityEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.facility` instead. */
   Facility(data?: any) {
     const self = this
     return new FacilityEntity(self,data)
   }
 
 
+  _line?: LineEntity
+
+  // Idiomatic facade: `client.line.list()` / `client.line.load({ id })`.
+  get line(): LineEntity {
+    return (this._line ??= new LineEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.line` instead. */
   Line(data?: any) {
     const self = this
     return new LineEntity(self,data)
   }
 
 
+  _prediction?: PredictionEntity
+
+  // Idiomatic facade: `client.prediction.list()` / `client.prediction.load({ id })`.
+  get prediction(): PredictionEntity {
+    return (this._prediction ??= new PredictionEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.prediction` instead. */
   Prediction(data?: any) {
     const self = this
     return new PredictionEntity(self,data)
   }
 
 
+  _route?: RouteEntity
+
+  // Idiomatic facade: `client.route.list()` / `client.route.load({ id })`.
+  get route(): RouteEntity {
+    return (this._route ??= new RouteEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.route` instead. */
   Route(data?: any) {
     const self = this
     return new RouteEntity(self,data)
   }
 
 
+  _route_pattern?: RoutePatternEntity
+
+  // Idiomatic facade: `client.route_pattern.list()` / `client.route_pattern.load({ id })`.
+  get route_pattern(): RoutePatternEntity {
+    return (this._route_pattern ??= new RoutePatternEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.route_pattern` instead. */
   RoutePattern(data?: any) {
     const self = this
     return new RoutePatternEntity(self,data)
   }
 
 
+  _schedule?: ScheduleEntity
+
+  // Idiomatic facade: `client.schedule.list()` / `client.schedule.load({ id })`.
+  get schedule(): ScheduleEntity {
+    return (this._schedule ??= new ScheduleEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.schedule` instead. */
   Schedule(data?: any) {
     const self = this
     return new ScheduleEntity(self,data)
   }
 
 
+  _service?: ServiceEntity
+
+  // Idiomatic facade: `client.service.list()` / `client.service.load({ id })`.
+  get service(): ServiceEntity {
+    return (this._service ??= new ServiceEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.service` instead. */
   Service(data?: any) {
     const self = this
     return new ServiceEntity(self,data)
   }
 
 
+  _shape?: ShapeEntity
+
+  // Idiomatic facade: `client.shape.list()` / `client.shape.load({ id })`.
+  get shape(): ShapeEntity {
+    return (this._shape ??= new ShapeEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.shape` instead. */
   Shape(data?: any) {
     const self = this
     return new ShapeEntity(self,data)
   }
 
 
+  _stop?: StopEntity
+
+  // Idiomatic facade: `client.stop.list()` / `client.stop.load({ id })`.
+  get stop(): StopEntity {
+    return (this._stop ??= new StopEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.stop` instead. */
   Stop(data?: any) {
     const self = this
     return new StopEntity(self,data)
   }
 
 
+  _trip?: TripEntity
+
+  // Idiomatic facade: `client.trip.list()` / `client.trip.load({ id })`.
+  get trip(): TripEntity {
+    return (this._trip ??= new TripEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.trip` instead. */
   Trip(data?: any) {
     const self = this
     return new TripEntity(self,data)
   }
 
 
+  _vehicle?: VehicleEntity
+
+  // Idiomatic facade: `client.vehicle.list()` / `client.vehicle.load({ id })`.
+  get vehicle(): VehicleEntity {
+    return (this._vehicle ??= new VehicleEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.vehicle` instead. */
   Vehicle(data?: any) {
     const self = this
     return new VehicleEntity(self,data)

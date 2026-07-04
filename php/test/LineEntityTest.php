@@ -49,8 +49,7 @@ class LineEntityTest extends TestCase
         // LOAD
         $line_ref01_ent = $client->Line(null);
         $line_ref01_match_dt0 = [];
-        [$line_ref01_data_dt0_loaded, $err] = $line_ref01_ent->load($line_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $line_ref01_data_dt0_loaded = $line_ref01_ent->load($line_ref01_match_dt0, null);
         $this->assertNotNull($line_ref01_data_dt0_loaded);
 
     }

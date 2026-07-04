@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch TripLoadMatch
+---@param ctrl? table
+---@return Trip
+---@return string? err
 function TripEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

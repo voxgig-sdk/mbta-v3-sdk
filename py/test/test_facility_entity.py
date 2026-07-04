@@ -49,8 +49,7 @@ class TestFacilityEntity:
         # LOAD
         facility_ref01_ent = client.Facility(None)
         facility_ref01_match_dt0 = {}
-        facility_ref01_data_dt0_loaded, err = facility_ref01_ent.load(facility_ref01_match_dt0, None)
-        assert err is None
+        facility_ref01_data_dt0_loaded = facility_ref01_ent.load(facility_ref01_match_dt0, None)
         assert facility_ref01_data_dt0_loaded is not None
 
 

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch AlertLoadMatch
+---@param ctrl? table
+---@return Alert
+---@return string? err
 function AlertEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

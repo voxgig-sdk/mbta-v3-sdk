@@ -49,8 +49,7 @@ class TestShapeEntity:
         # LOAD
         shape_ref01_ent = client.Shape(None)
         shape_ref01_match_dt0 = {}
-        shape_ref01_data_dt0_loaded, err = shape_ref01_ent.load(shape_ref01_match_dt0, None)
-        assert err is None
+        shape_ref01_data_dt0_loaded = shape_ref01_ent.load(shape_ref01_match_dt0, None)
         assert shape_ref01_data_dt0_loaded is not None
 
 

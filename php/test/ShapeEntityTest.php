@@ -49,8 +49,7 @@ class ShapeEntityTest extends TestCase
         // LOAD
         $shape_ref01_ent = $client->Shape(null);
         $shape_ref01_match_dt0 = [];
-        [$shape_ref01_data_dt0_loaded, $err] = $shape_ref01_ent->load($shape_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $shape_ref01_data_dt0_loaded = $shape_ref01_ent->load($shape_ref01_match_dt0, null);
         $this->assertNotNull($shape_ref01_data_dt0_loaded);
 
     }

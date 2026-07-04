@@ -42,8 +42,7 @@ class PredictionEntityTest < Minitest::Test
     # LOAD
     prediction_ref01_ent = client.Prediction(nil)
     prediction_ref01_match_dt0 = {}
-    prediction_ref01_data_dt0_loaded, err = prediction_ref01_ent.load(prediction_ref01_match_dt0, nil)
-    assert_nil err
+    prediction_ref01_data_dt0_loaded = prediction_ref01_ent.load(prediction_ref01_match_dt0, nil)
     assert !prediction_ref01_data_dt0_loaded.nil?
 
   end

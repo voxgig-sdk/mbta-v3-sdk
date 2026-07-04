@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch PredictionLoadMatch
+---@param ctrl? table
+---@return Prediction
+---@return string? err
 function PredictionEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Trip,
+  TripLoadMatch,
+} from '../MbtaV3Types'
 
 // TODO: needs Entity superclass
-class TripEntity extends MbtaV3EntityBase {
+class TripEntity extends MbtaV3EntityBase<Trip> {
 
   constructor(client: MbtaV3SDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class TripEntity extends MbtaV3EntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: TripLoadMatch, ctrl?: Control): Promise<Trip> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class TripEntity extends MbtaV3EntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Trip> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

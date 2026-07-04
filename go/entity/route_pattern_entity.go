@@ -85,6 +85,27 @@ func (e *RoutePatternEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an RoutePattern; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *RoutePatternEntity) DataTyped(data ...RoutePattern) RoutePattern {
+	if len(data) > 0 {
+		return typedFrom[RoutePattern](e.Data(asMap(data[0])))
+	}
+	return typedFrom[RoutePattern](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through RoutePattern (all fields
+// optional at the wire level).
+func (e *RoutePatternEntity) MatchTyped(match ...RoutePattern) RoutePattern {
+	if len(match) > 0 {
+		return typedFrom[RoutePattern](e.Match(asMap(match[0])))
+	}
+	return typedFrom[RoutePattern](e.Match())
+}
+
 
 func (e *RoutePatternEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *RoutePatternEntity) Load(reqmatch map[string]any, ctrl map[string]any) 
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// RoutePatternLoadMatch and returns an RoutePattern. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *RoutePatternEntity) LoadTyped(reqmatch RoutePatternLoadMatch, ctrl map[string]any) (RoutePattern, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return RoutePattern{}, err
+	}
+	return typedFrom[RoutePattern](res), nil
 }
 
 

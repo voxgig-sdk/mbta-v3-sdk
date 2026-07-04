@@ -42,8 +42,7 @@ class VehicleEntityTest < Minitest::Test
     # LOAD
     vehicle_ref01_ent = client.Vehicle(nil)
     vehicle_ref01_match_dt0 = {}
-    vehicle_ref01_data_dt0_loaded, err = vehicle_ref01_ent.load(vehicle_ref01_match_dt0, nil)
-    assert_nil err
+    vehicle_ref01_data_dt0_loaded = vehicle_ref01_ent.load(vehicle_ref01_match_dt0, nil)
     assert !vehicle_ref01_data_dt0_loaded.nil?
 
   end

@@ -49,8 +49,7 @@ class VehicleEntityTest extends TestCase
         // LOAD
         $vehicle_ref01_ent = $client->Vehicle(null);
         $vehicle_ref01_match_dt0 = [];
-        [$vehicle_ref01_data_dt0_loaded, $err] = $vehicle_ref01_ent->load($vehicle_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $vehicle_ref01_data_dt0_loaded = $vehicle_ref01_ent->load($vehicle_ref01_match_dt0, null);
         $this->assertNotNull($vehicle_ref01_data_dt0_loaded);
 
     }

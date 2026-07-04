@@ -144,16 +144,23 @@ class MbtaV3SDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class MbtaV3SDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,70 +212,202 @@ class MbtaV3SDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def alert(self):
+        """Idiomatic facade: client.alert.list() / client.alert.load({"id": ...})."""
+        from entity.alert_entity import AlertEntity
+        cached = getattr(self, "_alert", None)
+        if cached is None:
+            cached = AlertEntity(self, None)
+            self._alert = cached
+        return cached
 
     def Alert(self, data=None):
+        # Deprecated: use client.alert instead.
         from entity.alert_entity import AlertEntity
         return AlertEntity(self, data)
 
 
+    @property
+    def facility(self):
+        """Idiomatic facade: client.facility.list() / client.facility.load({"id": ...})."""
+        from entity.facility_entity import FacilityEntity
+        cached = getattr(self, "_facility", None)
+        if cached is None:
+            cached = FacilityEntity(self, None)
+            self._facility = cached
+        return cached
+
     def Facility(self, data=None):
+        # Deprecated: use client.facility instead.
         from entity.facility_entity import FacilityEntity
         return FacilityEntity(self, data)
 
 
+    @property
+    def line(self):
+        """Idiomatic facade: client.line.list() / client.line.load({"id": ...})."""
+        from entity.line_entity import LineEntity
+        cached = getattr(self, "_line", None)
+        if cached is None:
+            cached = LineEntity(self, None)
+            self._line = cached
+        return cached
+
     def Line(self, data=None):
+        # Deprecated: use client.line instead.
         from entity.line_entity import LineEntity
         return LineEntity(self, data)
 
 
+    @property
+    def prediction(self):
+        """Idiomatic facade: client.prediction.list() / client.prediction.load({"id": ...})."""
+        from entity.prediction_entity import PredictionEntity
+        cached = getattr(self, "_prediction", None)
+        if cached is None:
+            cached = PredictionEntity(self, None)
+            self._prediction = cached
+        return cached
+
     def Prediction(self, data=None):
+        # Deprecated: use client.prediction instead.
         from entity.prediction_entity import PredictionEntity
         return PredictionEntity(self, data)
 
 
+    @property
+    def route(self):
+        """Idiomatic facade: client.route.list() / client.route.load({"id": ...})."""
+        from entity.route_entity import RouteEntity
+        cached = getattr(self, "_route", None)
+        if cached is None:
+            cached = RouteEntity(self, None)
+            self._route = cached
+        return cached
+
     def Route(self, data=None):
+        # Deprecated: use client.route instead.
         from entity.route_entity import RouteEntity
         return RouteEntity(self, data)
 
 
+    @property
+    def route_pattern(self):
+        """Idiomatic facade: client.route_pattern.list() / client.route_pattern.load({"id": ...})."""
+        from entity.route_pattern_entity import RoutePatternEntity
+        cached = getattr(self, "_route_pattern", None)
+        if cached is None:
+            cached = RoutePatternEntity(self, None)
+            self._route_pattern = cached
+        return cached
+
     def RoutePattern(self, data=None):
+        # Deprecated: use client.route_pattern instead.
         from entity.route_pattern_entity import RoutePatternEntity
         return RoutePatternEntity(self, data)
 
 
+    @property
+    def schedule(self):
+        """Idiomatic facade: client.schedule.list() / client.schedule.load({"id": ...})."""
+        from entity.schedule_entity import ScheduleEntity
+        cached = getattr(self, "_schedule", None)
+        if cached is None:
+            cached = ScheduleEntity(self, None)
+            self._schedule = cached
+        return cached
+
     def Schedule(self, data=None):
+        # Deprecated: use client.schedule instead.
         from entity.schedule_entity import ScheduleEntity
         return ScheduleEntity(self, data)
 
 
+    @property
+    def service(self):
+        """Idiomatic facade: client.service.list() / client.service.load({"id": ...})."""
+        from entity.service_entity import ServiceEntity
+        cached = getattr(self, "_service", None)
+        if cached is None:
+            cached = ServiceEntity(self, None)
+            self._service = cached
+        return cached
+
     def Service(self, data=None):
+        # Deprecated: use client.service instead.
         from entity.service_entity import ServiceEntity
         return ServiceEntity(self, data)
 
 
+    @property
+    def shape(self):
+        """Idiomatic facade: client.shape.list() / client.shape.load({"id": ...})."""
+        from entity.shape_entity import ShapeEntity
+        cached = getattr(self, "_shape", None)
+        if cached is None:
+            cached = ShapeEntity(self, None)
+            self._shape = cached
+        return cached
+
     def Shape(self, data=None):
+        # Deprecated: use client.shape instead.
         from entity.shape_entity import ShapeEntity
         return ShapeEntity(self, data)
 
 
+    @property
+    def stop(self):
+        """Idiomatic facade: client.stop.list() / client.stop.load({"id": ...})."""
+        from entity.stop_entity import StopEntity
+        cached = getattr(self, "_stop", None)
+        if cached is None:
+            cached = StopEntity(self, None)
+            self._stop = cached
+        return cached
+
     def Stop(self, data=None):
+        # Deprecated: use client.stop instead.
         from entity.stop_entity import StopEntity
         return StopEntity(self, data)
 
 
+    @property
+    def trip(self):
+        """Idiomatic facade: client.trip.list() / client.trip.load({"id": ...})."""
+        from entity.trip_entity import TripEntity
+        cached = getattr(self, "_trip", None)
+        if cached is None:
+            cached = TripEntity(self, None)
+            self._trip = cached
+        return cached
+
     def Trip(self, data=None):
+        # Deprecated: use client.trip instead.
         from entity.trip_entity import TripEntity
         return TripEntity(self, data)
 
 
+    @property
+    def vehicle(self):
+        """Idiomatic facade: client.vehicle.list() / client.vehicle.load({"id": ...})."""
+        from entity.vehicle_entity import VehicleEntity
+        cached = getattr(self, "_vehicle", None)
+        if cached is None:
+            cached = VehicleEntity(self, None)
+            self._vehicle = cached
+        return cached
+
     def Vehicle(self, data=None):
+        # Deprecated: use client.vehicle instead.
         from entity.vehicle_entity import VehicleEntity
         return VehicleEntity(self, data)
 

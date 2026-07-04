@@ -85,6 +85,27 @@ func (e *ShapeEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Shape; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *ShapeEntity) DataTyped(data ...Shape) Shape {
+	if len(data) > 0 {
+		return typedFrom[Shape](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Shape](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Shape (all fields
+// optional at the wire level).
+func (e *ShapeEntity) MatchTyped(match ...Shape) Shape {
+	if len(match) > 0 {
+		return typedFrom[Shape](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Shape](e.Match())
+}
+
 
 func (e *ShapeEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *ShapeEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, e
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// ShapeLoadMatch and returns an Shape. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *ShapeEntity) LoadTyped(reqmatch ShapeLoadMatch, ctrl map[string]any) (Shape, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Shape{}, err
+	}
+	return typedFrom[Shape](res), nil
 }
 
 

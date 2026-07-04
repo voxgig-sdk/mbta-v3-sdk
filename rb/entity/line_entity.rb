@@ -45,6 +45,7 @@ class LineEntity
     end
   end
 
+  # @return [Line, Hash] the current Line data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class LineEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Line fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Line.
+  #
+  # @param reqmatch [LineLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Line, Hash] the loaded Line; raises MbtaV3Error on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

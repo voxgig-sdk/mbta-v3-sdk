@@ -45,6 +45,7 @@ class RoutePatternEntity
     end
   end
 
+  # @return [RoutePattern, Hash] the current RoutePattern data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class RoutePatternEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of RoutePattern fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single RoutePattern.
+  #
+  # @param reqmatch [RoutePatternLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [RoutePattern, Hash] the loaded RoutePattern; raises MbtaV3Error on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

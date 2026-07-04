@@ -49,8 +49,7 @@ class PredictionEntityTest extends TestCase
         // LOAD
         $prediction_ref01_ent = $client->Prediction(null);
         $prediction_ref01_match_dt0 = [];
-        [$prediction_ref01_data_dt0_loaded, $err] = $prediction_ref01_ent->load($prediction_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $prediction_ref01_data_dt0_loaded = $prediction_ref01_ent->load($prediction_ref01_match_dt0, null);
         $this->assertNotNull($prediction_ref01_data_dt0_loaded);
 
     }

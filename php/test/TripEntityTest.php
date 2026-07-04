@@ -49,8 +49,7 @@ class TripEntityTest extends TestCase
         // LOAD
         $trip_ref01_ent = $client->Trip(null);
         $trip_ref01_match_dt0 = [];
-        [$trip_ref01_data_dt0_loaded, $err] = $trip_ref01_ent->load($trip_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $trip_ref01_data_dt0_loaded = $trip_ref01_ent->load($trip_ref01_match_dt0, null);
         $this->assertNotNull($trip_ref01_data_dt0_loaded);
 
     }

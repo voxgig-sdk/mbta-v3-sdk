@@ -49,8 +49,7 @@ class TestStopEntity:
         # LOAD
         stop_ref01_ent = client.Stop(None)
         stop_ref01_match_dt0 = {}
-        stop_ref01_data_dt0_loaded, err = stop_ref01_ent.load(stop_ref01_match_dt0, None)
-        assert err is None
+        stop_ref01_data_dt0_loaded = stop_ref01_ent.load(stop_ref01_match_dt0, None)
         assert stop_ref01_data_dt0_loaded is not None
 
 

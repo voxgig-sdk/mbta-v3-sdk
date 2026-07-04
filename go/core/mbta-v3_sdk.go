@@ -245,61 +245,97 @@ func (sdk *MbtaV3SDK) Direct(fetchargs map[string]any) (map[string]any, error) {
 }
 
 
+// Alert returns a Alert entity bound to this client.
+// Idiomatic usage: client.Alert(nil).List(nil, nil) or
+// client.Alert(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MbtaV3SDK) Alert(data map[string]any) MbtaV3Entity {
 	return NewAlertEntityFunc(sdk, data)
 }
 
 
+// Facility returns a Facility entity bound to this client.
+// Idiomatic usage: client.Facility(nil).List(nil, nil) or
+// client.Facility(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MbtaV3SDK) Facility(data map[string]any) MbtaV3Entity {
 	return NewFacilityEntityFunc(sdk, data)
 }
 
 
+// Line returns a Line entity bound to this client.
+// Idiomatic usage: client.Line(nil).List(nil, nil) or
+// client.Line(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MbtaV3SDK) Line(data map[string]any) MbtaV3Entity {
 	return NewLineEntityFunc(sdk, data)
 }
 
 
+// Prediction returns a Prediction entity bound to this client.
+// Idiomatic usage: client.Prediction(nil).List(nil, nil) or
+// client.Prediction(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MbtaV3SDK) Prediction(data map[string]any) MbtaV3Entity {
 	return NewPredictionEntityFunc(sdk, data)
 }
 
 
+// Route returns a Route entity bound to this client.
+// Idiomatic usage: client.Route(nil).List(nil, nil) or
+// client.Route(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MbtaV3SDK) Route(data map[string]any) MbtaV3Entity {
 	return NewRouteEntityFunc(sdk, data)
 }
 
 
+// RoutePattern returns a RoutePattern entity bound to this client.
+// Idiomatic usage: client.RoutePattern(nil).List(nil, nil) or
+// client.RoutePattern(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MbtaV3SDK) RoutePattern(data map[string]any) MbtaV3Entity {
 	return NewRoutePatternEntityFunc(sdk, data)
 }
 
 
+// Schedule returns a Schedule entity bound to this client.
+// Idiomatic usage: client.Schedule(nil).List(nil, nil) or
+// client.Schedule(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MbtaV3SDK) Schedule(data map[string]any) MbtaV3Entity {
 	return NewScheduleEntityFunc(sdk, data)
 }
 
 
+// Service returns a Service entity bound to this client.
+// Idiomatic usage: client.Service(nil).List(nil, nil) or
+// client.Service(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MbtaV3SDK) Service(data map[string]any) MbtaV3Entity {
 	return NewServiceEntityFunc(sdk, data)
 }
 
 
+// Shape returns a Shape entity bound to this client.
+// Idiomatic usage: client.Shape(nil).List(nil, nil) or
+// client.Shape(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MbtaV3SDK) Shape(data map[string]any) MbtaV3Entity {
 	return NewShapeEntityFunc(sdk, data)
 }
 
 
+// Stop returns a Stop entity bound to this client.
+// Idiomatic usage: client.Stop(nil).List(nil, nil) or
+// client.Stop(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MbtaV3SDK) Stop(data map[string]any) MbtaV3Entity {
 	return NewStopEntityFunc(sdk, data)
 }
 
 
+// Trip returns a Trip entity bound to this client.
+// Idiomatic usage: client.Trip(nil).List(nil, nil) or
+// client.Trip(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MbtaV3SDK) Trip(data map[string]any) MbtaV3Entity {
 	return NewTripEntityFunc(sdk, data)
 }
 
 
+// Vehicle returns a Vehicle entity bound to this client.
+// Idiomatic usage: client.Vehicle(nil).List(nil, nil) or
+// client.Vehicle(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MbtaV3SDK) Vehicle(data map[string]any) MbtaV3Entity {
 	return NewVehicleEntityFunc(sdk, data)
 }

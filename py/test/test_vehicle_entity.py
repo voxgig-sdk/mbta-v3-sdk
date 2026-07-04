@@ -49,8 +49,7 @@ class TestVehicleEntity:
         # LOAD
         vehicle_ref01_ent = client.Vehicle(None)
         vehicle_ref01_match_dt0 = {}
-        vehicle_ref01_data_dt0_loaded, err = vehicle_ref01_ent.load(vehicle_ref01_match_dt0, None)
-        assert err is None
+        vehicle_ref01_data_dt0_loaded = vehicle_ref01_ent.load(vehicle_ref01_match_dt0, None)
         assert vehicle_ref01_data_dt0_loaded is not None
 
 

@@ -49,8 +49,7 @@ class TestRoutePatternEntity:
         # LOAD
         route_pattern_ref01_ent = client.RoutePattern(None)
         route_pattern_ref01_match_dt0 = {}
-        route_pattern_ref01_data_dt0_loaded, err = route_pattern_ref01_ent.load(route_pattern_ref01_match_dt0, None)
-        assert err is None
+        route_pattern_ref01_data_dt0_loaded = route_pattern_ref01_ent.load(route_pattern_ref01_match_dt0, None)
         assert route_pattern_ref01_data_dt0_loaded is not None
 
 

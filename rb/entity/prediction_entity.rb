@@ -45,6 +45,7 @@ class PredictionEntity
     end
   end
 
+  # @return [Prediction, Hash] the current Prediction data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class PredictionEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Prediction fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Prediction.
+  #
+  # @param reqmatch [PredictionLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Prediction, Hash] the loaded Prediction; raises MbtaV3Error on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

@@ -49,8 +49,7 @@ class TestLineEntity:
         # LOAD
         line_ref01_ent = client.Line(None)
         line_ref01_match_dt0 = {}
-        line_ref01_data_dt0_loaded, err = line_ref01_ent.load(line_ref01_match_dt0, None)
-        assert err is None
+        line_ref01_data_dt0_loaded = line_ref01_ent.load(line_ref01_match_dt0, None)
         assert line_ref01_data_dt0_loaded is not None
 
 

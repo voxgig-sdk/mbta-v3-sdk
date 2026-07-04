@@ -85,6 +85,27 @@ func (e *TripEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Trip; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *TripEntity) DataTyped(data ...Trip) Trip {
+	if len(data) > 0 {
+		return typedFrom[Trip](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Trip](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Trip (all fields
+// optional at the wire level).
+func (e *TripEntity) MatchTyped(match ...Trip) Trip {
+	if len(match) > 0 {
+		return typedFrom[Trip](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Trip](e.Match())
+}
+
 
 func (e *TripEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *TripEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, er
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// TripLoadMatch and returns an Trip. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *TripEntity) LoadTyped(reqmatch TripLoadMatch, ctrl map[string]any) (Trip, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Trip{}, err
+	}
+	return typedFrom[Trip](res), nil
 }
 
 

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch RouteLoadMatch
+---@param ctrl? table
+---@return Route
+---@return string? err
 function RouteEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

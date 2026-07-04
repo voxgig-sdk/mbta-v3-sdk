@@ -49,8 +49,7 @@ class TestScheduleEntity:
         # LOAD
         schedule_ref01_ent = client.Schedule(None)
         schedule_ref01_match_dt0 = {}
-        schedule_ref01_data_dt0_loaded, err = schedule_ref01_ent.load(schedule_ref01_match_dt0, None)
-        assert err is None
+        schedule_ref01_data_dt0_loaded = schedule_ref01_ent.load(schedule_ref01_match_dt0, None)
         assert schedule_ref01_data_dt0_loaded is not None
 
 

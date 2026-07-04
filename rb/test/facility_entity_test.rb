@@ -42,8 +42,7 @@ class FacilityEntityTest < Minitest::Test
     # LOAD
     facility_ref01_ent = client.Facility(nil)
     facility_ref01_match_dt0 = {}
-    facility_ref01_data_dt0_loaded, err = facility_ref01_ent.load(facility_ref01_match_dt0, nil)
-    assert_nil err
+    facility_ref01_data_dt0_loaded = facility_ref01_ent.load(facility_ref01_match_dt0, nil)
     assert !facility_ref01_data_dt0_loaded.nil?
 
   end

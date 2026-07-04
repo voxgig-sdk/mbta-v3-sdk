@@ -42,8 +42,7 @@ class StopEntityTest < Minitest::Test
     # LOAD
     stop_ref01_ent = client.Stop(nil)
     stop_ref01_match_dt0 = {}
-    stop_ref01_data_dt0_loaded, err = stop_ref01_ent.load(stop_ref01_match_dt0, nil)
-    assert_nil err
+    stop_ref01_data_dt0_loaded = stop_ref01_ent.load(stop_ref01_match_dt0, nil)
     assert !stop_ref01_data_dt0_loaded.nil?
 
   end

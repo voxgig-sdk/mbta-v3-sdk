@@ -244,72 +244,228 @@ end
 
 
 
+-- Idiomatic facade: client:alert():list() / client:alert():load({ id = ... })
+function MbtaV3SDK:alert(data)
+  local EntityMod = require("entity.alert_entity")
+  if data == nil then
+    if self._alert == nil then
+      self._alert = EntityMod.new(self, nil)
+    end
+    return self._alert
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:alert() instead.
 function MbtaV3SDK:Alert(data)
   local EntityMod = require("entity.alert_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:facility():list() / client:facility():load({ id = ... })
+function MbtaV3SDK:facility(data)
+  local EntityMod = require("entity.facility_entity")
+  if data == nil then
+    if self._facility == nil then
+      self._facility = EntityMod.new(self, nil)
+    end
+    return self._facility
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:facility() instead.
 function MbtaV3SDK:Facility(data)
   local EntityMod = require("entity.facility_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:line():list() / client:line():load({ id = ... })
+function MbtaV3SDK:line(data)
+  local EntityMod = require("entity.line_entity")
+  if data == nil then
+    if self._line == nil then
+      self._line = EntityMod.new(self, nil)
+    end
+    return self._line
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:line() instead.
 function MbtaV3SDK:Line(data)
   local EntityMod = require("entity.line_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:prediction():list() / client:prediction():load({ id = ... })
+function MbtaV3SDK:prediction(data)
+  local EntityMod = require("entity.prediction_entity")
+  if data == nil then
+    if self._prediction == nil then
+      self._prediction = EntityMod.new(self, nil)
+    end
+    return self._prediction
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:prediction() instead.
 function MbtaV3SDK:Prediction(data)
   local EntityMod = require("entity.prediction_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:route():list() / client:route():load({ id = ... })
+function MbtaV3SDK:route(data)
+  local EntityMod = require("entity.route_entity")
+  if data == nil then
+    if self._route == nil then
+      self._route = EntityMod.new(self, nil)
+    end
+    return self._route
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:route() instead.
 function MbtaV3SDK:Route(data)
   local EntityMod = require("entity.route_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:route_pattern():list() / client:route_pattern():load({ id = ... })
+function MbtaV3SDK:route_pattern(data)
+  local EntityMod = require("entity.route_pattern_entity")
+  if data == nil then
+    if self._route_pattern == nil then
+      self._route_pattern = EntityMod.new(self, nil)
+    end
+    return self._route_pattern
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:route_pattern() instead.
 function MbtaV3SDK:RoutePattern(data)
   local EntityMod = require("entity.route_pattern_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:schedule():list() / client:schedule():load({ id = ... })
+function MbtaV3SDK:schedule(data)
+  local EntityMod = require("entity.schedule_entity")
+  if data == nil then
+    if self._schedule == nil then
+      self._schedule = EntityMod.new(self, nil)
+    end
+    return self._schedule
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:schedule() instead.
 function MbtaV3SDK:Schedule(data)
   local EntityMod = require("entity.schedule_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:service():list() / client:service():load({ id = ... })
+function MbtaV3SDK:service(data)
+  local EntityMod = require("entity.service_entity")
+  if data == nil then
+    if self._service == nil then
+      self._service = EntityMod.new(self, nil)
+    end
+    return self._service
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:service() instead.
 function MbtaV3SDK:Service(data)
   local EntityMod = require("entity.service_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:shape():list() / client:shape():load({ id = ... })
+function MbtaV3SDK:shape(data)
+  local EntityMod = require("entity.shape_entity")
+  if data == nil then
+    if self._shape == nil then
+      self._shape = EntityMod.new(self, nil)
+    end
+    return self._shape
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:shape() instead.
 function MbtaV3SDK:Shape(data)
   local EntityMod = require("entity.shape_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:stop():list() / client:stop():load({ id = ... })
+function MbtaV3SDK:stop(data)
+  local EntityMod = require("entity.stop_entity")
+  if data == nil then
+    if self._stop == nil then
+      self._stop = EntityMod.new(self, nil)
+    end
+    return self._stop
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:stop() instead.
 function MbtaV3SDK:Stop(data)
   local EntityMod = require("entity.stop_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:trip():list() / client:trip():load({ id = ... })
+function MbtaV3SDK:trip(data)
+  local EntityMod = require("entity.trip_entity")
+  if data == nil then
+    if self._trip == nil then
+      self._trip = EntityMod.new(self, nil)
+    end
+    return self._trip
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:trip() instead.
 function MbtaV3SDK:Trip(data)
   local EntityMod = require("entity.trip_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:vehicle():list() / client:vehicle():load({ id = ... })
+function MbtaV3SDK:vehicle(data)
+  local EntityMod = require("entity.vehicle_entity")
+  if data == nil then
+    if self._vehicle == nil then
+      self._vehicle = EntityMod.new(self, nil)
+    end
+    return self._vehicle
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:vehicle() instead.
 function MbtaV3SDK:Vehicle(data)
   local EntityMod = require("entity.vehicle_entity")
   return EntityMod.new(self, data)

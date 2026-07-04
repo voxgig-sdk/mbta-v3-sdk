@@ -49,8 +49,7 @@ class AlertEntityTest extends TestCase
         // LOAD
         $alert_ref01_ent = $client->Alert(null);
         $alert_ref01_match_dt0 = [];
-        [$alert_ref01_data_dt0_loaded, $err] = $alert_ref01_ent->load($alert_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $alert_ref01_data_dt0_loaded = $alert_ref01_ent->load($alert_ref01_match_dt0, null);
         $this->assertNotNull($alert_ref01_data_dt0_loaded);
 
     }

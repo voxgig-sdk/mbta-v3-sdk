@@ -45,6 +45,7 @@ class StopEntity
     end
   end
 
+  # @return [Stop, Hash] the current Stop data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class StopEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Stop fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Stop.
+  #
+  # @param reqmatch [StopLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Stop, Hash] the loaded Stop; raises MbtaV3Error on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

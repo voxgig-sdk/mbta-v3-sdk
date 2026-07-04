@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch FacilityLoadMatch
+---@param ctrl? table
+---@return Facility
+---@return string? err
 function FacilityEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

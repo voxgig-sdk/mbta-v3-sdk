@@ -42,8 +42,7 @@ class LineEntityTest < Minitest::Test
     # LOAD
     line_ref01_ent = client.Line(nil)
     line_ref01_match_dt0 = {}
-    line_ref01_data_dt0_loaded, err = line_ref01_ent.load(line_ref01_match_dt0, nil)
-    assert_nil err
+    line_ref01_data_dt0_loaded = line_ref01_ent.load(line_ref01_match_dt0, nil)
     assert !line_ref01_data_dt0_loaded.nil?
 
   end

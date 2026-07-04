@@ -9,12 +9,9 @@ The Lua SDK for the MbtaV3 API — an entity-oriented client using Lua conventio
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-mbta-v3
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/mbta-v3-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -32,14 +29,14 @@ loading a specific record.
 local sdk = require("mbta-v3_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("MBTA-V3_APIKEY"),
+  apikey = os.getenv("MBTA_V3_APIKEY"),
 })
 ```
 
-### 3. Load a alert
+### 3. Load an alert
 
 ```lua
-local result, err = client:Alert():load({ id = "example_id" })
+local result, err = client:alert():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:MbtaV3():load({ id = "test01" })
+local result, err = client:alert():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +117,8 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-MBTA-V3_TEST_LIVE=TRUE
-MBTA-V3_APIKEY=<your-key>
+MBTA_V3_TEST_LIVE=TRUE
+MBTA_V3_APIKEY=<your-key>
 ```
 
 Then run:
@@ -330,7 +327,7 @@ API path: `/vehicles`
 
 ### Alert
 
-Create an instance: `const alert = client.Alert()`
+Create an instance: `const alert = client.alert`
 
 #### Operations
 
@@ -341,13 +338,13 @@ Create an instance: `const alert = client.Alert()`
 #### Example: Load
 
 ```ts
-const alert = await client.Alert().load({ id: 'alert_id' })
+const alert = await client.alert.load({ id: 'alert_id' })
 ```
 
 
 ### Facility
 
-Create an instance: `const facility = client.Facility()`
+Create an instance: `const facility = client.facility`
 
 #### Operations
 
@@ -358,13 +355,13 @@ Create an instance: `const facility = client.Facility()`
 #### Example: Load
 
 ```ts
-const facility = await client.Facility().load({ id: 'facility_id' })
+const facility = await client.facility.load({ id: 'facility_id' })
 ```
 
 
 ### Line
 
-Create an instance: `const line = client.Line()`
+Create an instance: `const line = client.line`
 
 #### Operations
 
@@ -375,13 +372,13 @@ Create an instance: `const line = client.Line()`
 #### Example: Load
 
 ```ts
-const line = await client.Line().load({ id: 'line_id' })
+const line = await client.line.load({ id: 'line_id' })
 ```
 
 
 ### Prediction
 
-Create an instance: `const prediction = client.Prediction()`
+Create an instance: `const prediction = client.prediction`
 
 #### Operations
 
@@ -392,13 +389,13 @@ Create an instance: `const prediction = client.Prediction()`
 #### Example: Load
 
 ```ts
-const prediction = await client.Prediction().load({ id: 'prediction_id' })
+const prediction = await client.prediction.load({ id: 'prediction_id' })
 ```
 
 
 ### Route
 
-Create an instance: `const route = client.Route()`
+Create an instance: `const route = client.route`
 
 #### Operations
 
@@ -409,13 +406,13 @@ Create an instance: `const route = client.Route()`
 #### Example: Load
 
 ```ts
-const route = await client.Route().load({ id: 'route_id' })
+const route = await client.route.load({ id: 'route_id' })
 ```
 
 
 ### RoutePattern
 
-Create an instance: `const route_pattern = client.RoutePattern()`
+Create an instance: `const route_pattern = client.route_pattern`
 
 #### Operations
 
@@ -426,13 +423,13 @@ Create an instance: `const route_pattern = client.RoutePattern()`
 #### Example: Load
 
 ```ts
-const route_pattern = await client.RoutePattern().load({ id: 'route_pattern_id' })
+const route_pattern = await client.route_pattern.load({ id: 'route_pattern_id' })
 ```
 
 
 ### Schedule
 
-Create an instance: `const schedule = client.Schedule()`
+Create an instance: `const schedule = client.schedule`
 
 #### Operations
 
@@ -443,13 +440,13 @@ Create an instance: `const schedule = client.Schedule()`
 #### Example: Load
 
 ```ts
-const schedule = await client.Schedule().load({ id: 'schedule_id' })
+const schedule = await client.schedule.load({ id: 'schedule_id' })
 ```
 
 
 ### Service
 
-Create an instance: `const service = client.Service()`
+Create an instance: `const service = client.service`
 
 #### Operations
 
@@ -460,13 +457,13 @@ Create an instance: `const service = client.Service()`
 #### Example: Load
 
 ```ts
-const service = await client.Service().load({ id: 'service_id' })
+const service = await client.service.load({ id: 'service_id' })
 ```
 
 
 ### Shape
 
-Create an instance: `const shape = client.Shape()`
+Create an instance: `const shape = client.shape`
 
 #### Operations
 
@@ -477,13 +474,13 @@ Create an instance: `const shape = client.Shape()`
 #### Example: Load
 
 ```ts
-const shape = await client.Shape().load({ id: 'shape_id' })
+const shape = await client.shape.load({ id: 'shape_id' })
 ```
 
 
 ### Stop
 
-Create an instance: `const stop = client.Stop()`
+Create an instance: `const stop = client.stop`
 
 #### Operations
 
@@ -494,13 +491,13 @@ Create an instance: `const stop = client.Stop()`
 #### Example: Load
 
 ```ts
-const stop = await client.Stop().load({ id: 'stop_id' })
+const stop = await client.stop.load({ id: 'stop_id' })
 ```
 
 
 ### Trip
 
-Create an instance: `const trip = client.Trip()`
+Create an instance: `const trip = client.trip`
 
 #### Operations
 
@@ -511,13 +508,13 @@ Create an instance: `const trip = client.Trip()`
 #### Example: Load
 
 ```ts
-const trip = await client.Trip().load({ id: 'trip_id' })
+const trip = await client.trip.load({ id: 'trip_id' })
 ```
 
 
 ### Vehicle
 
-Create an instance: `const vehicle = client.Vehicle()`
+Create an instance: `const vehicle = client.vehicle`
 
 #### Operations
 
@@ -528,7 +525,7 @@ Create an instance: `const vehicle = client.Vehicle()`
 #### Example: Load
 
 ```ts
-const vehicle = await client.Vehicle().load({ id: 'vehicle_id' })
+const vehicle = await client.vehicle.load({ id: 'vehicle_id' })
 ```
 
 
@@ -603,11 +600,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local alert = client:alert()
+alert:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- alert:data_get() now returns the loaded alert data
+-- alert:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

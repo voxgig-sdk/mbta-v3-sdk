@@ -49,8 +49,7 @@ class TestTripEntity:
         # LOAD
         trip_ref01_ent = client.Trip(None)
         trip_ref01_match_dt0 = {}
-        trip_ref01_data_dt0_loaded, err = trip_ref01_ent.load(trip_ref01_match_dt0, None)
-        assert err is None
+        trip_ref01_data_dt0_loaded = trip_ref01_ent.load(trip_ref01_match_dt0, None)
         assert trip_ref01_data_dt0_loaded is not None
 
 

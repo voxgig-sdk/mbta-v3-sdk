@@ -49,8 +49,7 @@ class TestAlertEntity:
         # LOAD
         alert_ref01_ent = client.Alert(None)
         alert_ref01_match_dt0 = {}
-        alert_ref01_data_dt0_loaded, err = alert_ref01_ent.load(alert_ref01_match_dt0, None)
-        assert err is None
+        alert_ref01_data_dt0_loaded = alert_ref01_ent.load(alert_ref01_match_dt0, None)
         assert alert_ref01_data_dt0_loaded is not None
 
 

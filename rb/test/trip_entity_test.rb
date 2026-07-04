@@ -42,8 +42,7 @@ class TripEntityTest < Minitest::Test
     # LOAD
     trip_ref01_ent = client.Trip(nil)
     trip_ref01_match_dt0 = {}
-    trip_ref01_data_dt0_loaded, err = trip_ref01_ent.load(trip_ref01_match_dt0, nil)
-    assert_nil err
+    trip_ref01_data_dt0_loaded = trip_ref01_ent.load(trip_ref01_match_dt0, nil)
     assert !trip_ref01_data_dt0_loaded.nil?
 
   end

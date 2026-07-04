@@ -49,8 +49,7 @@ class TestServiceEntity:
         # LOAD
         service_ref01_ent = client.Service(None)
         service_ref01_match_dt0 = {}
-        service_ref01_data_dt0_loaded, err = service_ref01_ent.load(service_ref01_match_dt0, None)
-        assert err is None
+        service_ref01_data_dt0_loaded = service_ref01_ent.load(service_ref01_match_dt0, None)
         assert service_ref01_data_dt0_loaded is not None
 
 

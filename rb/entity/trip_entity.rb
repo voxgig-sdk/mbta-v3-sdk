@@ -45,6 +45,7 @@ class TripEntity
     end
   end
 
+  # @return [Trip, Hash] the current Trip data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class TripEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Trip fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Trip.
+  #
+  # @param reqmatch [TripLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Trip, Hash] the loaded Trip; raises MbtaV3Error on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

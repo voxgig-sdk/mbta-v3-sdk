@@ -103,7 +103,7 @@ class MbtaV3SDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class MbtaV3SDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class MbtaV3SDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,101 +216,233 @@ class MbtaV3SDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Alert($data = null)
+    private $_alert = null;
+
+    // Idiomatic facade: $client->alert()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Alert() (PHP method
+    // names are case-insensitive).
+    public function alert($data = null)
     {
         require_once __DIR__ . '/entity/alert_entity.php';
+        if ($data === null) {
+            if ($this->_alert === null) {
+                $this->_alert = new AlertEntity($this, null);
+            }
+            return $this->_alert;
+        }
         return new AlertEntity($this, $data);
     }
 
 
-    public function Facility($data = null)
+    private $_facility = null;
+
+    // Idiomatic facade: $client->facility()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Facility() (PHP method
+    // names are case-insensitive).
+    public function facility($data = null)
     {
         require_once __DIR__ . '/entity/facility_entity.php';
+        if ($data === null) {
+            if ($this->_facility === null) {
+                $this->_facility = new FacilityEntity($this, null);
+            }
+            return $this->_facility;
+        }
         return new FacilityEntity($this, $data);
     }
 
 
-    public function Line($data = null)
+    private $_line = null;
+
+    // Idiomatic facade: $client->line()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Line() (PHP method
+    // names are case-insensitive).
+    public function line($data = null)
     {
         require_once __DIR__ . '/entity/line_entity.php';
+        if ($data === null) {
+            if ($this->_line === null) {
+                $this->_line = new LineEntity($this, null);
+            }
+            return $this->_line;
+        }
         return new LineEntity($this, $data);
     }
 
 
-    public function Prediction($data = null)
+    private $_prediction = null;
+
+    // Idiomatic facade: $client->prediction()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Prediction() (PHP method
+    // names are case-insensitive).
+    public function prediction($data = null)
     {
         require_once __DIR__ . '/entity/prediction_entity.php';
+        if ($data === null) {
+            if ($this->_prediction === null) {
+                $this->_prediction = new PredictionEntity($this, null);
+            }
+            return $this->_prediction;
+        }
         return new PredictionEntity($this, $data);
     }
 
 
-    public function Route($data = null)
+    private $_route = null;
+
+    // Idiomatic facade: $client->route()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Route() (PHP method
+    // names are case-insensitive).
+    public function route($data = null)
     {
         require_once __DIR__ . '/entity/route_entity.php';
+        if ($data === null) {
+            if ($this->_route === null) {
+                $this->_route = new RouteEntity($this, null);
+            }
+            return $this->_route;
+        }
         return new RouteEntity($this, $data);
     }
 
 
-    public function RoutePattern($data = null)
+    private $_route_pattern = null;
+
+    // Idiomatic facade: $client->route_pattern()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias RoutePattern() (PHP method
+    // names are case-insensitive).
+    public function route_pattern($data = null)
     {
         require_once __DIR__ . '/entity/route_pattern_entity.php';
+        if ($data === null) {
+            if ($this->_route_pattern === null) {
+                $this->_route_pattern = new RoutePatternEntity($this, null);
+            }
+            return $this->_route_pattern;
+        }
         return new RoutePatternEntity($this, $data);
     }
 
 
-    public function Schedule($data = null)
+    private $_schedule = null;
+
+    // Idiomatic facade: $client->schedule()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Schedule() (PHP method
+    // names are case-insensitive).
+    public function schedule($data = null)
     {
         require_once __DIR__ . '/entity/schedule_entity.php';
+        if ($data === null) {
+            if ($this->_schedule === null) {
+                $this->_schedule = new ScheduleEntity($this, null);
+            }
+            return $this->_schedule;
+        }
         return new ScheduleEntity($this, $data);
     }
 
 
-    public function Service($data = null)
+    private $_service = null;
+
+    // Idiomatic facade: $client->service()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Service() (PHP method
+    // names are case-insensitive).
+    public function service($data = null)
     {
         require_once __DIR__ . '/entity/service_entity.php';
+        if ($data === null) {
+            if ($this->_service === null) {
+                $this->_service = new ServiceEntity($this, null);
+            }
+            return $this->_service;
+        }
         return new ServiceEntity($this, $data);
     }
 
 
-    public function Shape($data = null)
+    private $_shape = null;
+
+    // Idiomatic facade: $client->shape()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Shape() (PHP method
+    // names are case-insensitive).
+    public function shape($data = null)
     {
         require_once __DIR__ . '/entity/shape_entity.php';
+        if ($data === null) {
+            if ($this->_shape === null) {
+                $this->_shape = new ShapeEntity($this, null);
+            }
+            return $this->_shape;
+        }
         return new ShapeEntity($this, $data);
     }
 
 
-    public function Stop($data = null)
+    private $_stop = null;
+
+    // Idiomatic facade: $client->stop()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Stop() (PHP method
+    // names are case-insensitive).
+    public function stop($data = null)
     {
         require_once __DIR__ . '/entity/stop_entity.php';
+        if ($data === null) {
+            if ($this->_stop === null) {
+                $this->_stop = new StopEntity($this, null);
+            }
+            return $this->_stop;
+        }
         return new StopEntity($this, $data);
     }
 
 
-    public function Trip($data = null)
+    private $_trip = null;
+
+    // Idiomatic facade: $client->trip()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Trip() (PHP method
+    // names are case-insensitive).
+    public function trip($data = null)
     {
         require_once __DIR__ . '/entity/trip_entity.php';
+        if ($data === null) {
+            if ($this->_trip === null) {
+                $this->_trip = new TripEntity($this, null);
+            }
+            return $this->_trip;
+        }
         return new TripEntity($this, $data);
     }
 
 
-    public function Vehicle($data = null)
+    private $_vehicle = null;
+
+    // Idiomatic facade: $client->vehicle()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Vehicle() (PHP method
+    // names are case-insensitive).
+    public function vehicle($data = null)
     {
         require_once __DIR__ . '/entity/vehicle_entity.php';
+        if ($data === null) {
+            if ($this->_vehicle === null) {
+                $this->_vehicle = new VehicleEntity($this, null);
+            }
+            return $this->_vehicle;
+        }
         return new VehicleEntity($this, $data);
     }
 

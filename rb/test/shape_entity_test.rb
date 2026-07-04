@@ -42,8 +42,7 @@ class ShapeEntityTest < Minitest::Test
     # LOAD
     shape_ref01_ent = client.Shape(nil)
     shape_ref01_match_dt0 = {}
-    shape_ref01_data_dt0_loaded, err = shape_ref01_ent.load(shape_ref01_match_dt0, nil)
-    assert_nil err
+    shape_ref01_data_dt0_loaded = shape_ref01_ent.load(shape_ref01_match_dt0, nil)
     assert !shape_ref01_data_dt0_loaded.nil?
 
   end

@@ -49,8 +49,7 @@ class RouteEntityTest extends TestCase
         // LOAD
         $route_ref01_ent = $client->Route(null);
         $route_ref01_match_dt0 = [];
-        [$route_ref01_data_dt0_loaded, $err] = $route_ref01_ent->load($route_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $route_ref01_data_dt0_loaded = $route_ref01_ent->load($route_ref01_match_dt0, null);
         $this->assertNotNull($route_ref01_data_dt0_loaded);
 
     }

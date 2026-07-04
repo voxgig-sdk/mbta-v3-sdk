@@ -9,11 +9,9 @@ The Python SDK for the MbtaV3 API — an entity-oriented client following Python
 
 
 ## Install
-```bash
-pip install voxgig-sdk-mbta-v3
-```
-
-Or install from source:
+This package is not yet published to PyPI. Install it from the GitHub
+release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/mbta-v3-sdk/releases)) or
+from a source checkout:
 
 ```bash
 pip install -e .
@@ -32,17 +30,18 @@ import os
 from mbtav3_sdk import MbtaV3SDK
 
 client = MbtaV3SDK({
-    "apikey": os.environ.get("MBTA-V3_APIKEY"),
+    "apikey": os.environ.get("MBTA_V3_APIKEY"),
 })
 ```
 
-### 3. Load a alert
+### 3. Load an alert
 
 ```python
-result, err = client.Alert().load({"id": "example_id"})
-if err:
-    raise Exception(err)
-print(result)
+try:
+    result = client.alert.load({"id": "example_id"})
+    print(result)
+except Exception as err:
+    print(f"load failed: {err}")
 ```
 
 
@@ -53,29 +52,28 @@ print(result)
 For endpoints not covered by entity methods:
 
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
+else:
+    print(result["err"])     # error value
 ```
 
 ### Prepare a request without sending it
 
 ```python
-fetchdef, err = client.prepare({
+# prepare() returns the fetch definition and raises on error.
+fetchdef = client.prepare({
     "path": "/api/resource/{id}",
     "method": "DELETE",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 print(fetchdef["url"])
 print(fetchdef["method"])
@@ -89,7 +87,7 @@ Create a mock client for unit testing — no server required:
 ```python
 client = MbtaV3SDK.test()
 
-result, err = client.MbtaV3().load({"id": "test01"})
+result = client.alert.load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -119,8 +117,8 @@ client = MbtaV3SDK({
 Create a `.env.local` file at the project root:
 
 ```
-MBTA-V3_TEST_LIVE=TRUE
-MBTA-V3_APIKEY=<your-key>
+MBTA_V3_TEST_LIVE=TRUE
+MBTA_V3_APIKEY=<your-key>
 ```
 
 Then run:
@@ -166,8 +164,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | --- | --- | --- |
 | `options_map` | `() -> dict` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> (dict, err)` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> (dict, err)` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Alert` | `(data) -> AlertEntity` | Create a Alert entity instance. |
 | `Facility` | `(data) -> FacilityEntity` | Create a Facility entity instance. |
 | `Line` | `(data) -> LineEntity` | Create a Line entity instance. |
@@ -187,11 +185,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> (any, err)` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> (any, err)` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> (any, err)` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> (any, err)` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> (any, err)` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -201,8 +199,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`dict` with these keys:
+Entity operations return the bare result data (a `dict` for single-entity
+ops, a `list` for `list`) and raise on error. Wrap calls in
+`try`/`except` to handle failures.
+
+The `direct()` escape hatch never raises — it returns a result `dict`
+you branch on via `result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -330,7 +332,7 @@ API path: `/vehicles`
 
 ### Alert
 
-Create an instance: `const alert = client.Alert()`
+Create an instance: `const alert = client.alert`
 
 #### Operations
 
@@ -341,13 +343,13 @@ Create an instance: `const alert = client.Alert()`
 #### Example: Load
 
 ```ts
-const alert = await client.Alert().load({ id: 'alert_id' })
+const alert = await client.alert.load({ id: 'alert_id' })
 ```
 
 
 ### Facility
 
-Create an instance: `const facility = client.Facility()`
+Create an instance: `const facility = client.facility`
 
 #### Operations
 
@@ -358,13 +360,13 @@ Create an instance: `const facility = client.Facility()`
 #### Example: Load
 
 ```ts
-const facility = await client.Facility().load({ id: 'facility_id' })
+const facility = await client.facility.load({ id: 'facility_id' })
 ```
 
 
 ### Line
 
-Create an instance: `const line = client.Line()`
+Create an instance: `const line = client.line`
 
 #### Operations
 
@@ -375,13 +377,13 @@ Create an instance: `const line = client.Line()`
 #### Example: Load
 
 ```ts
-const line = await client.Line().load({ id: 'line_id' })
+const line = await client.line.load({ id: 'line_id' })
 ```
 
 
 ### Prediction
 
-Create an instance: `const prediction = client.Prediction()`
+Create an instance: `const prediction = client.prediction`
 
 #### Operations
 
@@ -392,13 +394,13 @@ Create an instance: `const prediction = client.Prediction()`
 #### Example: Load
 
 ```ts
-const prediction = await client.Prediction().load({ id: 'prediction_id' })
+const prediction = await client.prediction.load({ id: 'prediction_id' })
 ```
 
 
 ### Route
 
-Create an instance: `const route = client.Route()`
+Create an instance: `const route = client.route`
 
 #### Operations
 
@@ -409,13 +411,13 @@ Create an instance: `const route = client.Route()`
 #### Example: Load
 
 ```ts
-const route = await client.Route().load({ id: 'route_id' })
+const route = await client.route.load({ id: 'route_id' })
 ```
 
 
 ### RoutePattern
 
-Create an instance: `const route_pattern = client.RoutePattern()`
+Create an instance: `const route_pattern = client.route_pattern`
 
 #### Operations
 
@@ -426,13 +428,13 @@ Create an instance: `const route_pattern = client.RoutePattern()`
 #### Example: Load
 
 ```ts
-const route_pattern = await client.RoutePattern().load({ id: 'route_pattern_id' })
+const route_pattern = await client.route_pattern.load({ id: 'route_pattern_id' })
 ```
 
 
 ### Schedule
 
-Create an instance: `const schedule = client.Schedule()`
+Create an instance: `const schedule = client.schedule`
 
 #### Operations
 
@@ -443,13 +445,13 @@ Create an instance: `const schedule = client.Schedule()`
 #### Example: Load
 
 ```ts
-const schedule = await client.Schedule().load({ id: 'schedule_id' })
+const schedule = await client.schedule.load({ id: 'schedule_id' })
 ```
 
 
 ### Service
 
-Create an instance: `const service = client.Service()`
+Create an instance: `const service = client.service`
 
 #### Operations
 
@@ -460,13 +462,13 @@ Create an instance: `const service = client.Service()`
 #### Example: Load
 
 ```ts
-const service = await client.Service().load({ id: 'service_id' })
+const service = await client.service.load({ id: 'service_id' })
 ```
 
 
 ### Shape
 
-Create an instance: `const shape = client.Shape()`
+Create an instance: `const shape = client.shape`
 
 #### Operations
 
@@ -477,13 +479,13 @@ Create an instance: `const shape = client.Shape()`
 #### Example: Load
 
 ```ts
-const shape = await client.Shape().load({ id: 'shape_id' })
+const shape = await client.shape.load({ id: 'shape_id' })
 ```
 
 
 ### Stop
 
-Create an instance: `const stop = client.Stop()`
+Create an instance: `const stop = client.stop`
 
 #### Operations
 
@@ -494,13 +496,13 @@ Create an instance: `const stop = client.Stop()`
 #### Example: Load
 
 ```ts
-const stop = await client.Stop().load({ id: 'stop_id' })
+const stop = await client.stop.load({ id: 'stop_id' })
 ```
 
 
 ### Trip
 
-Create an instance: `const trip = client.Trip()`
+Create an instance: `const trip = client.trip`
 
 #### Operations
 
@@ -511,13 +513,13 @@ Create an instance: `const trip = client.Trip()`
 #### Example: Load
 
 ```ts
-const trip = await client.Trip().load({ id: 'trip_id' })
+const trip = await client.trip.load({ id: 'trip_id' })
 ```
 
 
 ### Vehicle
 
-Create an instance: `const vehicle = client.Vehicle()`
+Create an instance: `const vehicle = client.vehicle`
 
 #### Operations
 
@@ -528,7 +530,7 @@ Create an instance: `const vehicle = client.Vehicle()`
 #### Example: Load
 
 ```ts
-const vehicle = await client.Vehicle().load({ id: 'vehicle_id' })
+const vehicle = await client.vehicle.load({ id: 'vehicle_id' })
 ```
 
 
@@ -602,11 +604,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-moon = client.Moon()
-moon.load({"planet_id": "earth", "id": "luna"})
+alert = client.alert
+alert.load({"id": "example_id"})
 
-# moon.data_get() now returns the loaded moon data
-# moon.match_get() returns the last match criteria
+# alert.data_get() now returns the loaded alert data
+# alert.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

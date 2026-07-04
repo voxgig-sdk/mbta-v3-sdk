@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Vehicle,
+  VehicleLoadMatch,
+} from '../MbtaV3Types'
 
 // TODO: needs Entity superclass
-class VehicleEntity extends MbtaV3EntityBase {
+class VehicleEntity extends MbtaV3EntityBase<Vehicle> {
 
   constructor(client: MbtaV3SDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class VehicleEntity extends MbtaV3EntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: VehicleLoadMatch, ctrl?: Control): Promise<Vehicle> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class VehicleEntity extends MbtaV3EntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Vehicle> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
