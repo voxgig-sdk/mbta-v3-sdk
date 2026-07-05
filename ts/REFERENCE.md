@@ -252,7 +252,7 @@ const alert = client.Alert()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Alert().load({ id: 'alert_id' })
+const result = await client.Alert().load()
 ```
 
 ### Common Methods
@@ -296,7 +296,7 @@ const facility = client.Facility()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Facility().load({ id: 'facility_id' })
+const result = await client.Facility().load()
 ```
 
 ### Common Methods
@@ -340,7 +340,7 @@ const line = client.Line()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Line().load({ id: 'line_id' })
+const result = await client.Line().load()
 ```
 
 ### Common Methods
@@ -384,7 +384,7 @@ const prediction = client.Prediction()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Prediction().load({ id: 'prediction_id' })
+const result = await client.Prediction().load()
 ```
 
 ### Common Methods
@@ -472,7 +472,7 @@ const route_pattern = client.RoutePattern()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.RoutePattern().load({ id: 'route_pattern_id' })
+const result = await client.RoutePattern().load()
 ```
 
 ### Common Methods
@@ -516,7 +516,7 @@ const schedule = client.Schedule()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Schedule().load({ id: 'schedule_id' })
+const result = await client.Schedule().load()
 ```
 
 ### Common Methods
@@ -560,7 +560,7 @@ const service = client.Service()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Service().load({ id: 'service_id' })
+const result = await client.Service().load()
 ```
 
 ### Common Methods
@@ -604,7 +604,7 @@ const shape = client.Shape()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Shape().load({ id: 'shape_id' })
+const result = await client.Shape().load()
 ```
 
 ### Common Methods
@@ -648,7 +648,7 @@ const stop = client.Stop()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Stop().load({ id: 'stop_id' })
+const result = await client.Stop().load()
 ```
 
 ### Common Methods
@@ -692,7 +692,7 @@ const trip = client.Trip()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Trip().load({ id: 'trip_id' })
+const result = await client.Trip().load()
 ```
 
 ### Common Methods
@@ -736,7 +736,7 @@ const vehicle = client.Vehicle()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Vehicle().load({ id: 'vehicle_id' })
+const result = await client.Vehicle().load()
 ```
 
 ### Common Methods

@@ -4,6 +4,11 @@
 
 The Python SDK for the MbtaV3 API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Alert()` — each
+carrying a small, uniform set of operations (`load`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -40,10 +45,38 @@ client = MbtaV3SDK({
 
 ```python
 try:
-    alert = client.Alert().load({"id": "example_id"})
+    alert = client.Alert().load()
     print(alert)
 except Exception as err:
     print(f"load failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    alert = client.Alert().load()
+    print(alert)
+except Exception as err:
+    print(f"load failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -64,7 +97,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -90,7 +126,7 @@ Create a mock client for unit testing — no server required:
 client = MbtaV3SDK.test()
 
 # Entity ops return the bare record and raise on error.
-alert = client.Alert().load({"id": "test01"})
+alert = client.Alert().load()
 # alert contains the mock response record
 ```
 
@@ -189,10 +225,6 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -346,7 +378,7 @@ Create an instance: `alert = client.Alert()`
 #### Example: Load
 
 ```python
-alert = client.Alert().load({"id": "alert_id"})
+alert = client.Alert().load()
 ```
 
 
@@ -363,7 +395,7 @@ Create an instance: `facility = client.Facility()`
 #### Example: Load
 
 ```python
-facility = client.Facility().load({"id": "facility_id"})
+facility = client.Facility().load()
 ```
 
 
@@ -380,7 +412,7 @@ Create an instance: `line = client.Line()`
 #### Example: Load
 
 ```python
-line = client.Line().load({"id": "line_id"})
+line = client.Line().load()
 ```
 
 
@@ -397,7 +429,7 @@ Create an instance: `prediction = client.Prediction()`
 #### Example: Load
 
 ```python
-prediction = client.Prediction().load({"id": "prediction_id"})
+prediction = client.Prediction().load()
 ```
 
 
@@ -431,7 +463,7 @@ Create an instance: `route_pattern = client.RoutePattern()`
 #### Example: Load
 
 ```python
-route_pattern = client.RoutePattern().load({"id": "route_pattern_id"})
+route_pattern = client.RoutePattern().load()
 ```
 
 
@@ -448,7 +480,7 @@ Create an instance: `schedule = client.Schedule()`
 #### Example: Load
 
 ```python
-schedule = client.Schedule().load({"id": "schedule_id"})
+schedule = client.Schedule().load()
 ```
 
 
@@ -465,7 +497,7 @@ Create an instance: `service = client.Service()`
 #### Example: Load
 
 ```python
-service = client.Service().load({"id": "service_id"})
+service = client.Service().load()
 ```
 
 
@@ -482,7 +514,7 @@ Create an instance: `shape = client.Shape()`
 #### Example: Load
 
 ```python
-shape = client.Shape().load({"id": "shape_id"})
+shape = client.Shape().load()
 ```
 
 
@@ -499,7 +531,7 @@ Create an instance: `stop = client.Stop()`
 #### Example: Load
 
 ```python
-stop = client.Stop().load({"id": "stop_id"})
+stop = client.Stop().load()
 ```
 
 
@@ -516,7 +548,7 @@ Create an instance: `trip = client.Trip()`
 #### Example: Load
 
 ```python
-trip = client.Trip().load({"id": "trip_id"})
+trip = client.Trip().load()
 ```
 
 
@@ -533,16 +565,20 @@ Create an instance: `vehicle = client.Vehicle()`
 #### Example: Load
 
 ```python
-vehicle = client.Vehicle().load({"id": "vehicle_id"})
+vehicle = client.Vehicle().load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -559,8 +595,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -608,9 +645,9 @@ stores the returned data and match criteria internally.
 
 ```python
 alert = client.Alert()
-alert.load({"id": "example_id"})
+alert.load()
 
-# alert.data_get() now returns the loaded alert data
+# alert.data_get() now returns the alert data from the last load
 # alert.match_get() returns the last match criteria
 ```
 

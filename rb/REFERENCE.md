@@ -8,7 +8,7 @@ Complete API reference for the MbtaV3 Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'mbta-v3_sdk'
+require_relative 'MbtaV3_sdk'
 
 client = MbtaV3SDK.new(options)
 ```
@@ -141,7 +141,7 @@ alert = client.Alert
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Alert.load({ "id" => "alert_id" })
+result = client.Alert.load()
 ```
 
 ### Common Methods
@@ -187,7 +187,7 @@ facility = client.Facility
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Facility.load({ "id" => "facility_id" })
+result = client.Facility.load()
 ```
 
 ### Common Methods
@@ -233,7 +233,7 @@ line = client.Line
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Line.load({ "id" => "line_id" })
+result = client.Line.load()
 ```
 
 ### Common Methods
@@ -279,7 +279,7 @@ prediction = client.Prediction
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Prediction.load({ "id" => "prediction_id" })
+result = client.Prediction.load()
 ```
 
 ### Common Methods
@@ -371,7 +371,7 @@ route_pattern = client.RoutePattern
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.RoutePattern.load({ "id" => "route_pattern_id" })
+result = client.RoutePattern.load()
 ```
 
 ### Common Methods
@@ -417,7 +417,7 @@ schedule = client.Schedule
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Schedule.load({ "id" => "schedule_id" })
+result = client.Schedule.load()
 ```
 
 ### Common Methods
@@ -463,7 +463,7 @@ service = client.Service
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Service.load({ "id" => "service_id" })
+result = client.Service.load()
 ```
 
 ### Common Methods
@@ -509,7 +509,7 @@ shape = client.Shape
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Shape.load({ "id" => "shape_id" })
+result = client.Shape.load()
 ```
 
 ### Common Methods
@@ -555,7 +555,7 @@ stop = client.Stop
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Stop.load({ "id" => "stop_id" })
+result = client.Stop.load()
 ```
 
 ### Common Methods
@@ -601,7 +601,7 @@ trip = client.Trip
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Trip.load({ "id" => "trip_id" })
+result = client.Trip.load()
 ```
 
 ### Common Methods
@@ -647,7 +647,7 @@ vehicle = client.Vehicle
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Vehicle.load({ "id" => "vehicle_id" })
+result = client.Vehicle.load()
 ```
 
 ### Common Methods

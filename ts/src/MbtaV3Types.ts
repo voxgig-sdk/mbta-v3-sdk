@@ -8,22 +8,26 @@
 export interface Alert {
 }
 
-export type AlertLoadMatch = Partial<Alert>
+export interface AlertLoadMatch {
+}
 
 export interface Facility {
 }
 
-export type FacilityLoadMatch = Partial<Facility>
+export interface FacilityLoadMatch {
+}
 
 export interface Line {
 }
 
-export type LineLoadMatch = Partial<Line>
+export interface LineLoadMatch {
+}
 
 export interface Prediction {
 }
 
-export type PredictionLoadMatch = Partial<Prediction>
+export interface PredictionLoadMatch {
+}
 
 export interface Route {
 }
@@ -35,35 +39,42 @@ export interface RouteLoadMatch {
 export interface RoutePattern {
 }
 
-export type RoutePatternLoadMatch = Partial<RoutePattern>
+export interface RoutePatternLoadMatch {
+}
 
 export interface Schedule {
 }
 
-export type ScheduleLoadMatch = Partial<Schedule>
+export interface ScheduleLoadMatch {
+}
 
 export interface Service {
 }
 
-export type ServiceLoadMatch = Partial<Service>
+export interface ServiceLoadMatch {
+}
 
 export interface Shape {
 }
 
-export type ShapeLoadMatch = Partial<Shape>
+export interface ShapeLoadMatch {
+}
 
 export interface Stop {
 }
 
-export type StopLoadMatch = Partial<Stop>
+export interface StopLoadMatch {
+}
 
 export interface Trip {
 }
 
-export type TripLoadMatch = Partial<Trip>
+export interface TripLoadMatch {
+}
 
 export interface Vehicle {
 }
 
-export type VehicleLoadMatch = Partial<Vehicle>
+export interface VehicleLoadMatch {
+}
 

@@ -145,7 +145,7 @@ alert := client.Alert(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Alert(nil).Load(map[string]any{"id": "alert_id"}, nil)
+result, err := client.Alert(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -185,7 +185,7 @@ facility := client.Facility(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Facility(nil).Load(map[string]any{"id": "facility_id"}, nil)
+result, err := client.Facility(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -225,7 +225,7 @@ line := client.Line(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Line(nil).Load(map[string]any{"id": "line_id"}, nil)
+result, err := client.Line(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -265,7 +265,7 @@ prediction := client.Prediction(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Prediction(nil).Load(map[string]any{"id": "prediction_id"}, nil)
+result, err := client.Prediction(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -345,7 +345,7 @@ route_pattern := client.RoutePattern(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.RoutePattern(nil).Load(map[string]any{"id": "route_pattern_id"}, nil)
+result, err := client.RoutePattern(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -385,7 +385,7 @@ schedule := client.Schedule(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Schedule(nil).Load(map[string]any{"id": "schedule_id"}, nil)
+result, err := client.Schedule(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -425,7 +425,7 @@ service := client.Service(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Service(nil).Load(map[string]any{"id": "service_id"}, nil)
+result, err := client.Service(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -465,7 +465,7 @@ shape := client.Shape(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Shape(nil).Load(map[string]any{"id": "shape_id"}, nil)
+result, err := client.Shape(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -505,7 +505,7 @@ stop := client.Stop(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Stop(nil).Load(map[string]any{"id": "stop_id"}, nil)
+result, err := client.Stop(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -545,7 +545,7 @@ trip := client.Trip(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Trip(nil).Load(map[string]any{"id": "trip_id"}, nil)
+result, err := client.Trip(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -585,7 +585,7 @@ vehicle := client.Vehicle(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Vehicle(nil).Load(map[string]any{"id": "vehicle_id"}, nil)
+result, err := client.Vehicle(nil).Load(nil, nil)
 ```
 
 ### Common Methods

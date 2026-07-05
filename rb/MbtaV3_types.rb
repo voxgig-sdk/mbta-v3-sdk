@@ -12,7 +12,7 @@
 class Alert
 end
 
-# Match filter for Alert#load (any subset of Alert fields).
+# Request payload for Alert#load.
 class AlertLoadMatch
 end
 
@@ -20,7 +20,7 @@ end
 class Facility
 end
 
-# Match filter for Facility#load (any subset of Facility fields).
+# Request payload for Facility#load.
 class FacilityLoadMatch
 end
 
@@ -28,7 +28,7 @@ end
 class Line
 end
 
-# Match filter for Line#load (any subset of Line fields).
+# Request payload for Line#load.
 class LineLoadMatch
 end
 
@@ -36,7 +36,7 @@ end
 class Prediction
 end
 
-# Match filter for Prediction#load (any subset of Prediction fields).
+# Request payload for Prediction#load.
 class PredictionLoadMatch
 end
 
@@ -57,7 +57,7 @@ RouteLoadMatch = Struct.new(
 class RoutePattern
 end
 
-# Match filter for RoutePattern#load (any subset of RoutePattern fields).
+# Request payload for RoutePattern#load.
 class RoutePatternLoadMatch
 end
 
@@ -65,7 +65,7 @@ end
 class Schedule
 end
 
-# Match filter for Schedule#load (any subset of Schedule fields).
+# Request payload for Schedule#load.
 class ScheduleLoadMatch
 end
 
@@ -73,7 +73,7 @@ end
 class Service
 end
 
-# Match filter for Service#load (any subset of Service fields).
+# Request payload for Service#load.
 class ServiceLoadMatch
 end
 
@@ -81,7 +81,7 @@ end
 class Shape
 end
 
-# Match filter for Shape#load (any subset of Shape fields).
+# Request payload for Shape#load.
 class ShapeLoadMatch
 end
 
@@ -89,7 +89,7 @@ end
 class Stop
 end
 
-# Match filter for Stop#load (any subset of Stop fields).
+# Request payload for Stop#load.
 class StopLoadMatch
 end
 
@@ -97,7 +97,7 @@ end
 class Trip
 end
 
-# Match filter for Trip#load (any subset of Trip fields).
+# Request payload for Trip#load.
 class TripLoadMatch
 end
 
@@ -105,7 +105,7 @@ end
 class Vehicle
 end
 
-# Match filter for Vehicle#load (any subset of Vehicle fields).
+# Request payload for Vehicle#load.
 class VehicleLoadMatch
 end
 

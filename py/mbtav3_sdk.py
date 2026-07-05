@@ -221,73 +221,73 @@ class MbtaV3SDK:
 
 
     def Alert(self, data=None) -> "AlertEntity":
-        """Entity factory: client.Alert().list({}) / client.Alert().load({"id": ...})."""
+        """Entity factory: client.Alert().list() / client.Alert().load({"id": ...})."""
         from entity.alert_entity import AlertEntity
         return AlertEntity(self, data)
 
 
     def Facility(self, data=None) -> "FacilityEntity":
-        """Entity factory: client.Facility().list({}) / client.Facility().load({"id": ...})."""
+        """Entity factory: client.Facility().list() / client.Facility().load({"id": ...})."""
         from entity.facility_entity import FacilityEntity
         return FacilityEntity(self, data)
 
 
     def Line(self, data=None) -> "LineEntity":
-        """Entity factory: client.Line().list({}) / client.Line().load({"id": ...})."""
+        """Entity factory: client.Line().list() / client.Line().load({"id": ...})."""
         from entity.line_entity import LineEntity
         return LineEntity(self, data)
 
 
     def Prediction(self, data=None) -> "PredictionEntity":
-        """Entity factory: client.Prediction().list({}) / client.Prediction().load({"id": ...})."""
+        """Entity factory: client.Prediction().list() / client.Prediction().load({"id": ...})."""
         from entity.prediction_entity import PredictionEntity
         return PredictionEntity(self, data)
 
 
     def Route(self, data=None) -> "RouteEntity":
-        """Entity factory: client.Route().list({}) / client.Route().load({"id": ...})."""
+        """Entity factory: client.Route().list() / client.Route().load({"id": ...})."""
         from entity.route_entity import RouteEntity
         return RouteEntity(self, data)
 
 
     def RoutePattern(self, data=None) -> "RoutePatternEntity":
-        """Entity factory: client.RoutePattern().list({}) / client.RoutePattern().load({"id": ...})."""
+        """Entity factory: client.RoutePattern().list() / client.RoutePattern().load({"id": ...})."""
         from entity.route_pattern_entity import RoutePatternEntity
         return RoutePatternEntity(self, data)
 
 
     def Schedule(self, data=None) -> "ScheduleEntity":
-        """Entity factory: client.Schedule().list({}) / client.Schedule().load({"id": ...})."""
+        """Entity factory: client.Schedule().list() / client.Schedule().load({"id": ...})."""
         from entity.schedule_entity import ScheduleEntity
         return ScheduleEntity(self, data)
 
 
     def Service(self, data=None) -> "ServiceEntity":
-        """Entity factory: client.Service().list({}) / client.Service().load({"id": ...})."""
+        """Entity factory: client.Service().list() / client.Service().load({"id": ...})."""
         from entity.service_entity import ServiceEntity
         return ServiceEntity(self, data)
 
 
     def Shape(self, data=None) -> "ShapeEntity":
-        """Entity factory: client.Shape().list({}) / client.Shape().load({"id": ...})."""
+        """Entity factory: client.Shape().list() / client.Shape().load({"id": ...})."""
         from entity.shape_entity import ShapeEntity
         return ShapeEntity(self, data)
 
 
     def Stop(self, data=None) -> "StopEntity":
-        """Entity factory: client.Stop().list({}) / client.Stop().load({"id": ...})."""
+        """Entity factory: client.Stop().list() / client.Stop().load({"id": ...})."""
         from entity.stop_entity import StopEntity
         return StopEntity(self, data)
 
 
     def Trip(self, data=None) -> "TripEntity":
-        """Entity factory: client.Trip().list({}) / client.Trip().load({"id": ...})."""
+        """Entity factory: client.Trip().list() / client.Trip().load({"id": ...})."""
         from entity.trip_entity import TripEntity
         return TripEntity(self, data)
 
 
     def Vehicle(self, data=None) -> "VehicleEntity":
-        """Entity factory: client.Vehicle().list({}) / client.Vehicle().load({"id": ...})."""
+        """Entity factory: client.Vehicle().list() / client.Vehicle().load({"id": ...})."""
         from entity.vehicle_entity import VehicleEntity
         return VehicleEntity(self, data)
 

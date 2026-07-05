@@ -12,8 +12,7 @@ import "encoding/json"
 type Alert struct {
 }
 
-// AlertLoadMatch mirrors the alert fields as an all-optional match
-// filter (Go analog of Partial<Alert>).
+// AlertLoadMatch is the typed request payload for Alert.LoadTyped.
 type AlertLoadMatch struct {
 }
 
@@ -21,8 +20,7 @@ type AlertLoadMatch struct {
 type Facility struct {
 }
 
-// FacilityLoadMatch mirrors the facility fields as an all-optional match
-// filter (Go analog of Partial<Facility>).
+// FacilityLoadMatch is the typed request payload for Facility.LoadTyped.
 type FacilityLoadMatch struct {
 }
 
@@ -30,8 +28,7 @@ type FacilityLoadMatch struct {
 type Line struct {
 }
 
-// LineLoadMatch mirrors the line fields as an all-optional match
-// filter (Go analog of Partial<Line>).
+// LineLoadMatch is the typed request payload for Line.LoadTyped.
 type LineLoadMatch struct {
 }
 
@@ -39,8 +36,7 @@ type LineLoadMatch struct {
 type Prediction struct {
 }
 
-// PredictionLoadMatch mirrors the prediction fields as an all-optional match
-// filter (Go analog of Partial<Prediction>).
+// PredictionLoadMatch is the typed request payload for Prediction.LoadTyped.
 type PredictionLoadMatch struct {
 }
 
@@ -57,8 +53,7 @@ type RouteLoadMatch struct {
 type RoutePattern struct {
 }
 
-// RoutePatternLoadMatch mirrors the route_pattern fields as an all-optional match
-// filter (Go analog of Partial<RoutePattern>).
+// RoutePatternLoadMatch is the typed request payload for RoutePattern.LoadTyped.
 type RoutePatternLoadMatch struct {
 }
 
@@ -66,8 +61,7 @@ type RoutePatternLoadMatch struct {
 type Schedule struct {
 }
 
-// ScheduleLoadMatch mirrors the schedule fields as an all-optional match
-// filter (Go analog of Partial<Schedule>).
+// ScheduleLoadMatch is the typed request payload for Schedule.LoadTyped.
 type ScheduleLoadMatch struct {
 }
 
@@ -75,8 +69,7 @@ type ScheduleLoadMatch struct {
 type Service struct {
 }
 
-// ServiceLoadMatch mirrors the service fields as an all-optional match
-// filter (Go analog of Partial<Service>).
+// ServiceLoadMatch is the typed request payload for Service.LoadTyped.
 type ServiceLoadMatch struct {
 }
 
@@ -84,8 +77,7 @@ type ServiceLoadMatch struct {
 type Shape struct {
 }
 
-// ShapeLoadMatch mirrors the shape fields as an all-optional match
-// filter (Go analog of Partial<Shape>).
+// ShapeLoadMatch is the typed request payload for Shape.LoadTyped.
 type ShapeLoadMatch struct {
 }
 
@@ -93,8 +85,7 @@ type ShapeLoadMatch struct {
 type Stop struct {
 }
 
-// StopLoadMatch mirrors the stop fields as an all-optional match
-// filter (Go analog of Partial<Stop>).
+// StopLoadMatch is the typed request payload for Stop.LoadTyped.
 type StopLoadMatch struct {
 }
 
@@ -102,8 +93,7 @@ type StopLoadMatch struct {
 type Trip struct {
 }
 
-// TripLoadMatch mirrors the trip fields as an all-optional match
-// filter (Go analog of Partial<Trip>).
+// TripLoadMatch is the typed request payload for Trip.LoadTyped.
 type TripLoadMatch struct {
 }
 
@@ -111,8 +101,7 @@ type TripLoadMatch struct {
 type Vehicle struct {
 }
 
-// VehicleLoadMatch mirrors the vehicle fields as an all-optional match
-// filter (Go analog of Partial<Vehicle>).
+// VehicleLoadMatch is the typed request payload for Vehicle.LoadTyped.
 type VehicleLoadMatch struct {
 }
 

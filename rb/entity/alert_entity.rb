@@ -67,10 +67,12 @@ class AlertEntity
   
   # Load a single Alert.
   #
-  # @param reqmatch [AlertLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param reqmatch [AlertLoadMatch, Hash, nil] match criteria (id/query fields);
+  #   optional — an entity with no id-like key loads with no match (nil is treated
+  #   as an empty match, so client.Alert.load works with no args).
   # @param ctrl [Object, nil] optional per-call control
   # @return [Alert, Hash] the loaded Alert; raises MbtaV3Error on failure
-  def load(reqmatch, ctrl = nil)
+  def load(reqmatch = nil, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
       "opname" => "load",
