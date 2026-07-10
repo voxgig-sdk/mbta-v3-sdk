@@ -39,7 +39,7 @@ class Config {
     base: 'https://api-v3.mbta.com',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: '',
     },
 
     headers: {

@@ -47,7 +47,7 @@ end
 # Request payload for Route#load.
 #
 # @!attribute [rw] id
-#   @return [String]
+#   @return [String, nil]
 RouteLoadMatch = Struct.new(
   :id,
   keyword_init: true

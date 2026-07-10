@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -1558,14 +1555,24 @@
           "name": "MassDOT Developers License Agreement",
           "url": "https://www.mbta.com/developers"
         },
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "header",
+          "name": "x-api-key",
+          "prefix": "",
+          "scheme": "ApiKeyAuth",
+          "type": "apiKey"
+        },
         "servers": [
           {
             "description": "Production API Server",
             "url": "https://api-v3.mbta.com"
           }
         ],
+        "summary": "The V3 API provides fast and easy access to Massachusetts Bay Transportation Authority schedules, alerts, and real-time transportation information.",
         "title": "Massachusetts Bay Transportation Authority V3 API",
-        "version": "3.0.0"
+        "version": "3.0.0",
+        "website": "https://mbta.com"
       },
       "option": {},
       "target": {
@@ -1618,6 +1625,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -1668,6 +1678,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

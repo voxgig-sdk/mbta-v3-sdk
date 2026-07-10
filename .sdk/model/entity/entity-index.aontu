@@ -1,0 +1,14 @@
+# Entity Models
+
+@"alert.aontu"
+@"facility.aontu"
+@"line.aontu"
+@"prediction.aontu"
+@"route.aontu"
+@"route_pattern.aontu"
+@"schedule.aontu"
+@"service.aontu"
+@"shape.aontu"
+@"stop.aontu"
+@"trip.aontu"
+@"vehicle.aontu"

@@ -490,7 +490,7 @@ fmt.Println(route) // the loaded record
 
 ### RoutePattern
 
-Create an instance: `route_pattern := client.RoutePattern(nil)`
+Create an instance: `routePattern := client.RoutePattern(nil)`
 
 #### Operations
 
@@ -501,11 +501,11 @@ Create an instance: `route_pattern := client.RoutePattern(nil)`
 #### Example: Load
 
 ```go
-route_pattern, err := client.RoutePattern(nil).Load(nil, nil)
+routePattern, err := client.RoutePattern(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(route_pattern) // the loaded record
+fmt.Println(routePattern) // the loaded record
 ```
 
 

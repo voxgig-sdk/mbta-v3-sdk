@@ -136,6 +136,7 @@ same parameters as `Direct()`.
 
 ```go
 alert := client.Alert(nil)
+fmt.Println(alert.GetName()) // "alert"
 ```
 
 ### Operations
@@ -146,6 +147,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Alert(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -176,6 +181,7 @@ Return the entity name.
 
 ```go
 facility := client.Facility(nil)
+fmt.Println(facility.GetName()) // "facility"
 ```
 
 ### Operations
@@ -186,6 +192,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Facility(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -216,6 +226,7 @@ Return the entity name.
 
 ```go
 line := client.Line(nil)
+fmt.Println(line.GetName()) // "line"
 ```
 
 ### Operations
@@ -226,6 +237,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Line(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -256,6 +271,7 @@ Return the entity name.
 
 ```go
 prediction := client.Prediction(nil)
+fmt.Println(prediction.GetName()) // "prediction"
 ```
 
 ### Operations
@@ -266,6 +282,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Prediction(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -296,6 +316,7 @@ Return the entity name.
 
 ```go
 route := client.Route(nil)
+fmt.Println(route.GetName()) // "route"
 ```
 
 ### Operations
@@ -306,6 +327,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Route(nil).Load(map[string]any{"id": "route_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -335,7 +360,8 @@ Return the entity name.
 ## RoutePatternEntity
 
 ```go
-route_pattern := client.RoutePattern(nil)
+routePattern := client.RoutePattern(nil)
+fmt.Println(routePattern.GetName()) // "route_pattern"
 ```
 
 ### Operations
@@ -346,6 +372,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.RoutePattern(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -376,6 +406,7 @@ Return the entity name.
 
 ```go
 schedule := client.Schedule(nil)
+fmt.Println(schedule.GetName()) // "schedule"
 ```
 
 ### Operations
@@ -386,6 +417,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Schedule(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -416,6 +451,7 @@ Return the entity name.
 
 ```go
 service := client.Service(nil)
+fmt.Println(service.GetName()) // "service"
 ```
 
 ### Operations
@@ -426,6 +462,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Service(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -456,6 +496,7 @@ Return the entity name.
 
 ```go
 shape := client.Shape(nil)
+fmt.Println(shape.GetName()) // "shape"
 ```
 
 ### Operations
@@ -466,6 +507,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Shape(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -496,6 +541,7 @@ Return the entity name.
 
 ```go
 stop := client.Stop(nil)
+fmt.Println(stop.GetName()) // "stop"
 ```
 
 ### Operations
@@ -506,6 +552,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Stop(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -536,6 +586,7 @@ Return the entity name.
 
 ```go
 trip := client.Trip(nil)
+fmt.Println(trip.GetName()) // "trip"
 ```
 
 ### Operations
@@ -546,6 +597,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Trip(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -576,6 +631,7 @@ Return the entity name.
 
 ```go
 vehicle := client.Vehicle(nil)
+fmt.Println(vehicle.GetName()) // "vehicle"
 ```
 
 ### Operations
@@ -586,6 +642,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Vehicle(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

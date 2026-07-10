@@ -46,7 +46,7 @@ type Route struct {
 
 // RouteLoadMatch is the typed request payload for Route.LoadTyped.
 type RouteLoadMatch struct {
-	Id string `json:"id"`
+	Id *string `json:"id,omitempty"`
 }
 
 // RoutePattern is the typed data model for the route_pattern entity.

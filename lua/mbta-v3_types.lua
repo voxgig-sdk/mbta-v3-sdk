@@ -25,7 +25,7 @@
 ---@class Route
 
 ---@class RouteLoadMatch
----@field id string
+---@field id? string
 
 ---@class RoutePattern
 
