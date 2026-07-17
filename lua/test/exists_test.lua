@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- MbtaV3 SDK exists test
 
 local sdk = require("mbta-v3_sdk")
 

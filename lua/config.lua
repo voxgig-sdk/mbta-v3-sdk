@@ -1,4 +1,4 @@
--- ProjectName SDK configuration
+-- MbtaV3 SDK configuration
 
 local function make_config()
   return {
