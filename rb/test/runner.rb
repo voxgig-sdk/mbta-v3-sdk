@@ -23,8 +23,8 @@ module MbtaV3TestRunner
   end
 
   def self.env_override(m)
-    live = getenv("MBTAV3_TEST_LIVE")
-    override = getenv("MBTAV3_TEST_OVERRIDE")
+    live = getenv("MBTA_V3_TEST_LIVE")
+    override = getenv("MBTA_V3_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module MbtaV3TestRunner
       end
     end
 
-    explain = getenv("MBTAV3_TEST_EXPLAIN")
-    m["MBTAV3_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("MBTA_V3_TEST_EXPLAIN")
+    m["MBTA_V3_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

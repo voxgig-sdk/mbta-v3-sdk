@@ -60,16 +60,16 @@ function service_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["MBTAV__TEST_SERVICE_ENTID"] = {},
-    ["MBTAV__TEST_LIVE"] = "FALSE",
-    ["MBTAV__APIKEY"] = "NONE",
+    ["MBTA_V3_TEST_SERVICE_ENTID"] = {},
+    ["MBTA_V3_TEST_LIVE"] = "FALSE",
+    ["MBTA_V3_APIKEY"] = "NONE",
   })
 
-  local live = env["MBTAV__TEST_LIVE"] == "TRUE"
+  local live = env["MBTA_V3_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["MBTAV__APIKEY"],
+      apikey = env["MBTA_V3_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

@@ -123,7 +123,8 @@ Create a mock client for unit testing — no server required:
 const client = MbtaV3SDK.test()
 
 const alert = await client.Alert().load()
-// alert is a bare entity populated with mock response data
+// alert is the entity, populated with mock response data
+// — call alert.data() for the record itself
 console.log(alert)
 ```
 

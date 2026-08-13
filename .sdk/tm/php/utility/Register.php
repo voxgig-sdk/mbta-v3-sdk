@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ MbtaV3Utility::setRegistrar(function (MbtaV3Utility $u): void {
     $u->prepare_params = [MbtaV3PrepareParams::class, 'call'];
     $u->prepare_path = [MbtaV3PreparePath::class, 'call'];
     $u->prepare_query = [MbtaV3PrepareQuery::class, 'call'];
+    $u->graphql_body = [MbtaV3Graphql::class, 'body'];
+    $u->graphql_errors = [MbtaV3Graphql::class, 'errors'];
     $u->result_basic = [MbtaV3ResultBasic::class, 'call'];
     $u->result_body = [MbtaV3ResultBody::class, 'call'];
     $u->result_headers = [MbtaV3ResultHeaders::class, 'call'];

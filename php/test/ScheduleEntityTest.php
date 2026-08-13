@@ -33,7 +33,7 @@ class ScheduleEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set MBTAV__TEST_SCHEDULE_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set MBTA_V3_TEST_SCHEDULE_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -77,39 +77,39 @@ function schedule_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("MBTAV__TEST_SCHEDULE_ENTID");
+    $entid_env_raw = getenv("MBTA_V3_TEST_SCHEDULE_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "MBTAV__TEST_SCHEDULE_ENTID" => $idmap,
-        "MBTAV__TEST_LIVE" => "FALSE",
-        "MBTAV__TEST_EXPLAIN" => "FALSE",
-        "MBTAV__APIKEY" => "NONE",
+        "MBTA_V3_TEST_SCHEDULE_ENTID" => $idmap,
+        "MBTA_V3_TEST_LIVE" => "FALSE",
+        "MBTA_V3_TEST_EXPLAIN" => "FALSE",
+        "MBTA_V3_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["MBTAV__TEST_SCHEDULE_ENTID"]);
+        $env["MBTA_V3_TEST_SCHEDULE_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["MBTAV__TEST_LIVE"] === "TRUE") {
+    if ($env["MBTA_V3_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["MBTAV__APIKEY"],
+                "apikey" => $env["MBTA_V3_APIKEY"],
             ],
             $extra ?? [],
         ]);
         $client = new MbtaV3SDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["MBTAV__TEST_LIVE"] === "TRUE";
+    $live = $env["MBTA_V3_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["MBTAV__TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["MBTA_V3_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

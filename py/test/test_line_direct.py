@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from mbtav3_sdk.utility.voxgig_struct import voxgig_struct as vs
 from mbtav3_sdk import MbtaV3SDK
-from core import helpers
+from mbtav3_sdk.core import helpers
 from test import runner
 
 
@@ -56,16 +56,16 @@ def _line_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "MBTAV__TEST_LINE_ENTID": {},
-        "MBTAV__TEST_LIVE": "FALSE",
-        "MBTAV__APIKEY": "NONE",
+        "MBTA_V3_TEST_LINE_ENTID": {},
+        "MBTA_V3_TEST_LIVE": "FALSE",
+        "MBTA_V3_APIKEY": "NONE",
     })
 
-    live = env.get("MBTAV__TEST_LIVE") == "TRUE"
+    live = env.get("MBTA_V3_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("MBTAV__APIKEY"),
+            "apikey": env.get("MBTA_V3_APIKEY"),
         }
         client = MbtaV3SDK(merged_opts)
         return {

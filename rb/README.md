@@ -36,7 +36,7 @@ client = MbtaV3SDK.new({
 
 ```ruby
 begin
-  # load returns the bare Alert record (raises on error).
+  # load returns the ENTITY — call data_get for the Alert record (raises on error).
   alert = client.Alert.load()
   puts alert
 rescue => err
@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = MbtaV3SDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 alert = client.Alert.load()
 puts alert
 ```
@@ -371,7 +372,7 @@ Create an instance: `alert = client.Alert`
 #### Example: Load
 
 ```ruby
-# load returns the bare Alert record (raises on error).
+# load returns the ENTITY — call data_get for the Alert record (raises on error).
 alert = client.Alert.load()
 ```
 
@@ -389,7 +390,7 @@ Create an instance: `facility = client.Facility`
 #### Example: Load
 
 ```ruby
-# load returns the bare Facility record (raises on error).
+# load returns the ENTITY — call data_get for the Facility record (raises on error).
 facility = client.Facility.load()
 ```
 
@@ -407,7 +408,7 @@ Create an instance: `line = client.Line`
 #### Example: Load
 
 ```ruby
-# load returns the bare Line record (raises on error).
+# load returns the ENTITY — call data_get for the Line record (raises on error).
 line = client.Line.load()
 ```
 
@@ -425,7 +426,7 @@ Create an instance: `prediction = client.Prediction`
 #### Example: Load
 
 ```ruby
-# load returns the bare Prediction record (raises on error).
+# load returns the ENTITY — call data_get for the Prediction record (raises on error).
 prediction = client.Prediction.load()
 ```
 
@@ -443,7 +444,7 @@ Create an instance: `route = client.Route`
 #### Example: Load
 
 ```ruby
-# load returns the bare Route record (raises on error).
+# load returns the ENTITY — call data_get for the Route record (raises on error).
 route = client.Route.load({ "id" => "route_id" })
 ```
 
@@ -461,7 +462,7 @@ Create an instance: `route_pattern = client.RoutePattern`
 #### Example: Load
 
 ```ruby
-# load returns the bare RoutePattern record (raises on error).
+# load returns the ENTITY — call data_get for the RoutePattern record (raises on error).
 route_pattern = client.RoutePattern.load()
 ```
 
@@ -479,7 +480,7 @@ Create an instance: `schedule = client.Schedule`
 #### Example: Load
 
 ```ruby
-# load returns the bare Schedule record (raises on error).
+# load returns the ENTITY — call data_get for the Schedule record (raises on error).
 schedule = client.Schedule.load()
 ```
 
@@ -497,7 +498,7 @@ Create an instance: `service = client.Service`
 #### Example: Load
 
 ```ruby
-# load returns the bare Service record (raises on error).
+# load returns the ENTITY — call data_get for the Service record (raises on error).
 service = client.Service.load()
 ```
 
@@ -515,7 +516,7 @@ Create an instance: `shape = client.Shape`
 #### Example: Load
 
 ```ruby
-# load returns the bare Shape record (raises on error).
+# load returns the ENTITY — call data_get for the Shape record (raises on error).
 shape = client.Shape.load()
 ```
 
@@ -533,7 +534,7 @@ Create an instance: `stop = client.Stop`
 #### Example: Load
 
 ```ruby
-# load returns the bare Stop record (raises on error).
+# load returns the ENTITY — call data_get for the Stop record (raises on error).
 stop = client.Stop.load()
 ```
 
@@ -551,7 +552,7 @@ Create an instance: `trip = client.Trip`
 #### Example: Load
 
 ```ruby
-# load returns the bare Trip record (raises on error).
+# load returns the ENTITY — call data_get for the Trip record (raises on error).
 trip = client.Trip.load()
 ```
 
@@ -569,7 +570,7 @@ Create an instance: `vehicle = client.Vehicle`
 #### Example: Load
 
 ```ruby
-# load returns the bare Vehicle record (raises on error).
+# load returns the ENTITY — call data_get for the Vehicle record (raises on error).
 vehicle = client.Vehicle.load()
 ```
 

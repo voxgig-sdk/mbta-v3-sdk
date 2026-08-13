@@ -43,8 +43,8 @@ class MbtaV3TestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('MBTAV3_TEST_LIVE');
-        $override = self::getenv('MBTAV3_TEST_OVERRIDE');
+        $live = self::getenv('MBTA_V3_TEST_LIVE');
+        $override = self::getenv('MBTA_V3_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class MbtaV3TestRunner
             }
         }
 
-        $explain = self::getenv('MBTAV3_TEST_EXPLAIN');
+        $explain = self::getenv('MBTA_V3_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['MBTAV3_TEST_EXPLAIN'] = $explain;
+            $m['MBTA_V3_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

@@ -96,6 +96,7 @@ class MbtaV3Config
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/alerts',
                   'parts' => [
@@ -162,6 +163,7 @@ class MbtaV3Config
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/facilities',
                   'parts' => [
@@ -218,6 +220,7 @@ class MbtaV3Config
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/lines',
                   'parts' => [
@@ -305,6 +308,7 @@ class MbtaV3Config
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/predictions',
                   'parts' => [
@@ -389,6 +393,7 @@ class MbtaV3Config
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/routes',
                   'parts' => [
@@ -434,6 +439,7 @@ class MbtaV3Config
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/routes/{id}',
                   'parts' => [
@@ -506,6 +512,7 @@ class MbtaV3Config
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/route_patterns',
                   'parts' => [
@@ -619,6 +626,7 @@ class MbtaV3Config
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/schedules',
                   'parts' => [
@@ -689,6 +697,7 @@ class MbtaV3Config
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/services',
                   'parts' => [
@@ -753,6 +762,7 @@ class MbtaV3Config
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/shapes',
                   'parts' => [
@@ -857,6 +867,7 @@ class MbtaV3Config
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/stops',
                   'parts' => [
@@ -958,6 +969,7 @@ class MbtaV3Config
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/trips',
                   'parts' => [
@@ -1058,6 +1070,7 @@ class MbtaV3Config
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/vehicles',
                   'parts' => [

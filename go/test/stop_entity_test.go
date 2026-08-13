@@ -44,7 +44,7 @@ func TestStopEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set MBTAV__TEST_STOP_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set MBTA_V3_TEST_STOP_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -110,38 +110,38 @@ func stopBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("MBTAV__TEST_STOP_ENTID")
+	entidEnvRaw := os.Getenv("MBTA_V3_TEST_STOP_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"MBTAV__TEST_STOP_ENTID": idmap,
-		"MBTAV__TEST_LIVE":      "FALSE",
-		"MBTAV__TEST_EXPLAIN":   "FALSE",
-		"MBTAV__APIKEY":         "NONE",
+		"MBTA_V3_TEST_STOP_ENTID": idmap,
+		"MBTA_V3_TEST_LIVE":      "FALSE",
+		"MBTA_V3_TEST_EXPLAIN":   "FALSE",
+		"MBTA_V3_APIKEY":         "NONE",
 	})
 
-	idmapResolved := core.ToMapAny(env["MBTAV__TEST_STOP_ENTID"])
+	idmapResolved := core.ToMapAny(env["MBTA_V3_TEST_STOP_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["MBTAV__TEST_LIVE"] == "TRUE" {
+	if env["MBTA_V3_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["MBTAV__APIKEY"],
+				"apikey": env["MBTA_V3_APIKEY"],
 			},
 			extra,
 		})
 		client = sdk.NewMbtaV3SDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["MBTAV__TEST_LIVE"] == "TRUE"
+	live := env["MBTA_V3_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["MBTAV__TEST_EXPLAIN"] == "TRUE",
+		explain:       env["MBTA_V3_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

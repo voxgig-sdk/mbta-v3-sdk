@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ MbtaV3Utility.registrar = ->(u) {
   u.prepare_params = MbtaV3Utilities::PrepareParams
   u.prepare_path = MbtaV3Utilities::PreparePath
   u.prepare_query = MbtaV3Utilities::PrepareQuery
+  u.graphql_body = MbtaV3Utilities::GraphqlBody
+  u.graphql_errors = MbtaV3Utilities::GraphqlErrors
   u.result_basic = MbtaV3Utilities::ResultBasic
   u.result_body = MbtaV3Utilities::ResultBody
   u.result_headers = MbtaV3Utilities::ResultHeaders

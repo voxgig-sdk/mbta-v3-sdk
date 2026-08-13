@@ -65,16 +65,16 @@ function alert_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "MBTAV__TEST_ALERT_ENTID" => [],
-        "MBTAV__TEST_LIVE" => "FALSE",
-        "MBTAV__APIKEY" => "NONE",
+        "MBTA_V3_TEST_ALERT_ENTID" => [],
+        "MBTA_V3_TEST_LIVE" => "FALSE",
+        "MBTA_V3_APIKEY" => "NONE",
     ]);
 
-    $live = $env["MBTAV__TEST_LIVE"] === "TRUE";
+    $live = $env["MBTA_V3_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["MBTAV__APIKEY"],
+            "apikey" => $env["MBTA_V3_APIKEY"],
         ];
         $client = new MbtaV3SDK($merged_opts);
         return [

@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# MbtaV3 SDK exists test
 
 import pytest
 from mbtav3_sdk import MbtaV3SDK

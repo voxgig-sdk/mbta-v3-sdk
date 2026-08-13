@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = MbtaV3SDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = MbtaV3SDK.test({
+  entity: {
+    alert: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const alert = await client.Alert().load()
-// alert is a bare Alert populated with mock data
+// alert is the Alert entity, populated with mock data
+// — call alert.data() for the record itself
 console.log(alert)
 ```
 
@@ -200,7 +209,7 @@ $client = new MbtaV3SDK([
 ]);
 
 
-// Load a specific alert (returns the bare record; throws on error)
+// Load a specific alert (returns the ENTITY; call data_get() for the record; throws on error)
 $alert = $client->Alert()->load();
 print_r($alert);
 ```
@@ -232,7 +241,7 @@ client = MbtaV3SDK.new({
 })
 
 
-# Load a specific alert (returns the bare record; raises on error)
+# Load a specific alert (returns the ENTITY; call data_get for the record)
 alert = client.Alert.load()
 puts alert
 ```
@@ -368,6 +377,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://www.mbta.com/developers/v3-api](https://www.mbta.com/developers/v3-api)
 

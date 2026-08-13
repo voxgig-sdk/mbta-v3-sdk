@@ -19,11 +19,15 @@ import {
 describe('PredictionDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MBTAV3_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MBTAV3_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MBTA_V3_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MBTA_V3_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new MbtaV3SDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -72,19 +76,19 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'MBTAV__TEST_PREDICTION_ENTID': {},
-    'MBTAV__TEST_LIVE': 'FALSE',
-    'MBTAV__APIKEY': 'NONE',
+    'MBTA_V3_TEST_PREDICTION_ENTID': {},
+    'MBTA_V3_TEST_LIVE': 'FALSE',
+    'MBTA_V3_APIKEY': 'NONE',
   })
 
-  const live = 'TRUE' === env.MBTAV__TEST_LIVE
+  const live = 'TRUE' === env.MBTA_V3_TEST_LIVE
 
   if (live) {
     const client = new MbtaV3SDK({
-      apikey: env.MBTAV__APIKEY,
+      apikey: env.MBTA_V3_APIKEY,
     })
 
-    let idmap: any = env['MBTAV__TEST_PREDICTION_ENTID']
+    let idmap: any = env['MBTA_V3_TEST_PREDICTION_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

@@ -37,7 +37,7 @@ $client = new MbtaV3SDK([
 
 ```php
 try {
-    // load() returns the bare Alert record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Alert record (throws on error).
     $alert = $client->Alert()->load();
     print_r($alert);
 } catch (\Throwable $err) {
@@ -125,7 +125,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = MbtaV3SDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $alert = $client->Alert()->load();
 print_r($alert);
 ```
@@ -237,7 +238,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -381,7 +382,7 @@ Create an instance: `$alert = $client->Alert();`
 #### Example: Load
 
 ```php
-// load() returns the bare Alert record (throws on error).
+// load() returns the ENTITY — call data_get() for the Alert record (throws on error).
 $alert = $client->Alert()->load();
 ```
 
@@ -399,7 +400,7 @@ Create an instance: `$facility = $client->Facility();`
 #### Example: Load
 
 ```php
-// load() returns the bare Facility record (throws on error).
+// load() returns the ENTITY — call data_get() for the Facility record (throws on error).
 $facility = $client->Facility()->load();
 ```
 
@@ -417,7 +418,7 @@ Create an instance: `$line = $client->Line();`
 #### Example: Load
 
 ```php
-// load() returns the bare Line record (throws on error).
+// load() returns the ENTITY — call data_get() for the Line record (throws on error).
 $line = $client->Line()->load();
 ```
 
@@ -435,7 +436,7 @@ Create an instance: `$prediction = $client->Prediction();`
 #### Example: Load
 
 ```php
-// load() returns the bare Prediction record (throws on error).
+// load() returns the ENTITY — call data_get() for the Prediction record (throws on error).
 $prediction = $client->Prediction()->load();
 ```
 
@@ -453,7 +454,7 @@ Create an instance: `$route = $client->Route();`
 #### Example: Load
 
 ```php
-// load() returns the bare Route record (throws on error).
+// load() returns the ENTITY — call data_get() for the Route record (throws on error).
 $route = $client->Route()->load(["id" => "route_id"]);
 ```
 
@@ -471,7 +472,7 @@ Create an instance: `$route_pattern = $client->RoutePattern();`
 #### Example: Load
 
 ```php
-// load() returns the bare RoutePattern record (throws on error).
+// load() returns the ENTITY — call data_get() for the RoutePattern record (throws on error).
 $route_pattern = $client->RoutePattern()->load();
 ```
 
@@ -489,7 +490,7 @@ Create an instance: `$schedule = $client->Schedule();`
 #### Example: Load
 
 ```php
-// load() returns the bare Schedule record (throws on error).
+// load() returns the ENTITY — call data_get() for the Schedule record (throws on error).
 $schedule = $client->Schedule()->load();
 ```
 
@@ -507,7 +508,7 @@ Create an instance: `$service = $client->Service();`
 #### Example: Load
 
 ```php
-// load() returns the bare Service record (throws on error).
+// load() returns the ENTITY — call data_get() for the Service record (throws on error).
 $service = $client->Service()->load();
 ```
 
@@ -525,7 +526,7 @@ Create an instance: `$shape = $client->Shape();`
 #### Example: Load
 
 ```php
-// load() returns the bare Shape record (throws on error).
+// load() returns the ENTITY — call data_get() for the Shape record (throws on error).
 $shape = $client->Shape()->load();
 ```
 
@@ -543,7 +544,7 @@ Create an instance: `$stop = $client->Stop();`
 #### Example: Load
 
 ```php
-// load() returns the bare Stop record (throws on error).
+// load() returns the ENTITY — call data_get() for the Stop record (throws on error).
 $stop = $client->Stop()->load();
 ```
 
@@ -561,7 +562,7 @@ Create an instance: `$trip = $client->Trip();`
 #### Example: Load
 
 ```php
-// load() returns the bare Trip record (throws on error).
+// load() returns the ENTITY — call data_get() for the Trip record (throws on error).
 $trip = $client->Trip()->load();
 ```
 
@@ -579,7 +580,7 @@ Create an instance: `$vehicle = $client->Vehicle();`
 #### Example: Load
 
 ```php
-// load() returns the bare Vehicle record (throws on error).
+// load() returns the ENTITY — call data_get() for the Vehicle record (throws on error).
 $vehicle = $client->Vehicle()->load();
 ```
 

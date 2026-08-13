@@ -59,16 +59,16 @@ def route_pattern_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "MBTAV__TEST_ROUTE_PATTERN_ENTID" => {},
-    "MBTAV__TEST_LIVE" => "FALSE",
-    "MBTAV__APIKEY" => "NONE",
+    "MBTA_V3_TEST_ROUTE_PATTERN_ENTID" => {},
+    "MBTA_V3_TEST_LIVE" => "FALSE",
+    "MBTA_V3_APIKEY" => "NONE",
   })
 
-  live = env["MBTAV__TEST_LIVE"] == "TRUE"
+  live = env["MBTA_V3_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["MBTAV__APIKEY"],
+      "apikey" => env["MBTA_V3_APIKEY"],
     }
     client = MbtaV3SDK.new(merged_opts)
     return {

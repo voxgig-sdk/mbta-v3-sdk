@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import MbtaV3SDK
-from core.error import MbtaV3Error
-from core.result import MbtaV3Result
-from core.response import MbtaV3Response
-from core.spec import MbtaV3Spec
-from feature.base_feature import MbtaV3BaseFeature
+from projectname_sdk.core.error import MbtaV3Error
+from projectname_sdk.core.result import MbtaV3Result
+from projectname_sdk.core.response import MbtaV3Response
+from projectname_sdk.core.spec import MbtaV3Spec
+from projectname_sdk.feature.base_feature import MbtaV3BaseFeature
 
 
 def _client():

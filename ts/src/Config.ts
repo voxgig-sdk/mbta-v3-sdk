@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'MbtaV3',
   }
 
 
@@ -143,6 +143,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/alerts",
               "parts": [
@@ -209,6 +210,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/facilities",
               "parts": [
@@ -265,6 +267,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/lines",
               "parts": [
@@ -352,6 +355,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/predictions",
               "parts": [
@@ -436,6 +440,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/routes",
               "parts": [
@@ -481,6 +486,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/routes/{id}",
               "parts": [
@@ -553,6 +559,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/route_patterns",
               "parts": [
@@ -666,6 +673,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/schedules",
               "parts": [
@@ -736,6 +744,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/services",
               "parts": [
@@ -800,6 +809,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/shapes",
               "parts": [
@@ -904,6 +914,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/stops",
               "parts": [
@@ -1005,6 +1016,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/trips",
               "parts": [
@@ -1105,6 +1117,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/vehicles",
               "parts": [

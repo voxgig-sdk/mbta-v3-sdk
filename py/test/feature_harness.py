@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import MbtaV3Control
-from core.error import MbtaV3Error
-from core.result import MbtaV3Result
-from core.spec import MbtaV3Spec
+from mbtav3_sdk.config import make_config
+from mbtav3_sdk.features import _make_feature
+from mbtav3_sdk.core.control import MbtaV3Control
+from mbtav3_sdk.core.error import MbtaV3Error
+from mbtav3_sdk.core.result import MbtaV3Result
+from mbtav3_sdk.core.spec import MbtaV3Spec
 
 
 # True when this SDK was generated with the named feature.
