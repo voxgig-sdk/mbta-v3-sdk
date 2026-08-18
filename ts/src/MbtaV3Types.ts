@@ -33,7 +33,7 @@ export interface Route {
 }
 
 export interface RouteLoadMatch {
-  id?: string
+  id: string
 }
 
 export interface RoutePattern {

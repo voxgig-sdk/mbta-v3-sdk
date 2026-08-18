@@ -52,7 +52,7 @@ class Route(TypedDict):
     pass
 
 
-class RouteLoadMatch(TypedDict, total=False):
+class RouteLoadMatch(TypedDict):
     id: str
 
 

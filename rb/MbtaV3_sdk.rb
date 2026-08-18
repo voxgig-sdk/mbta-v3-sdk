@@ -28,7 +28,7 @@ class MbtaV3SDK
     utility = MbtaV3Utility.new
     @_utility = utility
 
-    config = MbtaV3Config.make_config
+    config = MbtaV3Config.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

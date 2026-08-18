@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from mbtav3_sdk.config import make_config
+from mbtav3_sdk.config import shared_config
 from mbtav3_sdk.features import _make_feature
 from mbtav3_sdk.core.control import MbtaV3Control
 from mbtav3_sdk.core.error import MbtaV3Error
@@ -24,7 +24,7 @@ from mbtav3_sdk.core.spec import MbtaV3Spec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

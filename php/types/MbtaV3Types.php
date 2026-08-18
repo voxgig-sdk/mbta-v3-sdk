@@ -60,7 +60,7 @@ class Route
 /** Request payload for Route#load. */
 class RouteLoadMatch
 {
-    public ?string $id = null;
+    public string $id;
 }
 
 /** RoutePattern entity data model. */

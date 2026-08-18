@@ -40,7 +40,7 @@ class MbtaV3SDK
         $utility = new MbtaV3Utility();
         $this->_utility = $utility;
 
-        $config = MbtaV3Config::make_config();
+        $config = MbtaV3Config::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
