@@ -1,0 +1,14 @@
+# Entity Models
+
+@"alert.aon"
+@"facility.aon"
+@"line.aon"
+@"prediction.aon"
+@"route.aon"
+@"route_pattern.aon"
+@"schedule.aon"
+@"service.aon"
+@"shape.aon"
+@"stop.aon"
+@"trip.aon"
+@"vehicle.aon"

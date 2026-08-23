@@ -33,6 +33,9 @@ class MbtaV3Config
         return [
             "main" => [
                 "name" => "MbtaV3",
+                "slug" => "mbta-v3",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [

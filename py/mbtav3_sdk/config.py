@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "MbtaV3",
+            "slug": "mbta-v3",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
