@@ -46,6 +46,7 @@ type PredictionLoadMatch struct {
 
 // Route is the typed data model for the route entity.
 type Route struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // RouteLoadMatch is the typed request payload for Route.LoadTyped.

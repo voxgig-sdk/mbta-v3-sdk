@@ -41,9 +41,13 @@ class RouteEntityTest < Minitest::Test
 
     # LOAD
     route_ref01_ent = client.Route(nil)
-    route_ref01_match_dt0 = {}
+    route_ref01_match_dt0 = {
+      "id" => route_ref01_data["id"],
+    }
     route_ref01_data_dt0_loaded = route_ref01_ent.load(route_ref01_match_dt0, nil)
-    assert !route_ref01_data_dt0_loaded.nil?
+    route_ref01_data_dt0_load_result = Helpers.to_map(route_ref01_data_dt0_loaded.respond_to?(:data_get) ? route_ref01_data_dt0_loaded.data_get : route_ref01_data_dt0_loaded)
+    assert !route_ref01_data_dt0_load_result.nil?
+    assert_equal route_ref01_data_dt0_load_result["id"], route_ref01_data["id"]
 
   end
 end

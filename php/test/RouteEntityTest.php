@@ -48,9 +48,13 @@ class RouteEntityTest extends TestCase
 
         // LOAD
         $route_ref01_ent = $client->Route(null);
-        $route_ref01_match_dt0 = [];
+        $route_ref01_match_dt0 = [
+            "id" => $route_ref01_data["id"],
+        ];
         $route_ref01_data_dt0_loaded = $route_ref01_ent->load($route_ref01_match_dt0, null);
-        $this->assertNotNull($route_ref01_data_dt0_loaded);
+        $route_ref01_data_dt0_load_result = Helpers::to_map(is_object($route_ref01_data_dt0_loaded) && method_exists($route_ref01_data_dt0_loaded, 'data_get') ? $route_ref01_data_dt0_loaded->data_get() : $route_ref01_data_dt0_loaded);
+        $this->assertNotNull($route_ref01_data_dt0_load_result);
+        $this->assertEquals($route_ref01_data_dt0_load_result["id"], $route_ref01_data["id"]);
 
     }
 }

@@ -30,6 +30,7 @@ export interface PredictionLoadMatch {
 }
 
 export interface Route {
+  id?: string
 }
 
 export interface RouteLoadMatch {

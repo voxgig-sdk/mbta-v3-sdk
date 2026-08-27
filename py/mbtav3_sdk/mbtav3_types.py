@@ -48,8 +48,8 @@ class PredictionLoadMatch(TypedDict):
     pass
 
 
-class Route(TypedDict):
-    pass
+class Route(TypedDict, total=False):
+    id: str
 
 
 class RouteLoadMatch(TypedDict):

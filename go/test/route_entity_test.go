@@ -61,13 +61,19 @@ func TestRouteEntity(t *testing.T) {
 
 		// LOAD
 		routeRef01Ent := client.Route(nil)
-		routeRef01MatchDt0 := map[string]any{}
+		routeRef01MatchDt0 := map[string]any{
+			"id": routeRef01Data["id"],
+		}
 		routeRef01DataDt0Loaded, err := routeRef01Ent.Load(routeRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if routeRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		routeRef01DataDt0LoadResult := core.ToMapAny(entityData(routeRef01DataDt0Loaded))
+		if routeRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if routeRef01DataDt0LoadResult["id"] != routeRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

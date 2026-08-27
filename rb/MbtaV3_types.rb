@@ -41,8 +41,13 @@ class PredictionLoadMatch
 end
 
 # Route entity data model.
-class Route
-end
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+Route = Struct.new(
+  :id,
+  keyword_init: true
+)
 
 # Request payload for Route#load.
 #

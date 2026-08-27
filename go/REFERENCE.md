@@ -319,6 +319,12 @@ route := client.Route(nil)
 fmt.Println(route.GetName()) // "route"
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`

@@ -55,6 +55,7 @@ class PredictionLoadMatch
 /** Route entity data model. */
 class Route
 {
+    public ?string $id = null;
 }
 
 /** Request payload for Route#load. */

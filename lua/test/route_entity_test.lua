@@ -44,10 +44,14 @@ describe("RouteEntity", function()
 
     -- LOAD
     local route_ref01_ent = client:Route(nil)
-    local route_ref01_match_dt0 = {}
+    local route_ref01_match_dt0 = {
+      id = route_ref01_data["id"],
+    }
     local route_ref01_data_dt0_loaded, err = route_ref01_ent:load(route_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(route_ref01_data_dt0_loaded)
+    local route_ref01_data_dt0_load_result = helpers.to_map(type(route_ref01_data_dt0_loaded) == 'table' and route_ref01_data_dt0_loaded.data_get and route_ref01_data_dt0_loaded:data_get() or route_ref01_data_dt0_loaded)
+    assert.is_not_nil(route_ref01_data_dt0_load_result)
+    assert.are.equal(route_ref01_data_dt0_load_result["id"], route_ref01_data["id"])
 
   end)
 end)

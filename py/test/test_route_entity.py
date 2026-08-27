@@ -48,9 +48,13 @@ class TestRouteEntity:
 
         # LOAD
         route_ref01_ent = client.Route(None)
-        route_ref01_match_dt0 = {}
+        route_ref01_match_dt0 = {
+            "id": route_ref01_data["id"],
+        }
         route_ref01_data_dt0_loaded = route_ref01_ent.load(route_ref01_match_dt0, None)
-        assert route_ref01_data_dt0_loaded is not None
+        route_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(route_ref01_data_dt0_loaded))
+        assert route_ref01_data_dt0_load_result is not None
+        assert route_ref01_data_dt0_load_result["id"] == route_ref01_data["id"]
 
 
 

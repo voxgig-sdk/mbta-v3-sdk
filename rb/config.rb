@@ -28,6 +28,7 @@ module MbtaV3Config
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -307,7 +308,12 @@ module MbtaV3Config
           },
         },
         "route" => {
-          "fields" => [],
+          "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+          ],
           "name" => "route",
           "op" => {
             "load" => {

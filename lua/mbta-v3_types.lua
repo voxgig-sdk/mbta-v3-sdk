@@ -23,6 +23,7 @@
 ---@class PredictionLoadMatch
 
 ---@class Route
+---@field id? string
 
 ---@class RouteLoadMatch
 ---@field id string

@@ -62,8 +62,9 @@ describe('RouteEntity', async () => {
     // LOAD
     const route_ref01_ent = client.Route()
     const route_ref01_match_dt0: any = {}
+    route_ref01_match_dt0.id = route_ref01_data.id
     const route_ref01_data_dt0 = (await route_ref01_ent.load(route_ref01_match_dt0)).data()
-    assert(null != route_ref01_data_dt0)
+    assert(route_ref01_data_dt0.id === route_ref01_data.id)
 
 
   })

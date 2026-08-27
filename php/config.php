@@ -42,6 +42,7 @@ class MbtaV3Config
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -321,7 +322,12 @@ class MbtaV3Config
           ],
         ],
         'route' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'route',
           'op' => [
             'load' => [
