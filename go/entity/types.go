@@ -18,6 +18,11 @@ type Alert struct {
 
 // AlertLoadMatch is the typed request payload for Alert.LoadTyped.
 type AlertLoadMatch struct {
+	FilterActivity *string `json:"filter_activity,omitempty"`
+	FilterRoute *string `json:"filter_route,omitempty"`
+	FilterStop *string `json:"filter_stop,omitempty"`
+	Include *string `json:"include,omitempty"`
+	Sort *string `json:"sort,omitempty"`
 }
 
 // Facility is the typed data model for the facility entity.
@@ -26,6 +31,9 @@ type Facility struct {
 
 // FacilityLoadMatch is the typed request payload for Facility.LoadTyped.
 type FacilityLoadMatch struct {
+	FilterStop *string `json:"filter_stop,omitempty"`
+	FilterType *string `json:"filter_type,omitempty"`
+	Include *string `json:"include,omitempty"`
 }
 
 // Line is the typed data model for the line entity.
@@ -34,6 +42,8 @@ type Line struct {
 
 // LineLoadMatch is the typed request payload for Line.LoadTyped.
 type LineLoadMatch struct {
+	FilterId *string `json:"filter_id,omitempty"`
+	Include *string `json:"include,omitempty"`
 }
 
 // Prediction is the typed data model for the prediction entity.
@@ -42,6 +52,12 @@ type Prediction struct {
 
 // PredictionLoadMatch is the typed request payload for Prediction.LoadTyped.
 type PredictionLoadMatch struct {
+	FilterDirectionId *int `json:"filter_direction_id,omitempty"`
+	FilterRoute *string `json:"filter_route,omitempty"`
+	FilterStop *string `json:"filter_stop,omitempty"`
+	FilterTrip *string `json:"filter_trip,omitempty"`
+	Include *string `json:"include,omitempty"`
+	Sort *string `json:"sort,omitempty"`
 }
 
 // Route is the typed data model for the route entity.
@@ -52,6 +68,7 @@ type Route struct {
 // RouteLoadMatch is the typed request payload for Route.LoadTyped.
 type RouteLoadMatch struct {
 	Id string `json:"id"`
+	Include *string `json:"include,omitempty"`
 }
 
 // RoutePattern is the typed data model for the route_pattern entity.
@@ -60,6 +77,10 @@ type RoutePattern struct {
 
 // RoutePatternLoadMatch is the typed request payload for RoutePattern.LoadTyped.
 type RoutePatternLoadMatch struct {
+	FilterDirectionId *int `json:"filter_direction_id,omitempty"`
+	FilterRoute *string `json:"filter_route,omitempty"`
+	FilterStop *string `json:"filter_stop,omitempty"`
+	Include *string `json:"include,omitempty"`
 }
 
 // Schedule is the typed data model for the schedule entity.
@@ -68,6 +89,15 @@ type Schedule struct {
 
 // ScheduleLoadMatch is the typed request payload for Schedule.LoadTyped.
 type ScheduleLoadMatch struct {
+	FilterDate *string `json:"filter_date,omitempty"`
+	FilterDirectionId *int `json:"filter_direction_id,omitempty"`
+	FilterMaxTime *string `json:"filter_max_time,omitempty"`
+	FilterMinTime *string `json:"filter_min_time,omitempty"`
+	FilterRoute *string `json:"filter_route,omitempty"`
+	FilterStop *string `json:"filter_stop,omitempty"`
+	FilterTrip *string `json:"filter_trip,omitempty"`
+	Include *string `json:"include,omitempty"`
+	Sort *string `json:"sort,omitempty"`
 }
 
 // Service is the typed data model for the service entity.
@@ -76,6 +106,9 @@ type Service struct {
 
 // ServiceLoadMatch is the typed request payload for Service.LoadTyped.
 type ServiceLoadMatch struct {
+	FilterId *string `json:"filter_id,omitempty"`
+	FilterRoute *string `json:"filter_route,omitempty"`
+	Include *string `json:"include,omitempty"`
 }
 
 // Shape is the typed data model for the shape entity.
@@ -84,6 +117,9 @@ type Shape struct {
 
 // ShapeLoadMatch is the typed request payload for Shape.LoadTyped.
 type ShapeLoadMatch struct {
+	FilterDirectionId *int `json:"filter_direction_id,omitempty"`
+	FilterRoute *string `json:"filter_route,omitempty"`
+	Include *string `json:"include,omitempty"`
 }
 
 // Stop is the typed data model for the stop entity.
@@ -92,6 +128,14 @@ type Stop struct {
 
 // StopLoadMatch is the typed request payload for Stop.LoadTyped.
 type StopLoadMatch struct {
+	FilterId *string `json:"filter_id,omitempty"`
+	FilterLatitude *float64 `json:"filter_latitude,omitempty"`
+	FilterLocationType *int `json:"filter_location_type,omitempty"`
+	FilterLongitude *float64 `json:"filter_longitude,omitempty"`
+	FilterRadius *float64 `json:"filter_radius,omitempty"`
+	FilterRoute *string `json:"filter_route,omitempty"`
+	Include *string `json:"include,omitempty"`
+	Sort *string `json:"sort,omitempty"`
 }
 
 // Trip is the typed data model for the trip entity.
@@ -100,6 +144,13 @@ type Trip struct {
 
 // TripLoadMatch is the typed request payload for Trip.LoadTyped.
 type TripLoadMatch struct {
+	FilterDirectionId *int `json:"filter_direction_id,omitempty"`
+	FilterId *string `json:"filter_id,omitempty"`
+	FilterName *string `json:"filter_name,omitempty"`
+	FilterRoute *string `json:"filter_route,omitempty"`
+	FilterRoutePattern *string `json:"filter_route_pattern,omitempty"`
+	Include *string `json:"include,omitempty"`
+	Sort *string `json:"sort,omitempty"`
 }
 
 // Vehicle is the typed data model for the vehicle entity.
@@ -108,6 +159,13 @@ type Vehicle struct {
 
 // VehicleLoadMatch is the typed request payload for Vehicle.LoadTyped.
 type VehicleLoadMatch struct {
+	FilterDirectionId *int `json:"filter_direction_id,omitempty"`
+	FilterId *string `json:"filter_id,omitempty"`
+	FilterLabel *string `json:"filter_label,omitempty"`
+	FilterRoute *string `json:"filter_route,omitempty"`
+	FilterTrip *string `json:"filter_trip,omitempty"`
+	Include *string `json:"include,omitempty"`
+	Sort *string `json:"sort,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
