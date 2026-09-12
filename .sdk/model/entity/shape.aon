@@ -37,8 +37,10 @@ main: kit: entity: shape: {
           }
           method: "GET"
           orig: "/shapes"
-          parts: [
-            "shapes"
+          segments: [
+            {
+              lit: "shapes"
+            }
           ]
           select: {
             exist: [

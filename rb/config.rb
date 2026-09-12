@@ -101,8 +101,10 @@ module MbtaV3Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/alerts",
-                  "parts" => [
-                    "alerts",
+                  "segments" => [
+                    {
+                      "lit" => "alerts",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -117,6 +119,9 @@ module MbtaV3Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "alerts",
+                  ],
                 },
               ],
             },
@@ -159,8 +164,10 @@ module MbtaV3Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/facilities",
-                  "parts" => [
-                    "facilities",
+                  "segments" => [
+                    {
+                      "lit" => "facilities",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -173,6 +180,9 @@ module MbtaV3Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "facilities",
+                  ],
                 },
               ],
             },
@@ -209,8 +219,10 @@ module MbtaV3Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lines",
-                  "parts" => [
-                    "lines",
+                  "segments" => [
+                    {
+                      "lit" => "lines",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -222,6 +234,9 @@ module MbtaV3Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "lines",
+                  ],
                 },
               ],
             },
@@ -282,8 +297,10 @@ module MbtaV3Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/predictions",
-                  "parts" => [
-                    "predictions",
+                  "segments" => [
+                    {
+                      "lit" => "predictions",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -299,6 +316,9 @@ module MbtaV3Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "predictions",
+                  ],
                 },
               ],
             },
@@ -314,6 +334,10 @@ module MbtaV3Config
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "route",
           "op" => {
             "load" => {
@@ -359,8 +383,10 @@ module MbtaV3Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/routes",
-                  "parts" => [
-                    "routes",
+                  "segments" => [
+                    {
+                      "lit" => "routes",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -375,6 +401,9 @@ module MbtaV3Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "routes",
+                  ],
                 },
                 {
                   "args" => {
@@ -399,9 +428,13 @@ module MbtaV3Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/routes/{id}",
-                  "parts" => [
-                    "routes",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "routes",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -413,6 +446,10 @@ module MbtaV3Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "routes",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -461,8 +498,10 @@ module MbtaV3Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/route_patterns",
-                  "parts" => [
-                    "route_patterns",
+                  "segments" => [
+                    {
+                      "lit" => "route_patterns",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -476,6 +515,9 @@ module MbtaV3Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "route_patterns",
+                  ],
                 },
               ],
             },
@@ -554,8 +596,10 @@ module MbtaV3Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/schedules",
-                  "parts" => [
-                    "schedules",
+                  "segments" => [
+                    {
+                      "lit" => "schedules",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -574,6 +618,9 @@ module MbtaV3Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "schedules",
+                  ],
                 },
               ],
             },
@@ -616,8 +663,10 @@ module MbtaV3Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/services",
-                  "parts" => [
-                    "services",
+                  "segments" => [
+                    {
+                      "lit" => "services",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -630,6 +679,9 @@ module MbtaV3Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "services",
+                  ],
                 },
               ],
             },
@@ -672,8 +724,10 @@ module MbtaV3Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/shapes",
-                  "parts" => [
-                    "shapes",
+                  "segments" => [
+                    {
+                      "lit" => "shapes",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -686,6 +740,9 @@ module MbtaV3Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "shapes",
+                  ],
                 },
               ],
             },
@@ -758,8 +815,10 @@ module MbtaV3Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/stops",
-                  "parts" => [
-                    "stops",
+                  "segments" => [
+                    {
+                      "lit" => "stops",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -777,6 +836,9 @@ module MbtaV3Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "stops",
+                  ],
                 },
               ],
             },
@@ -843,8 +905,10 @@ module MbtaV3Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/trips",
-                  "parts" => [
-                    "trips",
+                  "segments" => [
+                    {
+                      "lit" => "trips",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -861,6 +925,9 @@ module MbtaV3Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "trips",
+                  ],
                 },
               ],
             },
@@ -927,8 +994,10 @@ module MbtaV3Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/vehicles",
-                  "parts" => [
-                    "vehicles",
+                  "segments" => [
+                    {
+                      "lit" => "vehicles",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -945,6 +1014,9 @@ module MbtaV3Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "vehicles",
+                  ],
                 },
               ],
             },

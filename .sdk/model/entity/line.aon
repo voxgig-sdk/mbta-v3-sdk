@@ -30,8 +30,10 @@ main: kit: entity: line: {
           }
           method: "GET"
           orig: "/lines"
-          parts: [
-            "lines"
+          segments: [
+            {
+              lit: "lines"
+            }
           ]
           select: {
             exist: [

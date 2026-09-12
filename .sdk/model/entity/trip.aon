@@ -65,8 +65,10 @@ main: kit: entity: trip: {
           }
           method: "GET"
           orig: "/trips"
-          parts: [
-            "trips"
+          segments: [
+            {
+              lit: "trips"
+            }
           ]
           select: {
             exist: [

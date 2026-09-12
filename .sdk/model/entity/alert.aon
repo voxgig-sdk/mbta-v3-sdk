@@ -51,8 +51,10 @@ main: kit: entity: alert: {
           }
           method: "GET"
           orig: "/alerts"
-          parts: [
-            "alerts"
+          segments: [
+            {
+              lit: "alerts"
+            }
           ]
           select: {
             exist: [

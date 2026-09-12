@@ -65,8 +65,10 @@ main: kit: entity: route: {
           }
           method: "GET"
           orig: "/routes"
-          parts: [
-            "routes"
+          segments: [
+            {
+              lit: "routes"
+            }
           ]
           select: {
             exist: [
@@ -105,9 +107,13 @@ main: kit: entity: route: {
           }
           method: "GET"
           orig: "/routes/{id}"
-          parts: [
-            "routes"
-            "{id}"
+          segments: [
+            {
+              lit: "routes"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

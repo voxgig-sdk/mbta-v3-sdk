@@ -100,14 +100,22 @@ func route_patternDirectSetup(mockres any) *route_patternDirectSetupResult {
 	env := envOverride(map[string]any{
 		"MBTA_V3_TEST_ROUTE_PATTERN_ENTID": map[string]any{},
 		"MBTA_V3_TEST_LIVE":    "FALSE",
-		"MBTA_V3_APIKEY":       "NONE",
+		"MBTA_V3_APIKEY":       "",
 	})
 
 	live := env["MBTA_V3_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["MBTA_V3_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewMbtaV3SDK(mergedOpts)
 

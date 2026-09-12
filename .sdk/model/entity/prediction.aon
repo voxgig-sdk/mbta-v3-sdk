@@ -58,8 +58,10 @@ main: kit: entity: prediction: {
           }
           method: "GET"
           orig: "/predictions"
-          parts: [
-            "predictions"
+          segments: [
+            {
+              lit: "predictions"
+            }
           ]
           select: {
             exist: [

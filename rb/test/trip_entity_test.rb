@@ -81,7 +81,7 @@ def trip_basic_setup(extra)
     "MBTA_V3_TEST_TRIP_ENTID" => idmap,
     "MBTA_V3_TEST_LIVE" => "FALSE",
     "MBTA_V3_TEST_EXPLAIN" => "FALSE",
-    "MBTA_V3_APIKEY" => "NONE",
+    "MBTA_V3_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -92,6 +92,9 @@ def trip_basic_setup(extra)
 
   if env["MBTA_V3_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["MBTA_V3_APIKEY"],
       },

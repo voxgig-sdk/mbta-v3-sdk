@@ -79,8 +79,10 @@ main: kit: entity: schedule: {
           }
           method: "GET"
           orig: "/schedules"
-          parts: [
-            "schedules"
+          segments: [
+            {
+              lit: "schedules"
+            }
           ]
           select: {
             exist: [

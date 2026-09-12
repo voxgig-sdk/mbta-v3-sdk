@@ -1,6 +1,14 @@
 # MbtaV3 SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -110,8 +118,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/alerts",
-                "parts": [
-                  "alerts",
+                "segments": [
+                  {
+                    "lit": "alerts",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -126,6 +136,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "alerts",
+                ],
               },
             ],
           },
@@ -168,8 +181,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/facilities",
-                "parts": [
-                  "facilities",
+                "segments": [
+                  {
+                    "lit": "facilities",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -182,6 +197,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "facilities",
+                ],
               },
             ],
           },
@@ -218,8 +236,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/lines",
-                "parts": [
-                  "lines",
+                "segments": [
+                  {
+                    "lit": "lines",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -231,6 +251,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "lines",
+                ],
               },
             ],
           },
@@ -291,8 +314,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/predictions",
-                "parts": [
-                  "predictions",
+                "segments": [
+                  {
+                    "lit": "predictions",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -308,6 +333,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "predictions",
+                ],
               },
             ],
           },
@@ -323,6 +351,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "route",
         "op": {
           "load": {
@@ -368,8 +400,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/routes",
-                "parts": [
-                  "routes",
+                "segments": [
+                  {
+                    "lit": "routes",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -384,6 +418,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "routes",
+                ],
               },
               {
                 "args": {
@@ -408,9 +445,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/routes/{id}",
-                "parts": [
-                  "routes",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "routes",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -422,6 +463,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "routes",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -470,8 +515,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/route_patterns",
-                "parts": [
-                  "route_patterns",
+                "segments": [
+                  {
+                    "lit": "route_patterns",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -485,6 +532,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "route_patterns",
+                ],
               },
             ],
           },
@@ -563,8 +613,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/schedules",
-                "parts": [
-                  "schedules",
+                "segments": [
+                  {
+                    "lit": "schedules",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -583,6 +635,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "schedules",
+                ],
               },
             ],
           },
@@ -625,8 +680,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/services",
-                "parts": [
-                  "services",
+                "segments": [
+                  {
+                    "lit": "services",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -639,6 +696,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "services",
+                ],
               },
             ],
           },
@@ -681,8 +741,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/shapes",
-                "parts": [
-                  "shapes",
+                "segments": [
+                  {
+                    "lit": "shapes",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -695,6 +757,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "shapes",
+                ],
               },
             ],
           },
@@ -767,8 +832,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/stops",
-                "parts": [
-                  "stops",
+                "segments": [
+                  {
+                    "lit": "stops",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -786,6 +853,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "stops",
+                ],
               },
             ],
           },
@@ -852,8 +922,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/trips",
-                "parts": [
-                  "trips",
+                "segments": [
+                  {
+                    "lit": "trips",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -870,6 +942,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "trips",
+                ],
               },
             ],
           },
@@ -936,8 +1011,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/vehicles",
-                "parts": [
-                  "vehicles",
+                "segments": [
+                  {
+                    "lit": "vehicles",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -954,6 +1031,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "vehicles",
+                ],
               },
             ],
           },

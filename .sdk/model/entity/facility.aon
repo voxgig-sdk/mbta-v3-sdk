@@ -37,8 +37,10 @@ main: kit: entity: facility: {
           }
           method: "GET"
           orig: "/facilities"
-          parts: [
-            "facilities"
+          segments: [
+            {
+              lit: "facilities"
+            }
           ]
           select: {
             exist: [

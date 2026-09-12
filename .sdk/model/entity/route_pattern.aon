@@ -44,8 +44,10 @@ main: kit: entity: route_pattern: {
           }
           method: "GET"
           orig: "/route_patterns"
-          parts: [
-            "route_patterns"
+          segments: [
+            {
+              lit: "route_patterns"
+            }
           ]
           select: {
             exist: [

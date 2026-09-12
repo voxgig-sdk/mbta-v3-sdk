@@ -72,8 +72,10 @@ main: kit: entity: stop: {
           }
           method: "GET"
           orig: "/stops"
-          parts: [
-            "stops"
+          segments: [
+            {
+              lit: "stops"
+            }
           ]
           select: {
             exist: [

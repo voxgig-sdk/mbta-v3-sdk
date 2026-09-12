@@ -50,7 +50,7 @@ func TestVehicleEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		vehicleRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.vehicle", setup.data)))
+		vehicleRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.vehicle")))
 		var vehicleRef01Data map[string]any
 		if len(vehicleRef01DataRaw) > 0 {
 			vehicleRef01Data = core.ToMapAny(vehicleRef01DataRaw[0][1])
@@ -97,7 +97,7 @@ func vehicleBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"vehicle01", "vehicle02", "vehicle03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -117,7 +117,7 @@ func vehicleBasicSetup(extra map[string]any) *entityTestSetup {
 		"MBTA_V3_TEST_VEHICLE_ENTID": idmap,
 		"MBTA_V3_TEST_LIVE":      "FALSE",
 		"MBTA_V3_TEST_EXPLAIN":   "FALSE",
-		"MBTA_V3_APIKEY":         "NONE",
+		"MBTA_V3_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["MBTA_V3_TEST_VEHICLE_ENTID"])
@@ -126,11 +126,23 @@ func vehicleBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["MBTA_V3_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["MBTA_V3_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewMbtaV3SDK(core.ToMapAny(mergedOpts))
 	}

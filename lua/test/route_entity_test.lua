@@ -95,7 +95,7 @@ function route_basic_setup(extra)
     ["MBTA_V3_TEST_ROUTE_ENTID"] = idmap,
     ["MBTA_V3_TEST_LIVE"] = "FALSE",
     ["MBTA_V3_TEST_EXPLAIN"] = "FALSE",
-    ["MBTA_V3_APIKEY"] = "NONE",
+    ["MBTA_V3_APIKEY"] = "",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -106,6 +106,9 @@ function route_basic_setup(extra)
 
   if env["MBTA_V3_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
+      -- FIRST, so the generated fields below win: sdk-test-control.json's
+      -- test.client.options adds to the live client, it does not redirect it.
+      runner.live_client_options(),
       {
         apikey = env["MBTA_V3_APIKEY"],
       },
