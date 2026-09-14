@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { MbtaV3SDK } from '@voxgig-sdk/mbta-v3'
+import { MbtaV3SDK } from '@voxgig-sdk/mbta-v3-sdk'
 
 const client = new MbtaV3SDK({
   apikey: process.env.MBTA_V3_APIKEY,
@@ -704,7 +704,7 @@ mbta-v3/
 Import the SDK from the package root:
 
 ```ts
-import { MbtaV3SDK } from '@voxgig-sdk/mbta-v3'
+import { MbtaV3SDK } from '@voxgig-sdk/mbta-v3-sdk'
 ```
 
 ### Entity state

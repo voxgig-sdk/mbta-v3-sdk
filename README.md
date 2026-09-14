@@ -105,7 +105,7 @@ local result, err = client:Alert():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/mbta-v3` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/releases) |
+| TypeScript | `@voxgig-sdk/mbta-v3-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/releases) |
 | Python | `voxgig-sdk-mbta-v3` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/releases) |
 | PHP | `voxgig-sdk/mbta-v3` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/mbta-v3-sdk/go` | `go get github.com/voxgig-sdk/mbta-v3-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Alert():load()
 ### TypeScript
 
 ```ts
-import { MbtaV3SDK } from '@voxgig-sdk/mbta-v3'
+import { MbtaV3SDK } from '@voxgig-sdk/mbta-v3-sdk'
 
 const client = new MbtaV3SDK({
   apikey: process.env.MBTA_V3_APIKEY,
