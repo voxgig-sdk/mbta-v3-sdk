@@ -16,5 +16,259 @@
     "schedule": {
       "schedule_ref01": {}
     }
+  },
+  "requests": {
+    "GET /schedules": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSchedules",
+        "parameters": [
+          {
+            "description": "Filter by stop ID (e.g., 17094)",
+            "in": "query",
+            "name": "filter[stop]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by route ID",
+            "in": "query",
+            "name": "filter[route]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by trip ID",
+            "in": "query",
+            "name": "filter[trip]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by direction (0 or 1)",
+            "in": "query",
+            "name": "filter[direction_id]",
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Minimum time filter (HH:MM format, e.g., 14:00)",
+            "in": "query",
+            "name": "filter[min_time]",
+            "schema": {
+              "pattern": "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Maximum time filter (HH:MM format, e.g., 14:30)",
+            "in": "query",
+            "name": "filter[max_time]",
+            "schema": {
+              "pattern": "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by date (YYYY-MM-DD format)",
+            "in": "query",
+            "name": "filter[date]",
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Include related resources (e.g., route, trip, stop, prediction)",
+            "in": "query",
+            "name": "include",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Sort field",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "attributes": {
+                            "properties": {
+                              "arrival_time": {
+                                "format": "date-time",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "departure_time": {
+                                "format": "date-time",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "direction_id": {
+                                "enum": [
+                                  0,
+                                  1
+                                ],
+                                "type": "integer"
+                              },
+                              "drop_off_type": {
+                                "type": "integer"
+                              },
+                              "pickup_type": {
+                                "type": "integer"
+                              },
+                              "stop_headsign": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "stop_sequence": {
+                                "type": "integer"
+                              },
+                              "timepoint": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "relationships": {
+                            "properties": {
+                              "prediction": {
+                                "type": "object"
+                              },
+                              "route": {
+                                "type": "object"
+                              },
+                              "stop": {
+                                "type": "object"
+                              },
+                              "trip": {
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": {
+                            "enum": [
+                              "schedule"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "included": {
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "jsonapi": {
+                      "properties": {
+                        "version": {
+                          "example": "1.0",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "400": {
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "properties": {
+                    "errors": {
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "detail": {
+                            "type": "string"
+                          },
+                          "source": {
+                            "properties": {
+                              "parameter": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "jsonapi": {
+                      "properties": {
+                        "version": {
+                          "example": "1.0",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "description": "API key required for requests. Default rate limit is 1,000 requests per minute with a valid key.",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

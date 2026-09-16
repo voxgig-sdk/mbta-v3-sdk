@@ -16,5 +16,242 @@
     "vehicle": {
       "vehicle_ref01": {}
     }
+  },
+  "requests": {
+    "GET /vehicles": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getVehicles",
+        "parameters": [
+          {
+            "description": "Filter by vehicle ID",
+            "in": "query",
+            "name": "filter[id]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by route ID",
+            "in": "query",
+            "name": "filter[route]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by trip ID",
+            "in": "query",
+            "name": "filter[trip]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by vehicle label",
+            "in": "query",
+            "name": "filter[label]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by direction (0 or 1)",
+            "in": "query",
+            "name": "filter[direction_id]",
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Include related resources (e.g., route, trip, stop)",
+            "in": "query",
+            "name": "include",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Sort field",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "attributes": {
+                            "properties": {
+                              "bearing": {
+                                "nullable": true,
+                                "type": "integer"
+                              },
+                              "current_status": {
+                                "type": "string"
+                              },
+                              "current_stop_sequence": {
+                                "nullable": true,
+                                "type": "integer"
+                              },
+                              "direction_id": {
+                                "enum": [
+                                  0,
+                                  1
+                                ],
+                                "type": "integer"
+                              },
+                              "label": {
+                                "type": "string"
+                              },
+                              "latitude": {
+                                "format": "double",
+                                "type": "number"
+                              },
+                              "longitude": {
+                                "format": "double",
+                                "type": "number"
+                              },
+                              "speed": {
+                                "format": "float",
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "updated_at": {
+                                "format": "date-time",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "relationships": {
+                            "properties": {
+                              "route": {
+                                "type": "object"
+                              },
+                              "stop": {
+                                "type": "object"
+                              },
+                              "trip": {
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": {
+                            "enum": [
+                              "vehicle"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "included": {
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "jsonapi": {
+                      "properties": {
+                        "version": {
+                          "example": "1.0",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "400": {
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "properties": {
+                    "errors": {
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "detail": {
+                            "type": "string"
+                          },
+                          "source": {
+                            "properties": {
+                              "parameter": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "jsonapi": {
+                      "properties": {
+                        "version": {
+                          "example": "1.0",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "description": "API key required for requests. Default rate limit is 1,000 requests per minute with a valid key.",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

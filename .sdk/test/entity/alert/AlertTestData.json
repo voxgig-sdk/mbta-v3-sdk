@@ -16,5 +16,286 @@
     "alert": {
       "alert_ref01": {}
     }
+  },
+  "requests": {
+    "GET /alerts": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAlerts",
+        "parameters": [
+          {
+            "description": "Filter by route ID",
+            "in": "query",
+            "name": "filter[route]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by stop ID",
+            "in": "query",
+            "name": "filter[stop]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by activity",
+            "in": "query",
+            "name": "filter[activity]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Include related resources (comma-separated)",
+            "in": "query",
+            "name": "include",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Sort field",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "attributes": {
+                            "properties": {
+                              "active_period": {
+                                "items": {
+                                  "properties": {
+                                    "end": {
+                                      "format": "date-time",
+                                      "nullable": true,
+                                      "type": "string"
+                                    },
+                                    "start": {
+                                      "format": "date-time",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "banner": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "cause": {
+                                "type": "string"
+                              },
+                              "created_at": {
+                                "format": "date-time",
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "effect": {
+                                "type": "string"
+                              },
+                              "header": {
+                                "type": "string"
+                              },
+                              "informed_entity": {
+                                "items": {
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "lifecycle": {
+                                "type": "string"
+                              },
+                              "severity": {
+                                "type": "integer"
+                              },
+                              "short_header": {
+                                "type": "string"
+                              },
+                              "timeframe": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "updated_at": {
+                                "format": "date-time",
+                                "type": "string"
+                              },
+                              "url": {
+                                "nullable": true,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "relationships": {
+                            "type": "object"
+                          },
+                          "type": {
+                            "enum": [
+                              "alert"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "included": {
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "jsonapi": {
+                      "properties": {
+                        "version": {
+                          "example": "1.0",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "400": {
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "properties": {
+                    "errors": {
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "detail": {
+                            "type": "string"
+                          },
+                          "source": {
+                            "properties": {
+                              "parameter": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "jsonapi": {
+                      "properties": {
+                        "version": {
+                          "example": "1.0",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request"
+          },
+          "429": {
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "properties": {
+                    "errors": {
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "detail": {
+                            "type": "string"
+                          },
+                          "source": {
+                            "properties": {
+                              "parameter": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "jsonapi": {
+                      "properties": {
+                        "version": {
+                          "example": "1.0",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "description": "API key required for requests. Default rate limit is 1,000 requests per minute with a valid key.",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

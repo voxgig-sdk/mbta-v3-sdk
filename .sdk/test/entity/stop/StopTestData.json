@@ -16,5 +16,260 @@
     "stop": {
       "stop_ref01": {}
     }
+  },
+  "requests": {
+    "GET /stops": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getStops",
+        "parameters": [
+          {
+            "description": "Filter by stop ID",
+            "in": "query",
+            "name": "filter[id]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by route ID",
+            "in": "query",
+            "name": "filter[route]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by location type",
+            "in": "query",
+            "name": "filter[location_type]",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Filter by latitude",
+            "in": "query",
+            "name": "filter[latitude]",
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "Filter by longitude",
+            "in": "query",
+            "name": "filter[longitude]",
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "Filter by radius (requires latitude and longitude)",
+            "in": "query",
+            "name": "filter[radius]",
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "Include related resources (comma-separated)",
+            "in": "query",
+            "name": "include",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Sort field",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "attributes": {
+                            "properties": {
+                              "address": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "at_street": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "description": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "latitude": {
+                                "format": "double",
+                                "type": "number"
+                              },
+                              "location_type": {
+                                "type": "integer"
+                              },
+                              "longitude": {
+                                "format": "double",
+                                "type": "number"
+                              },
+                              "municipality": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "on_street": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "platform_code": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "platform_name": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "vehicle_type": {
+                                "nullable": true,
+                                "type": "integer"
+                              },
+                              "wheelchair_boarding": {
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "relationships": {
+                            "properties": {
+                              "child_stops": {
+                                "type": "object"
+                              },
+                              "facilities": {
+                                "type": "object"
+                              },
+                              "parent_station": {
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": {
+                            "enum": [
+                              "stop"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "included": {
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "jsonapi": {
+                      "properties": {
+                        "version": {
+                          "example": "1.0",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "400": {
+            "content": {
+              "application/vnd.api+json": {
+                "schema": {
+                  "properties": {
+                    "errors": {
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "detail": {
+                            "type": "string"
+                          },
+                          "source": {
+                            "properties": {
+                              "parameter": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "jsonapi": {
+                      "properties": {
+                        "version": {
+                          "example": "1.0",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "description": "API key required for requests. Default rate limit is 1,000 requests per minute with a valid key.",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

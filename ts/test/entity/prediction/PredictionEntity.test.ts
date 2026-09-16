@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { MbtaV3SDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('PredictionEntity', async () => {
 
     const live = 'TRUE' === process.env.MBTA_V3_TEST_LIVE
     for (const op of ['load']) {
-      if (maybeSkipControl(t, 'entityOp', 'prediction.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'prediction.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set MBTA_V3_TEST_PREDICTION_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[],"name":"prediction","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{"query":[{"active":true,"kind":"query","name":"filter_direction_id","orig":"filter_direction_id","reqd":false,"type":"`$INTEGER`","index$":0},{"active":true,"kind":"query","name":"filter_route","orig":"filter_route","reqd":false,"type":"`$STRING`","index$":1},{"active":true,"kind":"query","name":"filter_stop","orig":"filter_stop","reqd":false,"type":"`$STRING`","index$":2},{"active":true,"kind":"query","name":"filter_trip","orig":"filter_trip","reqd":false,"type":"`$STRING`","index$":3},{"active":true,"kind":"query","name":"include","orig":"include","reqd":false,"type":"`$STRING`","index$":4},{"active":true,"kind":"query","name":"sort","orig":"sort","reqd":false,"type":"`$STRING`","index$":5}]},"contract":{"id":"GET /predictions","json":"{\"operationId\":\"getPredictions\",\"parameters\":[{\"description\":\"Filter by stop ID (e.g., place-sstat)\",\"in\":\"query\",\"name\":\"filter[stop]\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by route ID\",\"in\":\"query\",\"name\":\"filter[route]\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by trip ID\",\"in\":\"query\",\"name\":\"filter[trip]\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by direction (0 or 1)\",\"in\":\"query\",\"name\":\"filter[direction_id]\",\"schema\":{\"enum\":[0,1],\"type\":\"integer\"}},{\"description\":\"Include related resources (e.g., stop, route, trip, vehicle)\",\"in\":\"query\",\"name\":\"include\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Sort field\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/vnd.api+json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"attributes\":{\"properties\":{\"arrival_time\":{\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"departure_time\":{\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"direction_id\":{\"enum\":[0,1],\"type\":\"integer\"},\"schedule_relationship\":{\"nullable\":true,\"type\":\"string\"},\"status\":{\"nullable\":true,\"type\":\"string\"},\"stop_sequence\":{\"nullable\":true,\"type\":\"integer\"}},\"type\":\"object\"},\"id\":{\"type\":\"string\"},\"relationships\":{\"properties\":{\"route\":{\"type\":\"object\"},\"stop\":{\"type\":\"object\"},\"trip\":{\"type\":\"object\"},\"vehicle\":{\"type\":\"object\"}},\"type\":\"object\"},\"type\":{\"enum\":[\"prediction\"],\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"included\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"jsonapi\":{\"properties\":{\"version\":{\"example\":\"1.0\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"400\":{\"content\":{\"application/vnd.api+json\":{\"schema\":{\"properties\":{\"errors\":{\"items\":{\"properties\":{\"code\":{\"type\":\"string\"},\"detail\":{\"type\":\"string\"},\"source\":{\"properties\":{\"parameter\":{\"type\":\"string\"}},\"type\":\"object\"},\"status\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"jsonapi\":{\"properties\":{\"version\":{\"example\":\"1.0\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"}},\"security\":[{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"description\":\"API key required for requests. Default rate limit is 1,000 requests per minute with a valid key.\",\"in\":\"header\",\"name\":\"x-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/predictions","segments":[{"lit":"predictions"}],"select":{"exist":["filter_direction_id","filter_route","filter_stop","filter_trip","include","sort"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"prediction","name__orig":"prediction","Name":"Prediction","name_":"prediction","name-":"prediction","NAME":"PREDICTION","index$":3}, {"active":true,"entity":"prediction","key$":"BasicPredictionFlow","kind":"basic","name":"BasicPredictionFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"prediction_ref01","srcdatavar":"prediction_ref01_data","suffix":"_dt0"},"match":{},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-prediction_ref01"}}],"index$":0}]}, 'Prediction')
     }
     const client = setup.client
     const struct = setup.struct
@@ -109,13 +108,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['MBTA_V3_TEST_PREDICTION_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'MBTA_V3_TEST_PREDICTION_ENTID': idmap,
     'MBTA_V3_TEST_LIVE': 'FALSE',
@@ -127,7 +119,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.MBTA_V3_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['MBTA_V3_TEST_PREDICTION_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new MbtaV3SDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -140,7 +138,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -153,7 +152,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.MBTA_V3_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 
