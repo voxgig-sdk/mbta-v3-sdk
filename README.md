@@ -105,12 +105,12 @@ local result, err = client:Alert():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/mbta-v3-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/releases) |
-| Python | `voxgig-sdk-mbta-v3` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/releases) |
-| PHP | `voxgig-sdk/mbta-v3` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/releases) |
+| TypeScript | `@voxgig-sdk/mbta-v3-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/tags) |
+| Python | `voxgig-sdk-mbta-v3` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/tags) |
+| PHP | `voxgig-sdk/mbta-v3` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/mbta-v3-sdk/go` | `go get github.com/voxgig-sdk/mbta-v3-sdk/go@latest` |
-| Ruby | `voxgig-sdk-mbta-v3` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/releases) |
-| Lua | `voxgig-sdk-mbta-v3` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/releases) |
+| Ruby | `voxgig-sdk-mbta-v3` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/tags) |
+| Lua | `voxgig-sdk-mbta-v3` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mbta-v3-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/mbta-v3-sdk/go-cli` | `go install github.com/voxgig-sdk/mbta-v3-sdk/go-cli/cmd/mbta-v3@latest` |
 | Go MCP server | `github.com/voxgig-sdk/mbta-v3-sdk/go-mcp` | `go get github.com/voxgig-sdk/mbta-v3-sdk/go-mcp@latest` |
 

@@ -123,6 +123,7 @@ class Config {
 
     auth: {
       prefix: '',
+      name: 'x-api-key',
     },
 
     headers: {
@@ -131,42 +132,42 @@ class Config {
 
     entity: {
       
-      alert: {
-      },
-
-      facility: {
-      },
-
-      line: {
-      },
-
-      prediction: {
-      },
-
-      route: {
-      },
-
-      route_pattern: {
-      },
-
-      schedule: {
-      },
-
-      service: {
-      },
-
-      shape: {
-      },
-
-      stop: {
-      },
-
-      trip: {
-      },
-
-      vehicle: {
-      },
-
+        alert: {
+        },
+  
+        facility: {
+        },
+  
+        line: {
+        },
+  
+        prediction: {
+        },
+  
+        route: {
+        },
+  
+        route_pattern: {
+        },
+  
+        schedule: {
+        },
+  
+        service: {
+        },
+  
+        shape: {
+        },
+  
+        stop: {
+        },
+  
+        trip: {
+        },
+  
+        vehicle: {
+        },
+  
     }
   }
 

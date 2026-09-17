@@ -77,6 +77,7 @@ local function make_config()
       base = "https://api-v3.mbta.com",
       auth = {
         prefix = "",
+        name = "x-api-key",
       },
       headers = {
         ["content-type"] = "application/json",
