@@ -1,0 +1,63 @@
+# Entity: line
+
+main: kit: entity: line: {
+
+  alias: field: {}
+
+  name: "line"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /lines"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "filter_id"
+                or: "filter_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "include"
+                or: "include"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/lines"
+          q: {
+            exist: [
+              "filter_id"
+              "include"
+            ]
+          }
+          s: [
+            {
+              lit: "lines"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

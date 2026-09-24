@@ -1,0 +1,103 @@
+# Entity: trip
+
+main: kit: entity: trip: {
+
+  alias: field: {}
+
+  name: "trip"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /trips"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "filter_direction_id"
+                or: "filter_direction_id"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "filter_id"
+                or: "filter_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "filter_name"
+                or: "filter_name"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "filter_route"
+                or: "filter_route"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "filter_route_pattern"
+                or: "filter_route_pattern"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "include"
+                or: "include"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/trips"
+          q: {
+            exist: [
+              "filter_direction_id"
+              "filter_id"
+              "filter_name"
+              "filter_route"
+              "filter_route_pattern"
+              "include"
+              "sort"
+            ]
+          }
+          s: [
+            {
+              lit: "trips"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

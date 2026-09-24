@@ -1,0 +1,87 @@
+# Entity: alert
+
+main: kit: entity: alert: {
+
+  alias: field: {}
+
+  name: "alert"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /alerts"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "filter_activity"
+                or: "filter_activity"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "filter_route"
+                or: "filter_route"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "filter_stop"
+                or: "filter_stop"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "include"
+                or: "include"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/alerts"
+          q: {
+            exist: [
+              "filter_activity"
+              "filter_route"
+              "filter_stop"
+              "include"
+              "sort"
+            ]
+          }
+          s: [
+            {
+              lit: "alerts"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

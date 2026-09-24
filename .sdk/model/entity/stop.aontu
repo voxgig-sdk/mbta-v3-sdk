@@ -1,0 +1,111 @@
+# Entity: stop
+
+main: kit: entity: stop: {
+
+  alias: field: {}
+
+  name: "stop"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /stops"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "filter_id"
+                or: "filter_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "filter_latitude"
+                or: "filter_latitude"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "filter_location_type"
+                or: "filter_location_type"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "filter_longitude"
+                or: "filter_longitude"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "filter_radius"
+                or: "filter_radius"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "filter_route"
+                or: "filter_route"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "include"
+                or: "include"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/stops"
+          q: {
+            exist: [
+              "filter_id"
+              "filter_latitude"
+              "filter_location_type"
+              "filter_longitude"
+              "filter_radius"
+              "filter_route"
+              "include"
+              "sort"
+            ]
+          }
+          s: [
+            {
+              lit: "stops"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

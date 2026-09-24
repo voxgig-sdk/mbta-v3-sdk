@@ -1,0 +1,146 @@
+# Entity: route
+
+main: kit: entity: route: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "route"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /routes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "filter_id"
+                or: "filter_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "filter_stop"
+                or: "filter_stop"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "0,1"
+                k: "query"
+                n: "filter_type"
+                or: "filter_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "include"
+                or: "include"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/routes"
+          q: {
+            exist: [
+              "filter_id"
+              "filter_stop"
+              "filter_type"
+              "include"
+              "sort"
+            ]
+          }
+          s: [
+            {
+              lit: "routes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /routes/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "include"
+                or: "include"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/routes/{id}"
+          q: {
+            exist: [
+              "id"
+              "include"
+            ]
+          }
+          s: [
+            {
+              lit: "routes"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

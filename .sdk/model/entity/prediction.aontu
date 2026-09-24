@@ -1,0 +1,95 @@
+# Entity: prediction
+
+main: kit: entity: prediction: {
+
+  alias: field: {}
+
+  name: "prediction"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /predictions"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "filter_direction_id"
+                or: "filter_direction_id"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "filter_route"
+                or: "filter_route"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "filter_stop"
+                or: "filter_stop"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "filter_trip"
+                or: "filter_trip"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "include"
+                or: "include"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/predictions"
+          q: {
+            exist: [
+              "filter_direction_id"
+              "filter_route"
+              "filter_stop"
+              "filter_trip"
+              "include"
+              "sort"
+            ]
+          }
+          s: [
+            {
+              lit: "predictions"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

@@ -1,0 +1,71 @@
+# Entity: facility
+
+main: kit: entity: facility: {
+
+  alias: field: {}
+
+  name: "facility"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /facilities"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "filter_stop"
+                or: "filter_stop"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "filter_type"
+                or: "filter_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "include"
+                or: "include"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/facilities"
+          q: {
+            exist: [
+              "filter_stop"
+              "filter_type"
+              "include"
+            ]
+          }
+          s: [
+            {
+              lit: "facilities"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

@@ -4,7 +4,7 @@ declare(strict_types=1);
 // MbtaV3 Php SDK: generated schemas. Do not edit.
 //
 // Generated from the model: `main.kit.optspec` and each feature's
-// `config.options` for OPTSPEC; entity `fields[].type` for ENTITYSPEC.
+// `config.options` for OPTSPEC; entity `fields{}.type` for ENTITYSPEC.
 
 class MbtaV3Schema
 {

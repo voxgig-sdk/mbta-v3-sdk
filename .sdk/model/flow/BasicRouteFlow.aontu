@@ -1,0 +1,32 @@
+# BasicRouteFlow
+
+main: kit: flow: BasicRouteFlow:
+{
+  entity: "route",
+  kind: "basic",
+  name: "BasicRouteFlow",
+  step: [
+    {
+      i: {
+        ref: "route_ref01",
+        srcdatavar: "route_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "route01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-route_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRouteFlow"
+}

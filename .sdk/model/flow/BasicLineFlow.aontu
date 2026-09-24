@@ -1,0 +1,28 @@
+# BasicLineFlow
+
+main: kit: flow: BasicLineFlow:
+{
+  entity: "line",
+  kind: "basic",
+  name: "BasicLineFlow",
+  step: [
+    {
+      i: {
+        ref: "line_ref01",
+        srcdatavar: "line_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-line_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLineFlow"
+}
