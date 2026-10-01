@@ -20,35 +20,35 @@ main: kit: entity: vehicle: {
               {
                 k: "query"
                 n: "filter_direction_id"
-                or: "filter_direction_id"
+                or: "filter[direction_id]"
                 r: false
                 t: "`$INTEGER`"
               }
               {
                 k: "query"
                 n: "filter_id"
-                or: "filter_id"
+                or: "filter[id]"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "filter_label"
-                or: "filter_label"
+                or: "filter[label]"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "filter_route"
-                or: "filter_route"
+                or: "filter[route]"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "filter_trip"
-                or: "filter_trip"
+                or: "filter[trip]"
                 r: false
                 t: "`$STRING`"
               }

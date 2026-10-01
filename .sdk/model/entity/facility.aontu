@@ -20,14 +20,14 @@ main: kit: entity: facility: {
               {
                 k: "query"
                 n: "filter_stop"
-                or: "filter_stop"
+                or: "filter[stop]"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "filter_type"
-                or: "filter_type"
+                or: "filter[type]"
                 r: false
                 t: "`$STRING`"
               }

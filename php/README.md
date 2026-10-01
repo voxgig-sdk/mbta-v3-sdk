@@ -12,9 +12,14 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`):
+GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/mbta-v3-sdk/releases)), or
+from a clone as a Composer path repository:
 
-- Releases: [https://github.com/voxgig-sdk/mbta-v3-sdk/releases](https://github.com/voxgig-sdk/mbta-v3-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/mbta-v3-sdk
+composer config repositories.mbta-v3-sdk path ./mbta-v3-sdk/php
+composer require voxgig-sdk/mbta-v3-sdk:@dev
+```
 
 
 ## Tutorial: your first API call

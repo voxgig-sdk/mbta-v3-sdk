@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 MbtaV3Utility.registrar = ->(u) {
   u.clean = MbtaV3Utilities::Clean
+  u.clean_add = MbtaV3Utilities::CleanAdd
+  u.clean_explain = MbtaV3Utilities::CleanExplain
   u.done = MbtaV3Utilities::Done
   u.make_error = MbtaV3Utilities::MakeError
   u.feature_add = MbtaV3Utilities::FeatureAdd

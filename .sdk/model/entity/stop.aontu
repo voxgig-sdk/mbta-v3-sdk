@@ -20,42 +20,42 @@ main: kit: entity: stop: {
               {
                 k: "query"
                 n: "filter_id"
-                or: "filter_id"
+                or: "filter[id]"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "filter_latitude"
-                or: "filter_latitude"
+                or: "filter[latitude]"
                 r: false
                 t: "`$NUMBER`"
               }
               {
                 k: "query"
                 n: "filter_location_type"
-                or: "filter_location_type"
+                or: "filter[location_type]"
                 r: false
                 t: "`$INTEGER`"
               }
               {
                 k: "query"
                 n: "filter_longitude"
-                or: "filter_longitude"
+                or: "filter[longitude]"
                 r: false
                 t: "`$NUMBER`"
               }
               {
                 k: "query"
                 n: "filter_radius"
-                or: "filter_radius"
+                or: "filter[radius]"
                 r: false
                 t: "`$NUMBER`"
               }
               {
                 k: "query"
                 n: "filter_route"
-                or: "filter_route"
+                or: "filter[route]"
                 r: false
                 t: "`$STRING`"
               }

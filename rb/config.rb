@@ -139,19 +139,19 @@ module MbtaV3Config
                     "query" => [
                       {
                         "name" => "filter_activity",
-                        "orig" => "filter_activity",
+                        "orig" => "filter[activity]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_route",
-                        "orig" => "filter_route",
+                        "orig" => "filter[route]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_stop",
-                        "orig" => "filter_stop",
+                        "orig" => "filter[stop]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -215,13 +215,13 @@ module MbtaV3Config
                     "query" => [
                       {
                         "name" => "filter_stop",
-                        "orig" => "filter_stop",
+                        "orig" => "filter[stop]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_type",
-                        "orig" => "filter_type",
+                        "orig" => "filter[type]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -277,7 +277,7 @@ module MbtaV3Config
                     "query" => [
                       {
                         "name" => "filter_id",
-                        "orig" => "filter_id",
+                        "orig" => "filter[id]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -332,25 +332,25 @@ module MbtaV3Config
                     "query" => [
                       {
                         "name" => "filter_direction_id",
-                        "orig" => "filter_direction_id",
+                        "orig" => "filter[direction_id]",
                         "type" => "`$INTEGER`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_route",
-                        "orig" => "filter_route",
+                        "orig" => "filter[route]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_stop",
-                        "orig" => "filter_stop",
+                        "orig" => "filter[stop]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_trip",
-                        "orig" => "filter_trip",
+                        "orig" => "filter[trip]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -425,19 +425,19 @@ module MbtaV3Config
                     "query" => [
                       {
                         "name" => "filter_id",
-                        "orig" => "filter_id",
+                        "orig" => "filter[id]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_stop",
-                        "orig" => "filter_stop",
+                        "orig" => "filter[stop]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_type",
-                        "orig" => "filter_type",
+                        "orig" => "filter[type]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                         "example" => "0,1",
@@ -549,19 +549,19 @@ module MbtaV3Config
                     "query" => [
                       {
                         "name" => "filter_direction_id",
-                        "orig" => "filter_direction_id",
+                        "orig" => "filter[direction_id]",
                         "type" => "`$INTEGER`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_route",
-                        "orig" => "filter_route",
+                        "orig" => "filter[route]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_stop",
-                        "orig" => "filter_stop",
+                        "orig" => "filter[stop]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -618,43 +618,43 @@ module MbtaV3Config
                     "query" => [
                       {
                         "name" => "filter_date",
-                        "orig" => "filter_date",
+                        "orig" => "filter[date]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_direction_id",
-                        "orig" => "filter_direction_id",
+                        "orig" => "filter[direction_id]",
                         "type" => "`$INTEGER`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_max_time",
-                        "orig" => "filter_max_time",
+                        "orig" => "filter[max_time]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_min_time",
-                        "orig" => "filter_min_time",
+                        "orig" => "filter[min_time]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_route",
-                        "orig" => "filter_route",
+                        "orig" => "filter[route]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_stop",
-                        "orig" => "filter_stop",
+                        "orig" => "filter[stop]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_trip",
-                        "orig" => "filter_trip",
+                        "orig" => "filter[trip]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -722,13 +722,13 @@ module MbtaV3Config
                     "query" => [
                       {
                         "name" => "filter_id",
-                        "orig" => "filter_id",
+                        "orig" => "filter[id]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_route",
-                        "orig" => "filter_route",
+                        "orig" => "filter[route]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -784,13 +784,13 @@ module MbtaV3Config
                     "query" => [
                       {
                         "name" => "filter_direction_id",
-                        "orig" => "filter_direction_id",
+                        "orig" => "filter[direction_id]",
                         "type" => "`$INTEGER`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_route",
-                        "orig" => "filter_route",
+                        "orig" => "filter[route]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -846,37 +846,37 @@ module MbtaV3Config
                     "query" => [
                       {
                         "name" => "filter_id",
-                        "orig" => "filter_id",
+                        "orig" => "filter[id]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_latitude",
-                        "orig" => "filter_latitude",
+                        "orig" => "filter[latitude]",
                         "type" => "`$NUMBER`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_location_type",
-                        "orig" => "filter_location_type",
+                        "orig" => "filter[location_type]",
                         "type" => "`$INTEGER`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_longitude",
-                        "orig" => "filter_longitude",
+                        "orig" => "filter[longitude]",
                         "type" => "`$NUMBER`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_radius",
-                        "orig" => "filter_radius",
+                        "orig" => "filter[radius]",
                         "type" => "`$NUMBER`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_route",
-                        "orig" => "filter_route",
+                        "orig" => "filter[route]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -943,31 +943,31 @@ module MbtaV3Config
                     "query" => [
                       {
                         "name" => "filter_direction_id",
-                        "orig" => "filter_direction_id",
+                        "orig" => "filter[direction_id]",
                         "type" => "`$INTEGER`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_id",
-                        "orig" => "filter_id",
+                        "orig" => "filter[id]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_name",
-                        "orig" => "filter_name",
+                        "orig" => "filter[name]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_route",
-                        "orig" => "filter_route",
+                        "orig" => "filter[route]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_route_pattern",
-                        "orig" => "filter_route_pattern",
+                        "orig" => "filter[route_pattern]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -1033,31 +1033,31 @@ module MbtaV3Config
                     "query" => [
                       {
                         "name" => "filter_direction_id",
-                        "orig" => "filter_direction_id",
+                        "orig" => "filter[direction_id]",
                         "type" => "`$INTEGER`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_id",
-                        "orig" => "filter_id",
+                        "orig" => "filter[id]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_label",
-                        "orig" => "filter_label",
+                        "orig" => "filter[label]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_route",
-                        "orig" => "filter_route",
+                        "orig" => "filter[route]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "filter_trip",
-                        "orig" => "filter_trip",
+                        "orig" => "filter[trip]",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },

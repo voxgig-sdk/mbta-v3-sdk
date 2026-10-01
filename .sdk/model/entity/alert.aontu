@@ -20,21 +20,21 @@ main: kit: entity: alert: {
               {
                 k: "query"
                 n: "filter_activity"
-                or: "filter_activity"
+                or: "filter[activity]"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "filter_route"
-                or: "filter_route"
+                or: "filter[route]"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "filter_stop"
-                or: "filter_stop"
+                or: "filter[stop]"
                 r: false
                 t: "`$STRING`"
               }

@@ -34,14 +34,14 @@ main: kit: entity: route: {
               {
                 k: "query"
                 n: "filter_id"
-                or: "filter_id"
+                or: "filter[id]"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "filter_stop"
-                or: "filter_stop"
+                or: "filter[stop]"
                 r: false
                 t: "`$STRING`"
               }
@@ -49,7 +49,7 @@ main: kit: entity: route: {
                 ex: "0,1"
                 k: "query"
                 n: "filter_type"
-                or: "filter_type"
+                or: "filter[type]"
                 r: false
                 t: "`$STRING`"
               }

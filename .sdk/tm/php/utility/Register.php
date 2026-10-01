@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 MbtaV3Utility::setRegistrar(function (MbtaV3Utility $u): void {
     $u->clean = [MbtaV3Clean::class, 'call'];
+    $u->clean_add = [MbtaV3Clean::class, 'add'];
+    $u->clean_explain = [MbtaV3Done::class, 'clean_explain'];
     $u->done = [MbtaV3Done::class, 'call'];
     $u->make_error = [MbtaV3MakeError::class, 'call'];
     $u->feature_add = [MbtaV3FeatureAdd::class, 'call'];

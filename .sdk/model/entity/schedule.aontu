@@ -20,49 +20,49 @@ main: kit: entity: schedule: {
               {
                 k: "query"
                 n: "filter_date"
-                or: "filter_date"
+                or: "filter[date]"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "filter_direction_id"
-                or: "filter_direction_id"
+                or: "filter[direction_id]"
                 r: false
                 t: "`$INTEGER`"
               }
               {
                 k: "query"
                 n: "filter_max_time"
-                or: "filter_max_time"
+                or: "filter[max_time]"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "filter_min_time"
-                or: "filter_min_time"
+                or: "filter[min_time]"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "filter_route"
-                or: "filter_route"
+                or: "filter[route]"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "filter_stop"
-                or: "filter_stop"
+                or: "filter[stop]"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "filter_trip"
-                or: "filter_trip"
+                or: "filter[trip]"
                 r: false
                 t: "`$STRING`"
               }

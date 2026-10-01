@@ -20,7 +20,7 @@ main: kit: entity: line: {
               {
                 k: "query"
                 n: "filter_id"
-                or: "filter_id"
+                or: "filter[id]"
                 r: false
                 t: "`$STRING`"
               }

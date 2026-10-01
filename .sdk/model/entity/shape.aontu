@@ -20,14 +20,14 @@ main: kit: entity: shape: {
               {
                 k: "query"
                 n: "filter_direction_id"
-                or: "filter_direction_id"
+                or: "filter[direction_id]"
                 r: false
                 t: "`$INTEGER`"
               }
               {
                 k: "query"
                 n: "filter_route"
-                or: "filter_route"
+                or: "filter[route]"
                 r: false
                 t: "`$STRING`"
               }

@@ -116,7 +116,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_activity",
-                        "or": "filter_activity",
+                        "or": "filter[activity]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -124,7 +124,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_route",
-                        "or": "filter_route",
+                        "or": "filter[route]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -132,7 +132,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_stop",
-                        "or": "filter_stop",
+                        "or": "filter[stop]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -209,7 +209,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_stop",
-                        "or": "filter_stop",
+                        "or": "filter[stop]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -217,7 +217,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_type",
-                        "or": "filter_type",
+                        "or": "filter[type]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -284,7 +284,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_id",
-                        "or": "filter_id",
+                        "or": "filter[id]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -350,7 +350,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_direction_id",
-                        "or": "filter_direction_id",
+                        "or": "filter[direction_id]",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -358,7 +358,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_route",
-                        "or": "filter_route",
+                        "or": "filter[route]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -366,7 +366,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_stop",
-                        "or": "filter_stop",
+                        "or": "filter[stop]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -374,7 +374,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_trip",
-                        "or": "filter_trip",
+                        "or": "filter[trip]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -464,7 +464,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_id",
-                        "or": "filter_id",
+                        "or": "filter[id]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -472,7 +472,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_stop",
-                        "or": "filter_stop",
+                        "or": "filter[stop]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -481,7 +481,7 @@
                         "ex": "0,1",
                         "k": "query",
                         "n": "filter_type",
-                        "or": "filter_type",
+                        "or": "filter[type]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -610,7 +610,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_direction_id",
-                        "or": "filter_direction_id",
+                        "or": "filter[direction_id]",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -618,7 +618,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_route",
-                        "or": "filter_route",
+                        "or": "filter[route]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -626,7 +626,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_stop",
-                        "or": "filter_stop",
+                        "or": "filter[stop]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -694,7 +694,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_date",
-                        "or": "filter_date",
+                        "or": "filter[date]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -702,7 +702,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_direction_id",
-                        "or": "filter_direction_id",
+                        "or": "filter[direction_id]",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -710,7 +710,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_max_time",
-                        "or": "filter_max_time",
+                        "or": "filter[max_time]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -718,7 +718,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_min_time",
-                        "or": "filter_min_time",
+                        "or": "filter[min_time]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -726,7 +726,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_route",
-                        "or": "filter_route",
+                        "or": "filter[route]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -734,7 +734,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_stop",
-                        "or": "filter_stop",
+                        "or": "filter[stop]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -742,7 +742,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_trip",
-                        "or": "filter_trip",
+                        "or": "filter[trip]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -823,7 +823,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_id",
-                        "or": "filter_id",
+                        "or": "filter[id]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -831,7 +831,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_route",
-                        "or": "filter_route",
+                        "or": "filter[route]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -898,7 +898,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_direction_id",
-                        "or": "filter_direction_id",
+                        "or": "filter[direction_id]",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -906,7 +906,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_route",
-                        "or": "filter_route",
+                        "or": "filter[route]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -973,7 +973,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_id",
-                        "or": "filter_id",
+                        "or": "filter[id]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -981,7 +981,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_latitude",
-                        "or": "filter_latitude",
+                        "or": "filter[latitude]",
                         "r": false,
                         "t": "`$NUMBER`"
                       },
@@ -989,7 +989,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_location_type",
-                        "or": "filter_location_type",
+                        "or": "filter[location_type]",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -997,7 +997,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_longitude",
-                        "or": "filter_longitude",
+                        "or": "filter[longitude]",
                         "r": false,
                         "t": "`$NUMBER`"
                       },
@@ -1005,7 +1005,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_radius",
-                        "or": "filter_radius",
+                        "or": "filter[radius]",
                         "r": false,
                         "t": "`$NUMBER`"
                       },
@@ -1013,7 +1013,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_route",
-                        "or": "filter_route",
+                        "or": "filter[route]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -1093,7 +1093,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_direction_id",
-                        "or": "filter_direction_id",
+                        "or": "filter[direction_id]",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -1101,7 +1101,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_id",
-                        "or": "filter_id",
+                        "or": "filter[id]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -1109,7 +1109,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_name",
-                        "or": "filter_name",
+                        "or": "filter[name]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -1117,7 +1117,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_route",
-                        "or": "filter_route",
+                        "or": "filter[route]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -1125,7 +1125,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_route_pattern",
-                        "or": "filter_route_pattern",
+                        "or": "filter[route_pattern]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -1204,7 +1204,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_direction_id",
-                        "or": "filter_direction_id",
+                        "or": "filter[direction_id]",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -1212,7 +1212,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_id",
-                        "or": "filter_id",
+                        "or": "filter[id]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -1220,7 +1220,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_label",
-                        "or": "filter_label",
+                        "or": "filter[label]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -1228,7 +1228,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_route",
-                        "or": "filter_route",
+                        "or": "filter[route]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -1236,7 +1236,7 @@
                         "a": true,
                         "k": "query",
                         "n": "filter_trip",
-                        "or": "filter_trip",
+                        "or": "filter[trip]",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -2109,7 +2109,12 @@
         },
         "base": "http://localhost:8000",
         "clean": {
-          "keys": "key,token,id"
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
         },
         "entity": {
           "`$CHILD`": {
