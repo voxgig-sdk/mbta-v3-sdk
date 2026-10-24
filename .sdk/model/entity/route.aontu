@@ -25,6 +25,56 @@ main: kit: entity: route: {
       points: [
         {
           co: {
+            id: "GET /routes/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "include"
+                or: "include"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/routes/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/vnd.api+json"
+          }
+          s: [
+            {
+              lit: "routes"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
             id: "GET /routes"
             source: "openapi3"
             version: 2
@@ -71,65 +121,13 @@ main: kit: entity: route: {
           }
           m: "GET"
           o: "/routes"
-          q: {
-            exist: [
-              "filter_id"
-              "filter_stop"
-              "filter_type"
-              "include"
-              "sort"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/vnd.api+json"
           }
           s: [
             {
               lit: "routes"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /routes/{id}"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            params: [
-              {
-                k: "param"
-                n: "id"
-                or: "id"
-                r: true
-                t: "`$STRING`"
-              }
-            ]
-            query: [
-              {
-                k: "query"
-                n: "include"
-                or: "include"
-                r: false
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/routes/{id}"
-          q: {
-            exist: [
-              "id"
-              "include"
-            ]
-          }
-          s: [
-            {
-              lit: "routes"
-            }
-            {
-              var: "id"
             }
           ]
           t: {

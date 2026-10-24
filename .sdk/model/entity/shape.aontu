@@ -42,12 +42,9 @@ main: kit: entity: shape: {
           }
           m: "GET"
           o: "/shapes"
-          q: {
-            exist: [
-              "filter_direction_id"
-              "filter_route"
-              "include"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/vnd.api+json"
           }
           s: [
             {

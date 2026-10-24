@@ -156,7 +156,13 @@ class MbtaV3SDK implements \JsonSerializable
         $path = Struct::getprop($fetchargs, "path") ?? "";
         $path = is_string($path) ? $path : "";
         $method_val = Struct::getprop($fetchargs, "method") ?? "GET";
-        $method_val = is_string($method_val) ? $method_val : "GET";
+        $method_val = strtoupper(is_string($method_val) && '' !== $method_val ? $method_val : "GET");
+        $allow_method = Struct::getpath($opts, "allow.method");
+        if (!MbtaV3PrepareMethod::allowed($allow_method, $method_val)) {
+            return ($utility->make_error)($ctx, $ctx->make_error("spec_method_allow",
+                "Method \"" . $method_val . "\" not allowed by SDK option allow.method value: \"" .
+                (is_string($allow_method) ? $allow_method : "") . "\""));
+        }
         $params = MbtaV3Helpers::to_map(Struct::getprop($fetchargs, "params")) ?? [];
         $query = MbtaV3Helpers::to_map(Struct::getprop($fetchargs, "query")) ?? [];
         $headers = ($utility->prepare_headers)($ctx);
@@ -211,8 +217,7 @@ class MbtaV3SDK implements \JsonSerializable
     // Is this raw-access op permitted by the SDK's allow.op option?
     private function op_allowed(string $op): bool
     {
-        $allow_op = Struct::getpath($this->options, "allow.op");
-        return is_string($allow_op) && str_contains($allow_op, $op);
+        return MbtaV3PrepareMethod::allowed(Struct::getpath($this->options, "allow.op"), $op);
     }
 
     private function op_denied(string $op): array
@@ -275,6 +280,7 @@ class MbtaV3SDK implements \JsonSerializable
             $no_body = $status === 204 || $status === 304 || (string)$content_length === "0";
 
             $json_data = null;
+            $body_err = null;
             if (!$no_body) {
                 $jf = Struct::getprop($fetched, "json");
                 if (is_callable($jf)) {
@@ -285,14 +291,29 @@ class MbtaV3SDK implements \JsonSerializable
                         $json_data = null;
                     }
                 }
+                if (true === Struct::getprop($fetched, "unreadable")) {
+                    $failed = ($status >= 200 && $status < 300) ? null : $ctx->make_error(
+                        "request_status",
+                        "request: {$status}: " . (string)Struct::getprop($fetched, "statusText"));
+                    $sent = $fetchdef["headers"] ?? [];
+                    if (MbtaV3Fetcher::usesDefault($ctx)) {
+                        $sent = MbtaV3Fetcher::sentHeaders($sent);
+                    }
+                    $body_err = MbtaV3ResultBody::unreadable($ctx, $status, $headers,
+                        Struct::getprop($fetched, "body"), $sent, $failed);
+                }
             }
 
-            return [
-                "ok" => $status >= 200 && $status < 300,
+            $out = [
+                "ok" => null === $body_err && $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
             ];
+            if (null !== $body_err) {
+                $out["err"] = ($utility->clean)($ctx, $body_err);
+            }
+            return $out;
         }
 
         return [

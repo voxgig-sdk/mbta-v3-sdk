@@ -63,15 +63,9 @@ main: kit: entity: prediction: {
           }
           m: "GET"
           o: "/predictions"
-          q: {
-            exist: [
-              "filter_direction_id"
-              "filter_route"
-              "filter_stop"
-              "filter_trip"
-              "include"
-              "sort"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/vnd.api+json"
           }
           s: [
             {

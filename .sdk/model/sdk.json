@@ -157,16 +157,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/alerts",
-                  "q": {
-                    "exist": [
-                      "filter_activity",
-                      "filter_route",
-                      "filter_stop",
-                      "include",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/vnd.api+json"
+                  },
                   "s": [
                     {
                       "lit": "alerts"
@@ -234,14 +230,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/facilities",
-                  "q": {
-                    "exist": [
-                      "filter_stop",
-                      "filter_type",
-                      "include"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/vnd.api+json"
+                  },
                   "s": [
                     {
                       "lit": "facilities"
@@ -301,13 +295,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/lines",
-                  "q": {
-                    "exist": [
-                      "filter_id",
-                      "include"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/vnd.api+json"
+                  },
                   "s": [
                     {
                       "lit": "lines"
@@ -399,17 +392,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/predictions",
-                  "q": {
-                    "exist": [
-                      "filter_direction_id",
-                      "filter_route",
-                      "filter_stop",
-                      "filter_trip",
-                      "include",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/vnd.api+json"
+                  },
                   "s": [
                     {
                       "lit": "predictions"
@@ -451,6 +439,61 @@
               "input": "data",
               "name": "load",
               "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /routes/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ],
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "include",
+                        "or": "include",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/routes/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/vnd.api+json"
+                  },
+                  "s": [
+                    {
+                      "lit": "routes"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
                 {
                   "a": true,
                   "co": {
@@ -506,71 +549,15 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/routes",
-                  "q": {
-                    "exist": [
-                      "filter_id",
-                      "filter_stop",
-                      "filter_type",
-                      "include",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/vnd.api+json"
+                  },
                   "s": [
                     {
                       "lit": "routes"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /routes/{id}",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "params": [
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "id",
-                        "or": "id",
-                        "r": true,
-                        "t": "`$STRING`"
-                      }
-                    ],
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "include",
-                        "or": "include",
-                        "r": false,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/routes/{id}",
-                  "q": {
-                    "exist": [
-                      "id",
-                      "include"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "routes"
-                    },
-                    {
-                      "var": "id"
                     }
                   ],
                   "t": {
@@ -643,15 +630,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/route_patterns",
-                  "q": {
-                    "exist": [
-                      "filter_direction_id",
-                      "filter_route",
-                      "filter_stop",
-                      "include"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/vnd.api+json"
+                  },
                   "s": [
                     {
                       "lit": "route_patterns"
@@ -767,20 +751,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/schedules",
-                  "q": {
-                    "exist": [
-                      "filter_date",
-                      "filter_direction_id",
-                      "filter_max_time",
-                      "filter_min_time",
-                      "filter_route",
-                      "filter_stop",
-                      "filter_trip",
-                      "include",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/vnd.api+json"
+                  },
                   "s": [
                     {
                       "lit": "schedules"
@@ -848,14 +824,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/services",
-                  "q": {
-                    "exist": [
-                      "filter_id",
-                      "filter_route",
-                      "include"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/vnd.api+json"
+                  },
                   "s": [
                     {
                       "lit": "services"
@@ -923,14 +897,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/shapes",
-                  "q": {
-                    "exist": [
-                      "filter_direction_id",
-                      "filter_route",
-                      "include"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/vnd.api+json"
+                  },
                   "s": [
                     {
                       "lit": "shapes"
@@ -1038,19 +1010,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/stops",
-                  "q": {
-                    "exist": [
-                      "filter_id",
-                      "filter_latitude",
-                      "filter_location_type",
-                      "filter_longitude",
-                      "filter_radius",
-                      "filter_route",
-                      "include",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/vnd.api+json"
+                  },
                   "s": [
                     {
                       "lit": "stops"
@@ -1150,18 +1115,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/trips",
-                  "q": {
-                    "exist": [
-                      "filter_direction_id",
-                      "filter_id",
-                      "filter_name",
-                      "filter_route",
-                      "filter_route_pattern",
-                      "include",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/vnd.api+json"
+                  },
                   "s": [
                     {
                       "lit": "trips"
@@ -1261,18 +1220,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/vehicles",
-                  "q": {
-                    "exist": [
-                      "filter_direction_id",
-                      "filter_id",
-                      "filter_label",
-                      "filter_route",
-                      "filter_trip",
-                      "include",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/vnd.api+json"
+                  },
                   "s": [
                     {
                       "lit": "vehicles"
@@ -1613,6 +1566,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -1838,9 +1792,7 @@
                 "srcdatavar": "route_ref01_data",
                 "suffix": "_dt0"
               },
-              "m": {
-                "id": "route01"
-              },
+              "m": {},
               "o": "load",
               "s": [],
               "v": [
@@ -2098,7 +2050,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -2151,6 +2103,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -2381,7 +2338,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -2758,6 +2718,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

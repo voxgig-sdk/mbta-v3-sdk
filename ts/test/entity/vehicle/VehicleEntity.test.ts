@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { MbtaV3SDK, BaseFeature, stdutil } from '../../..'
+import { MbtaV3SDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('VehicleEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = MbtaV3SDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Vehicle().load({"filter_direction_id":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.MBTA_V3_TEST_LIVE
@@ -51,7 +63,7 @@ describe('VehicleEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"vehicle","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /vehicles","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"filter_direction_id","or":"filter[direction_id]","r":false,"t":"`$INTEGER`","index$":0},{"a":true,"k":"query","n":"filter_id","or":"filter[id]","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"filter_label","or":"filter[label]","r":false,"t":"`$STRING`","index$":2},{"a":true,"k":"query","n":"filter_route","or":"filter[route]","r":false,"t":"`$STRING`","index$":3},{"a":true,"k":"query","n":"filter_trip","or":"filter[trip]","r":false,"t":"`$STRING`","index$":4},{"a":true,"k":"query","n":"include","or":"include","r":false,"t":"`$STRING`","index$":5},{"a":true,"k":"query","n":"sort","or":"sort","r":false,"t":"`$STRING`","index$":6}]},"k":"http","m":"GET","o":"/vehicles","q":{"exist":["filter_direction_id","filter_id","filter_label","filter_route","filter_trip","include","sort"]},"r":{},"s":[{"lit":"vehicles"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"vehicle","name__orig":"vehicle","Name":"Vehicle","name_":"vehicle","name-":"vehicle","NAME":"VEHICLE","index$":11}, {"active":true,"entity":"vehicle","key$":"BasicVehicleFlow","kind":"basic","name":"BasicVehicleFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"vehicle_ref01","srcdatavar":"vehicle_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-vehicle_ref01"}}],"index$":0}]}, 'Vehicle', {"GET /vehicles":{"protocol":"http","parameters":[{"name":"filter[id]","in":"query","description":"Filter by vehicle ID","schema":{"type":"string"},"index$":0},{"name":"filter[route]","in":"query","description":"Filter by route ID","schema":{"type":"string"},"index$":1},{"name":"filter[trip]","in":"query","description":"Filter by trip ID","schema":{"type":"string"},"index$":2},{"name":"filter[label]","in":"query","description":"Filter by vehicle label","schema":{"type":"string"},"index$":3},{"name":"filter[direction_id]","in":"query","description":"Filter by direction (0 or 1)","schema":{"type":"integer","enum":[0,1]},"index$":4},{"name":"include","in":"query","description":"Include related resources (e.g., route, trip, stop)","schema":{"type":"string"},"index$":5},{"name":"sort","in":"query","description":"Sort field","schema":{"type":"string"},"index$":6}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"vehicle","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /vehicles","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"filter_direction_id","or":"filter[direction_id]","r":false,"t":"`$INTEGER`","index$":0},{"a":true,"k":"query","n":"filter_id","or":"filter[id]","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"filter_label","or":"filter[label]","r":false,"t":"`$STRING`","index$":2},{"a":true,"k":"query","n":"filter_route","or":"filter[route]","r":false,"t":"`$STRING`","index$":3},{"a":true,"k":"query","n":"filter_trip","or":"filter[trip]","r":false,"t":"`$STRING`","index$":4},{"a":true,"k":"query","n":"include","or":"include","r":false,"t":"`$STRING`","index$":5},{"a":true,"k":"query","n":"sort","or":"sort","r":false,"t":"`$STRING`","index$":6}]},"k":"http","m":"GET","o":"/vehicles","q":{},"r":{},"rs":{"kind":"json","media":"application/vnd.api+json"},"s":[{"lit":"vehicles"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"vehicle","name__orig":"vehicle","Name":"Vehicle","name_":"vehicle","name-":"vehicle","NAME":"VEHICLE","index$":11}, {"active":true,"entity":"vehicle","key$":"BasicVehicleFlow","kind":"basic","name":"BasicVehicleFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"vehicle_ref01","srcdatavar":"vehicle_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-vehicle_ref01"}}],"index$":0}]}, 'Vehicle', {"GET /vehicles":{"protocol":"http","parameters":[{"name":"filter[id]","in":"query","description":"Filter by vehicle ID","schema":{"type":"string"},"index$":0},{"name":"filter[route]","in":"query","description":"Filter by route ID","schema":{"type":"string"},"index$":1},{"name":"filter[trip]","in":"query","description":"Filter by trip ID","schema":{"type":"string"},"index$":2},{"name":"filter[label]","in":"query","description":"Filter by vehicle label","schema":{"type":"string"},"index$":3},{"name":"filter[direction_id]","in":"query","description":"Filter by direction (0 or 1)","schema":{"type":"integer","enum":[0,1]},"index$":4},{"name":"include","in":"query","description":"Include related resources (e.g., route, trip, stop)","schema":{"type":"string"},"index$":5},{"name":"sort","in":"query","description":"Sort field","schema":{"type":"string"},"index$":6}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('VehicleEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

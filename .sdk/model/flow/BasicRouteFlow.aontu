@@ -13,10 +13,6 @@ main: kit: flow: BasicRouteFlow:
         suffix: "_dt0"
       }
 
-      m: {
-        id: "route01"
-      }
-
       o: "load",
       v: [
         {

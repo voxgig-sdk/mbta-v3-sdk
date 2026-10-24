@@ -35,11 +35,9 @@ main: kit: entity: line: {
           }
           m: "GET"
           o: "/lines"
-          q: {
-            exist: [
-              "filter_id"
-              "include"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/vnd.api+json"
           }
           s: [
             {

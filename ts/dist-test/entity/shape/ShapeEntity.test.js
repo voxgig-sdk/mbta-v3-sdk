@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Shape();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.MbtaV3SDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Shape().load({ "filter_direction_id": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.MBTA_V3_TEST_LIVE;
         for (const op of ['load']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "shape", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /shapes", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "filter_direction_id", "or": "filter[direction_id]", "r": false, "t": "`$INTEGER`", "index$": 0 }, { "a": true, "k": "query", "n": "filter_route", "or": "filter[route]", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "k": "query", "n": "include", "or": "include", "r": false, "t": "`$STRING`", "index$": 2 }] }, "k": "http", "m": "GET", "o": "/shapes", "q": { "exist": ["filter_direction_id", "filter_route", "include"] }, "r": {}, "s": [{ "lit": "shapes" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "shape", "name__orig": "shape", "Name": "Shape", "name_": "shape", "name-": "shape", "NAME": "SHAPE", "index$": 8 }, { "active": true, "entity": "shape", "key$": "BasicShapeFlow", "kind": "basic", "name": "BasicShapeFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "shape_ref01", "srcdatavar": "shape_ref01_data", "suffix": "_dt0" }, "m": {}, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-shape_ref01" } }], "index$": 0 }] }, 'Shape', { "GET /shapes": { "protocol": "http", "parameters": [{ "name": "filter[route]", "in": "query", "description": "Filter by route ID", "schema": { "type": "string" }, "index$": 0 }, { "name": "filter[direction_id]", "in": "query", "description": "Filter by direction (0 or 1)", "schema": { "type": "integer", "enum": [0, 1] }, "index$": 1 }, { "name": "include", "in": "query", "description": "Include related resources (comma-separated)", "schema": { "type": "string" }, "index$": 2 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "shape", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /shapes", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "filter_direction_id", "or": "filter[direction_id]", "r": false, "t": "`$INTEGER`", "index$": 0 }, { "a": true, "k": "query", "n": "filter_route", "or": "filter[route]", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "k": "query", "n": "include", "or": "include", "r": false, "t": "`$STRING`", "index$": 2 }] }, "k": "http", "m": "GET", "o": "/shapes", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/vnd.api+json" }, "s": [{ "lit": "shapes" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "shape", "name__orig": "shape", "Name": "Shape", "name_": "shape", "name-": "shape", "NAME": "SHAPE", "index$": 8 }, { "active": true, "entity": "shape", "key$": "BasicShapeFlow", "kind": "basic", "name": "BasicShapeFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "shape_ref01", "srcdatavar": "shape_ref01_data", "suffix": "_dt0" }, "m": {}, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-shape_ref01" } }], "index$": 0 }] }, 'Shape', { "GET /shapes": { "protocol": "http", "parameters": [{ "name": "filter[route]", "in": "query", "description": "Filter by route ID", "schema": { "type": "string" }, "index$": 0 }, { "name": "filter[direction_id]", "in": "query", "description": "Filter by direction (0 or 1)", "schema": { "type": "integer", "enum": [0, 1] }, "index$": 1 }, { "name": "include", "in": "query", "description": "Include related resources (comma-separated)", "schema": { "type": "string" }, "index$": 2 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -76,6 +84,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(null != shape_ref01_data_dt0);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Alert();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.MbtaV3SDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Alert().load({ "filter_activity": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.MBTA_V3_TEST_LIVE;
         for (const op of ['load']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "alert", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /alerts", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "filter_activity", "or": "filter[activity]", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "filter_route", "or": "filter[route]", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "k": "query", "n": "filter_stop", "or": "filter[stop]", "r": false, "t": "`$STRING`", "index$": 2 }, { "a": true, "k": "query", "n": "include", "or": "include", "r": false, "t": "`$STRING`", "index$": 3 }, { "a": true, "k": "query", "n": "sort", "or": "sort", "r": false, "t": "`$STRING`", "index$": 4 }] }, "k": "http", "m": "GET", "o": "/alerts", "q": { "exist": ["filter_activity", "filter_route", "filter_stop", "include", "sort"] }, "r": {}, "s": [{ "lit": "alerts" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "alert", "name__orig": "alert", "Name": "Alert", "name_": "alert", "name-": "alert", "NAME": "ALERT", "index$": 0 }, { "active": true, "entity": "alert", "key$": "BasicAlertFlow", "kind": "basic", "name": "BasicAlertFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "alert_ref01", "srcdatavar": "alert_ref01_data", "suffix": "_dt0" }, "m": {}, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-alert_ref01" } }], "index$": 0 }] }, 'Alert', { "GET /alerts": { "protocol": "http", "parameters": [{ "name": "filter[route]", "in": "query", "description": "Filter by route ID", "schema": { "type": "string" }, "index$": 0 }, { "name": "filter[stop]", "in": "query", "description": "Filter by stop ID", "schema": { "type": "string" }, "index$": 1 }, { "name": "filter[activity]", "in": "query", "description": "Filter by activity", "schema": { "type": "string" }, "index$": 2 }, { "name": "include", "in": "query", "description": "Include related resources (comma-separated)", "schema": { "type": "string" }, "index$": 3 }, { "name": "sort", "in": "query", "description": "Sort field", "schema": { "type": "string" }, "index$": 4 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "alert", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /alerts", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "filter_activity", "or": "filter[activity]", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "filter_route", "or": "filter[route]", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "k": "query", "n": "filter_stop", "or": "filter[stop]", "r": false, "t": "`$STRING`", "index$": 2 }, { "a": true, "k": "query", "n": "include", "or": "include", "r": false, "t": "`$STRING`", "index$": 3 }, { "a": true, "k": "query", "n": "sort", "or": "sort", "r": false, "t": "`$STRING`", "index$": 4 }] }, "k": "http", "m": "GET", "o": "/alerts", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/vnd.api+json" }, "s": [{ "lit": "alerts" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "alert", "name__orig": "alert", "Name": "Alert", "name_": "alert", "name-": "alert", "NAME": "ALERT", "index$": 0 }, { "active": true, "entity": "alert", "key$": "BasicAlertFlow", "kind": "basic", "name": "BasicAlertFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "alert_ref01", "srcdatavar": "alert_ref01_data", "suffix": "_dt0" }, "m": {}, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-alert_ref01" } }], "index$": 0 }] }, 'Alert', { "GET /alerts": { "protocol": "http", "parameters": [{ "name": "filter[route]", "in": "query", "description": "Filter by route ID", "schema": { "type": "string" }, "index$": 0 }, { "name": "filter[stop]", "in": "query", "description": "Filter by stop ID", "schema": { "type": "string" }, "index$": 1 }, { "name": "filter[activity]", "in": "query", "description": "Filter by activity", "schema": { "type": "string" }, "index$": 2 }, { "name": "include", "in": "query", "description": "Include related resources (comma-separated)", "schema": { "type": "string" }, "index$": 3 }, { "name": "sort", "in": "query", "description": "Sort field", "schema": { "type": "string" }, "index$": 4 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -76,6 +84,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(null != alert_ref01_data_dt0);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

@@ -6,6 +6,17 @@ require_relative "../MbtaV3_sdk"
 require_relative "runner"
 
 class RouteDirectTest < Minitest::Test
+  # main.kit.test.live.strict is true (the default is true): a live
+  # request that fails, or a live test missing an input it needs,
+  # fails the test.
+  # An account with no record for a test to read skips it either way.
+  LIVE_STRICT = true
+
+  def live_ok(result)
+    status = Helpers.to_int(result["status"])
+    result["err"].nil? && result["ok"] && status >= 200 && status < 300
+  end
+
   def test_direct_load_route
     setup = route_direct_setup({ "id" => "direct01" })
     _should_skip, _reason = Runner.is_control_skipped("direct", "direct-load-route", setup[:live] ? "live" : "unit")
@@ -13,31 +24,37 @@ class RouteDirectTest < Minitest::Test
       skip(_reason || "skipped via sdk-test-control.json")
       return
     end
+    if setup[:live]
+      ["route01"].each do |_live_key|
+        if setup[:idmap][_live_key].nil?
+          Runner.live_miss(LIVE_STRICT, "Live test blocked: needs #{_live_key} via MBTA_V3_TEST_ROUTE_ENTID")
+        end
+      end
+    end
     client = setup[:client]
 
+    params = {}
+    query = {}
+    if setup[:live]
+      params["id"] = setup[:idmap]["route01"]
+    else
+      params["id"] = "direct01"
+    end
 
     result = client.direct({
-      "path" => "routes",
+      "path" => "routes/{id}",
       "method" => "GET",
-      "params" => {},
+      "params" => params,
+      "query" => query,
     })
     if setup[:live]
-      # Live mode is lenient: synthetic IDs frequently 4xx. Skip rather
-      # than fail when the load endpoint isn't reachable with the IDs
-      # we can construct from setup.idmap.
-      if !result["err"].nil?
-        skip("load call failed (likely synthetic IDs against live API): #{result["err"]}")
-        return
+      unless live_ok(result)
+        Runner.live_miss(LIVE_STRICT, "Live load failed: " + Runner.live_describe(result))
       end
-      unless result["ok"]
-        skip("load call not ok (likely synthetic IDs against live API)")
-        return
+      if result["data"].nil?
+        Runner.live_miss(LIVE_STRICT, "Live load returned no data: " + Runner.live_describe(result))
       end
-      status = Helpers.to_int(result["status"])
-      if status < 200 || status >= 300
-        skip("expected 2xx status, got #{status}")
-        return
-      end
+      assert !result["data"].nil?
     else
       assert_nil result["err"]
       assert result["ok"]
@@ -73,11 +90,12 @@ def route_direct_setup(mockres)
       "apikey" => env["MBTA_V3_APIKEY"],
     })
     client = MbtaV3SDK.new(merged_opts)
+    idmap = env["MBTA_V3_TEST_ROUTE_ENTID"]
     return {
       client: client,
       calls: calls,
       live: true,
-      idmap: {},
+      idmap: idmap.is_a?(Hash) ? idmap : {},
     }
   end
 

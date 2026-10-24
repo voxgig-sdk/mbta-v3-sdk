@@ -70,16 +70,9 @@ main: kit: entity: vehicle: {
           }
           m: "GET"
           o: "/vehicles"
-          q: {
-            exist: [
-              "filter_direction_id"
-              "filter_id"
-              "filter_label"
-              "filter_route"
-              "filter_trip"
-              "include"
-              "sort"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/vnd.api+json"
           }
           s: [
             {

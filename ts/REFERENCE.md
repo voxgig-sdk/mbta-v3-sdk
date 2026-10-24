@@ -220,8 +220,10 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs.headers` | `object` | Request headers (merged with defaults). |
 | `fetchargs.body` | `any` | Request body (objects are JSON-serialized). |
 | `fetchargs.ctrl` | `object` | Control options (e.g. `{ explain: true }`). |
+| `fetchargs.ctrl.signal` | `AbortSignal` | Aborts the request in flight: `ok` is then `false` and `err.code` is `request_aborted`. |
 
-**Returns:** `Promise<{ ok, status, headers, data } | Error>`
+**Returns:** `Promise<{ ok, status, headers, data }>`. On a failure
+`ok` is `false` and `err` holds the error.
 
 #### `prepare(fetchargs?: object)`
 
@@ -236,6 +238,15 @@ Alias for `MbtaV3SDK.test()`.
 
 **Returns:** `MbtaV3SDK` instance in test mode.
 
+#### Cancelling a call
+
+Every entity operation takes an optional `ctrl` object after its match or
+data, and an `AbortSignal` in `ctrl.signal` cancels the request in flight.
+The operation then rejects with an error whose `code` is
+`request_aborted` and whose `cause` is the signal's reason. A request
+whose signal has already aborted is not sent. `stream()` takes the signal
+as `callopts.signal`, and ends when it aborts.
+
 
 ---
 
@@ -249,7 +260,7 @@ const alert = client.Alert()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Alert().load()
@@ -293,7 +304,7 @@ const facility = client.Facility()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Facility().load()
@@ -337,7 +348,7 @@ const line = client.Line()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Line().load()
@@ -381,7 +392,7 @@ const prediction = client.Prediction()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Prediction().load()
@@ -431,7 +442,7 @@ const route = client.Route()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Route().load({ id: 'route_id' })
@@ -475,7 +486,7 @@ const route_pattern = client.RoutePattern()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.RoutePattern().load()
@@ -519,7 +530,7 @@ const schedule = client.Schedule()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Schedule().load()
@@ -563,7 +574,7 @@ const service = client.Service()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Service().load()
@@ -607,7 +618,7 @@ const shape = client.Shape()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Shape().load()
@@ -651,7 +662,7 @@ const stop = client.Stop()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Stop().load()
@@ -695,7 +706,7 @@ const trip = client.Trip()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Trip().load()
@@ -739,7 +750,7 @@ const vehicle = client.Vehicle()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Vehicle().load()
@@ -930,6 +941,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

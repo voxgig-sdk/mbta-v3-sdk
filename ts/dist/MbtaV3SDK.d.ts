@@ -18,6 +18,19 @@ import { MbtaV3EntityBase } from './MbtaV3EntityBase';
 import { Utility } from './utility/Utility';
 import { BaseFeature } from './feature/base/BaseFeature';
 declare const stdutil: Utility;
+type DirectResult = {
+    ok: false;
+    err: any;
+    status?: undefined;
+    headers?: undefined;
+    data?: undefined;
+} | {
+    ok: boolean;
+    status: number;
+    headers: any;
+    data: any;
+    err?: any;
+};
 declare class MbtaV3SDK {
     _mode: string;
     _options: any;
@@ -28,32 +41,8 @@ declare class MbtaV3SDK {
     options(): any;
     utility(): any;
     prepare(fetchargs?: any): Promise<any>;
-    direct(fetchargs?: any): Promise<Error | {
-        ok: boolean;
-        err: any;
-        status?: undefined;
-        headers?: undefined;
-        data?: undefined;
-    } | {
-        ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    }>;
-    _rawRequest(fetchargs?: any): Promise<Error | {
-        ok: boolean;
-        err: any;
-        status?: undefined;
-        headers?: undefined;
-        data?: undefined;
-    } | {
-        ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    }>;
+    direct(fetchargs?: any): Promise<DirectResult>;
+    _rawRequest(fetchargs?: any): Promise<DirectResult>;
     graphql(query: string, variables?: any, ctrl?: any): Promise<any>;
     Alert(entopts?: Record<string, any>): AlertEntity;
     Facility(entopts?: Record<string, any>): FacilityEntity;
@@ -77,3 +66,4 @@ declare class MbtaV3SDK {
 }
 declare const SDK: typeof MbtaV3SDK;
 export { stdutil, config, BaseFeature, MbtaV3EntityBase, MbtaV3SDK, SDK, };
+export type { DirectResult };

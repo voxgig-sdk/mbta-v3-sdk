@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { MbtaV3SDK, BaseFeature, stdutil } from '../../..'
+import { MbtaV3SDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('TripEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = MbtaV3SDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Trip().load({"filter_direction_id":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.MBTA_V3_TEST_LIVE
@@ -51,7 +63,7 @@ describe('TripEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"trip","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /trips","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"filter_direction_id","or":"filter[direction_id]","r":false,"t":"`$INTEGER`","index$":0},{"a":true,"k":"query","n":"filter_id","or":"filter[id]","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"filter_name","or":"filter[name]","r":false,"t":"`$STRING`","index$":2},{"a":true,"k":"query","n":"filter_route","or":"filter[route]","r":false,"t":"`$STRING`","index$":3},{"a":true,"k":"query","n":"filter_route_pattern","or":"filter[route_pattern]","r":false,"t":"`$STRING`","index$":4},{"a":true,"k":"query","n":"include","or":"include","r":false,"t":"`$STRING`","index$":5},{"a":true,"k":"query","n":"sort","or":"sort","r":false,"t":"`$STRING`","index$":6}]},"k":"http","m":"GET","o":"/trips","q":{"exist":["filter_direction_id","filter_id","filter_name","filter_route","filter_route_pattern","include","sort"]},"r":{},"s":[{"lit":"trips"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"trip","name__orig":"trip","Name":"Trip","name_":"trip","name-":"trip","NAME":"TRIP","index$":10}, {"active":true,"entity":"trip","key$":"BasicTripFlow","kind":"basic","name":"BasicTripFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"trip_ref01","srcdatavar":"trip_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-trip_ref01"}}],"index$":0}]}, 'Trip', {"GET /trips":{"protocol":"http","parameters":[{"name":"filter[id]","in":"query","description":"Filter by trip ID","schema":{"type":"string"},"index$":0},{"name":"filter[route]","in":"query","description":"Filter by route ID","schema":{"type":"string"},"index$":1},{"name":"filter[direction_id]","in":"query","description":"Filter by direction (0 or 1)","schema":{"type":"integer","enum":[0,1]},"index$":2},{"name":"filter[route_pattern]","in":"query","description":"Filter by route pattern ID","schema":{"type":"string"},"index$":3},{"name":"filter[name]","in":"query","description":"Filter by trip name","schema":{"type":"string"},"index$":4},{"name":"include","in":"query","description":"Include related resources (comma-separated)","schema":{"type":"string"},"index$":5},{"name":"sort","in":"query","description":"Sort field","schema":{"type":"string"},"index$":6}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"trip","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /trips","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"filter_direction_id","or":"filter[direction_id]","r":false,"t":"`$INTEGER`","index$":0},{"a":true,"k":"query","n":"filter_id","or":"filter[id]","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"filter_name","or":"filter[name]","r":false,"t":"`$STRING`","index$":2},{"a":true,"k":"query","n":"filter_route","or":"filter[route]","r":false,"t":"`$STRING`","index$":3},{"a":true,"k":"query","n":"filter_route_pattern","or":"filter[route_pattern]","r":false,"t":"`$STRING`","index$":4},{"a":true,"k":"query","n":"include","or":"include","r":false,"t":"`$STRING`","index$":5},{"a":true,"k":"query","n":"sort","or":"sort","r":false,"t":"`$STRING`","index$":6}]},"k":"http","m":"GET","o":"/trips","q":{},"r":{},"rs":{"kind":"json","media":"application/vnd.api+json"},"s":[{"lit":"trips"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"trip","name__orig":"trip","Name":"Trip","name_":"trip","name-":"trip","NAME":"TRIP","index$":10}, {"active":true,"entity":"trip","key$":"BasicTripFlow","kind":"basic","name":"BasicTripFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"trip_ref01","srcdatavar":"trip_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-trip_ref01"}}],"index$":0}]}, 'Trip', {"GET /trips":{"protocol":"http","parameters":[{"name":"filter[id]","in":"query","description":"Filter by trip ID","schema":{"type":"string"},"index$":0},{"name":"filter[route]","in":"query","description":"Filter by route ID","schema":{"type":"string"},"index$":1},{"name":"filter[direction_id]","in":"query","description":"Filter by direction (0 or 1)","schema":{"type":"integer","enum":[0,1]},"index$":2},{"name":"filter[route_pattern]","in":"query","description":"Filter by route pattern ID","schema":{"type":"string"},"index$":3},{"name":"filter[name]","in":"query","description":"Filter by trip name","schema":{"type":"string"},"index$":4},{"name":"include","in":"query","description":"Include related resources (comma-separated)","schema":{"type":"string"},"index$":5},{"name":"sort","in":"query","description":"Sort field","schema":{"type":"string"},"index$":6}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('TripEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

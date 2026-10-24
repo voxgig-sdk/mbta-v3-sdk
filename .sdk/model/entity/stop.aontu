@@ -77,17 +77,9 @@ main: kit: entity: stop: {
           }
           m: "GET"
           o: "/stops"
-          q: {
-            exist: [
-              "filter_id"
-              "filter_latitude"
-              "filter_location_type"
-              "filter_longitude"
-              "filter_radius"
-              "filter_route"
-              "include"
-              "sort"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/vnd.api+json"
           }
           s: [
             {

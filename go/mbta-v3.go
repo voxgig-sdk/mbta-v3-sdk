@@ -14,6 +14,7 @@ type Utility = core.Utility
 type Feature = core.Feature
 type Entity = core.Entity
 type MbtaV3Entity = core.MbtaV3Entity
+type StreamItem = core.StreamItem
 type FetcherFunc = core.FetcherFunc
 type Spec = core.Spec
 type Result = core.Result

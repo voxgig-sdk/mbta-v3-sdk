@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -161,14 +162,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"filter_activity",
-										"filter_route",
-										"filter_stop",
-										"include",
-										"sort",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/vnd.api+json",
 								},
 							},
 						},
@@ -225,12 +222,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"filter_stop",
-										"filter_type",
-										"include",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/vnd.api+json",
 								},
 							},
 						},
@@ -281,11 +276,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"filter_id",
-										"include",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/vnd.api+json",
 								},
 							},
 						},
@@ -360,15 +354,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"filter_direction_id",
-										"filter_route",
-										"filter_stop",
-										"filter_trip",
-										"include",
-										"sort",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/vnd.api+json",
 								},
 							},
 						},
@@ -396,6 +385,56 @@ func MakeConfig() map[string]any {
 						"input": "data",
 						"name": "load",
 						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/routes/{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "routes",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"routes",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "include",
+											"orig": "include",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/vnd.api+json",
+								},
+							},
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
@@ -448,61 +487,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"filter_id",
-										"filter_stop",
-										"filter_type",
-										"include",
-										"sort",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/routes/{id}",
-								"segments": []any{
-									map[string]any{
-										"lit": "routes",
-									},
-									map[string]any{
-										"var": "id",
-									},
-								},
-								"parts": []any{
-									"routes",
-									"{id}",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "id",
-											"orig": "id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"name": "include",
-											"orig": "include",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-										"include",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/vnd.api+json",
 								},
 							},
 						},
@@ -565,13 +553,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"filter_direction_id",
-										"filter_route",
-										"filter_stop",
-										"include",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/vnd.api+json",
 								},
 							},
 						},
@@ -664,18 +649,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"filter_date",
-										"filter_direction_id",
-										"filter_max_time",
-										"filter_min_time",
-										"filter_route",
-										"filter_stop",
-										"filter_trip",
-										"include",
-										"sort",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/vnd.api+json",
 								},
 							},
 						},
@@ -732,12 +709,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"filter_id",
-										"filter_route",
-										"include",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/vnd.api+json",
 								},
 							},
 						},
@@ -794,12 +769,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"filter_direction_id",
-										"filter_route",
-										"include",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/vnd.api+json",
 								},
 							},
 						},
@@ -886,17 +859,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"filter_id",
-										"filter_latitude",
-										"filter_location_type",
-										"filter_longitude",
-										"filter_radius",
-										"filter_route",
-										"include",
-										"sort",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/vnd.api+json",
 								},
 							},
 						},
@@ -977,16 +943,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"filter_direction_id",
-										"filter_id",
-										"filter_name",
-										"filter_route",
-										"filter_route_pattern",
-										"include",
-										"sort",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/vnd.api+json",
 								},
 							},
 						},
@@ -1067,16 +1027,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"filter_direction_id",
-										"filter_id",
-										"filter_label",
-										"filter_route",
-										"filter_trip",
-										"include",
-										"sort",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/vnd.api+json",
 								},
 							},
 						},

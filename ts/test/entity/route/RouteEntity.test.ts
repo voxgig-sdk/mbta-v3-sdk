@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { MbtaV3SDK, BaseFeature, stdutil } from '../../..'
+import { MbtaV3SDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('RouteEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = MbtaV3SDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Route().load({"id":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.MBTA_V3_TEST_LIVE
@@ -51,7 +63,7 @@ describe('RouteEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"id":{"a":true,"h":"Id","n":"id","r":false,"t":"`$STRING`","key$":"id","index$":0}},"id":{"field":"id","name":"id"},"name":"route","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /routes","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"filter_id","or":"filter[id]","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"filter_stop","or":"filter[stop]","r":false,"t":"`$STRING`","index$":1},{"a":true,"ex":"0,1","k":"query","n":"filter_type","or":"filter[type]","r":false,"t":"`$STRING`","index$":2},{"a":true,"k":"query","n":"include","or":"include","r":false,"t":"`$STRING`","index$":3},{"a":true,"k":"query","n":"sort","or":"sort","r":false,"t":"`$STRING`","index$":4}]},"k":"http","m":"GET","o":"/routes","q":{"exist":["filter_id","filter_stop","filter_type","include","sort"]},"r":{},"s":[{"lit":"routes"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0},{"a":true,"co":{"id":"GET /routes/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}],"query":[{"a":true,"k":"query","n":"include","or":"include","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/routes/{id}","q":{"exist":["id","include"]},"r":{},"s":[{"lit":"routes"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"route","name__orig":"route","Name":"Route","name_":"route","name-":"route","NAME":"ROUTE","index$":4}, {"active":true,"entity":"route","key$":"BasicRouteFlow","kind":"basic","name":"BasicRouteFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"route_ref01","srcdatavar":"route_ref01_data","suffix":"_dt0"},"m":{"id":"route01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-route_ref01"}}],"index$":0}]}, 'Route', {"GET /routes":{"protocol":"http","parameters":[{"name":"filter[type]","in":"query","description":"Filter by route type (0=light rail, 1=subway, 2=commuter rail, 3=bus, 4=ferry)","schema":{"type":"string"},"example":"0,1","index$":0},{"name":"filter[stop]","in":"query","description":"Filter by stop ID (e.g., place-north)","schema":{"type":"string"},"index$":1},{"name":"filter[id]","in":"query","description":"Filter by route ID","schema":{"type":"string"},"index$":2},{"name":"include","in":"query","description":"Include related resources (comma-separated)","schema":{"type":"string"},"index$":3},{"name":"sort","in":"query","description":"Sort field","schema":{"type":"string"},"index$":4}]},"GET /routes/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","required":true,"description":"Route ID (e.g., Orange)","schema":{"type":"string"},"index$":0},{"name":"include","in":"query","description":"Include related resources (comma-separated)","schema":{"type":"string"},"index$":1}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"id":{"a":true,"h":"Id","n":"id","r":false,"t":"`$STRING`","key$":"id","index$":0}},"id":{"field":"id","name":"id"},"name":"route","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /routes/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}],"query":[{"a":true,"k":"query","n":"include","or":"include","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/routes/{id}","q":{"exist":["id"]},"r":{},"rs":{"kind":"json","media":"application/vnd.api+json"},"s":[{"lit":"routes"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0},{"a":true,"co":{"id":"GET /routes","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"filter_id","or":"filter[id]","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"filter_stop","or":"filter[stop]","r":false,"t":"`$STRING`","index$":1},{"a":true,"ex":"0,1","k":"query","n":"filter_type","or":"filter[type]","r":false,"t":"`$STRING`","index$":2},{"a":true,"k":"query","n":"include","or":"include","r":false,"t":"`$STRING`","index$":3},{"a":true,"k":"query","n":"sort","or":"sort","r":false,"t":"`$STRING`","index$":4}]},"k":"http","m":"GET","o":"/routes","q":{},"r":{},"rs":{"kind":"json","media":"application/vnd.api+json"},"s":[{"lit":"routes"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":1}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"route","name__orig":"route","Name":"Route","name_":"route","name-":"route","NAME":"ROUTE","index$":4}, {"active":true,"entity":"route","key$":"BasicRouteFlow","kind":"basic","name":"BasicRouteFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"route_ref01","srcdatavar":"route_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-route_ref01"}}],"index$":0}]}, 'Route', {"GET /routes/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","required":true,"description":"Route ID (e.g., Orange)","schema":{"type":"string"},"index$":0},{"name":"include","in":"query","description":"Include related resources (comma-separated)","schema":{"type":"string"},"index$":1}]},"GET /routes":{"protocol":"http","parameters":[{"name":"filter[type]","in":"query","description":"Filter by route type (0=light rail, 1=subway, 2=commuter rail, 3=bus, 4=ferry)","schema":{"type":"string"},"example":"0,1","index$":0},{"name":"filter[stop]","in":"query","description":"Filter by stop ID (e.g., place-north)","schema":{"type":"string"},"index$":1},{"name":"filter[id]","in":"query","description":"Filter by route ID","schema":{"type":"string"},"index$":2},{"name":"include","in":"query","description":"Include related resources (comma-separated)","schema":{"type":"string"},"index$":3},{"name":"sort","in":"query","description":"Sort field","schema":{"type":"string"},"index$":4}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -73,6 +85,12 @@ describe('RouteEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

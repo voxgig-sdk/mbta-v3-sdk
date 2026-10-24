@@ -70,16 +70,9 @@ main: kit: entity: trip: {
           }
           m: "GET"
           o: "/trips"
-          q: {
-            exist: [
-              "filter_direction_id"
-              "filter_id"
-              "filter_name"
-              "filter_route"
-              "filter_route_pattern"
-              "include"
-              "sort"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/vnd.api+json"
           }
           s: [
             {

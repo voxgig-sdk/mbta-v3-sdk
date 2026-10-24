@@ -18,12 +18,12 @@
     }
   },
   "requests": {
-    "GET /routes": {
+    "GET /routes/{id}": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
     },
-    "GET /routes/{id}": {
+    "GET /routes": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

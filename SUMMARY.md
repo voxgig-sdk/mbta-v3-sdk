@@ -94,8 +94,8 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | Facility | `load` | `GET /facilities` | Required |
 | Line | `load` | `GET /lines` | Required |
 | Prediction | `load` | `GET /predictions` | Required |
-| Route | `load` | `GET /routes` | Required |
 | Route | `load` | `GET /routes/{id}` | Required |
+| Route | `load` | `GET /routes` | Required |
 | RoutePattern | `load` | `GET /route_patterns` | Required |
 | Schedule | `load` | `GET /schedules` | Required |
 | Service | `load` | `GET /services` | Required |

@@ -42,12 +42,9 @@ main: kit: entity: service: {
           }
           m: "GET"
           o: "/services"
-          q: {
-            exist: [
-              "filter_id"
-              "filter_route"
-              "include"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/vnd.api+json"
           }
           s: [
             {

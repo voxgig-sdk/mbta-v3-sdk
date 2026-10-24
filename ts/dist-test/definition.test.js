@@ -23,12 +23,38 @@ const PLAN = [
             "sort": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/vnd.api+json"
+        ],
         "query": [
             "filter[route]",
             "filter[stop]",
             "filter[activity]",
             "include",
             "sort"
+        ],
+        "queryArgs": [
+            {
+                "name": "filter_activity",
+                "wire": "filter[activity]"
+            },
+            {
+                "name": "filter_route",
+                "wire": "filter[route]"
+            },
+            {
+                "name": "filter_stop",
+                "wire": "filter[stop]"
+            },
+            {
+                "name": "include",
+                "wire": "include"
+            },
+            {
+                "name": "sort",
+                "wire": "sort"
+            }
         ],
         "auth": [
             [
@@ -92,10 +118,28 @@ const PLAN = [
             "include": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/vnd.api+json"
+        ],
         "query": [
             "filter[stop]",
             "filter[type]",
             "include"
+        ],
+        "queryArgs": [
+            {
+                "name": "filter_stop",
+                "wire": "filter[stop]"
+            },
+            {
+                "name": "filter_type",
+                "wire": "filter[type]"
+            },
+            {
+                "name": "include",
+                "wire": "include"
+            }
         ],
         "auth": [
             [
@@ -145,9 +189,23 @@ const PLAN = [
             "include": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/vnd.api+json"
+        ],
         "query": [
             "filter[id]",
             "include"
+        ],
+        "queryArgs": [
+            {
+                "name": "filter_id",
+                "wire": "filter[id]"
+            },
+            {
+                "name": "include",
+                "wire": "include"
+            }
         ],
         "auth": [
             [
@@ -198,6 +256,10 @@ const PLAN = [
             "sort": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/vnd.api+json"
+        ],
         "query": [
             "filter[stop]",
             "filter[route]",
@@ -205,6 +267,32 @@ const PLAN = [
             "filter[direction_id]",
             "include",
             "sort"
+        ],
+        "queryArgs": [
+            {
+                "name": "filter_direction_id",
+                "wire": "filter[direction_id]"
+            },
+            {
+                "name": "filter_route",
+                "wire": "filter[route]"
+            },
+            {
+                "name": "filter_stop",
+                "wire": "filter[stop]"
+            },
+            {
+                "name": "filter_trip",
+                "wire": "filter[trip]"
+            },
+            {
+                "name": "include",
+                "wire": "include"
+            },
+            {
+                "name": "sort",
+                "wire": "sort"
+            }
         ],
         "auth": [
             [
@@ -250,22 +338,118 @@ const PLAN = [
         "accessor": "Route",
         "op": "load",
         "method": "GET",
+        "path": "/routes/{id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "id",
+                "value": "p1"
+            }
+        ],
+        "select": {
+            "include": "v1"
+        },
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/vnd.api+json"
+        ],
+        "query": [
+            "include"
+        ],
+        "queryArgs": [
+            {
+                "name": "include",
+                "wire": "include"
+            }
+        ],
+        "auth": [
+            [
+                {
+                    "in": "header",
+                    "name": "x-api-key"
+                }
+            ]
+        ],
+        "status": 200,
+        "sample": {
+            "data": {
+                "id": "x",
+                "type": "route",
+                "attributes": {
+                    "color": "x",
+                    "description": "x",
+                    "direction_destinations": [
+                        "x"
+                    ],
+                    "direction_names": [
+                        "x"
+                    ],
+                    "fare_class": "x",
+                    "long_name": "x",
+                    "short_name": "x",
+                    "sort_order": 1,
+                    "text_color": "x",
+                    "type": 1
+                },
+                "relationships": {}
+            },
+            "included": [
+                {}
+            ],
+            "jsonapi": {
+                "version": "1.0"
+            }
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "route",
+        "accessor": "Route",
+        "op": "load",
+        "method": "GET",
         "path": "/routes",
         "args": [],
         "select": {
             "filter_id": "v1",
             "filter_stop": "v1",
-            "filter_type": "v1",
+            "filter_type": "0,1",
             "include": "v1",
             "sort": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/vnd.api+json"
+        ],
         "query": [
             "filter[type]",
             "filter[stop]",
             "filter[id]",
             "include",
             "sort"
+        ],
+        "queryArgs": [
+            {
+                "name": "filter_id",
+                "wire": "filter[id]"
+            },
+            {
+                "name": "filter_stop",
+                "wire": "filter[stop]"
+            },
+            {
+                "name": "filter_type",
+                "wire": "filter[type]"
+            },
+            {
+                "name": "include",
+                "wire": "include"
+            },
+            {
+                "name": "sort",
+                "wire": "sort"
+            }
         ],
         "auth": [
             [
@@ -310,66 +494,6 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "route",
-        "accessor": "Route",
-        "op": "load",
-        "method": "GET",
-        "path": "/routes/{id}",
-        "args": [
-            {
-                "name": "id",
-                "wire": "id",
-                "value": "p1"
-            }
-        ],
-        "select": {
-            "include": "v1"
-        },
-        "headers": [],
-        "query": [
-            "include"
-        ],
-        "auth": [
-            [
-                {
-                    "in": "header",
-                    "name": "x-api-key"
-                }
-            ]
-        ],
-        "status": 200,
-        "sample": {
-            "data": {
-                "id": "x",
-                "type": "route",
-                "attributes": {
-                    "color": "x",
-                    "description": "x",
-                    "direction_destinations": [
-                        "x"
-                    ],
-                    "direction_names": [
-                        "x"
-                    ],
-                    "fare_class": "x",
-                    "long_name": "x",
-                    "short_name": "x",
-                    "sort_order": 1,
-                    "text_color": "x",
-                    "type": 1
-                },
-                "relationships": {}
-            },
-            "included": [
-                {}
-            ],
-            "jsonapi": {
-                "version": "1.0"
-            }
-        },
-        "idField": "id"
-    },
-    {
         "entity": "route_pattern",
         "accessor": "RoutePattern",
         "op": "load",
@@ -383,11 +507,33 @@ const PLAN = [
             "include": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/vnd.api+json"
+        ],
         "query": [
             "filter[route]",
             "filter[direction_id]",
             "filter[stop]",
             "include"
+        ],
+        "queryArgs": [
+            {
+                "name": "filter_direction_id",
+                "wire": "filter[direction_id]"
+            },
+            {
+                "name": "filter_route",
+                "wire": "filter[route]"
+            },
+            {
+                "name": "filter_stop",
+                "wire": "filter[stop]"
+            },
+            {
+                "name": "include",
+                "wire": "include"
+            }
         ],
         "auth": [
             [
@@ -441,6 +587,10 @@ const PLAN = [
             "sort": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/vnd.api+json"
+        ],
         "query": [
             "filter[stop]",
             "filter[route]",
@@ -451,6 +601,44 @@ const PLAN = [
             "filter[date]",
             "include",
             "sort"
+        ],
+        "queryArgs": [
+            {
+                "name": "filter_date",
+                "wire": "filter[date]"
+            },
+            {
+                "name": "filter_direction_id",
+                "wire": "filter[direction_id]"
+            },
+            {
+                "name": "filter_max_time",
+                "wire": "filter[max_time]"
+            },
+            {
+                "name": "filter_min_time",
+                "wire": "filter[min_time]"
+            },
+            {
+                "name": "filter_route",
+                "wire": "filter[route]"
+            },
+            {
+                "name": "filter_stop",
+                "wire": "filter[stop]"
+            },
+            {
+                "name": "filter_trip",
+                "wire": "filter[trip]"
+            },
+            {
+                "name": "include",
+                "wire": "include"
+            },
+            {
+                "name": "sort",
+                "wire": "sort"
+            }
         ],
         "auth": [
             [
@@ -506,10 +694,28 @@ const PLAN = [
             "include": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/vnd.api+json"
+        ],
         "query": [
             "filter[id]",
             "filter[route]",
             "include"
+        ],
+        "queryArgs": [
+            {
+                "name": "filter_id",
+                "wire": "filter[id]"
+            },
+            {
+                "name": "filter_route",
+                "wire": "filter[route]"
+            },
+            {
+                "name": "include",
+                "wire": "include"
+            }
         ],
         "auth": [
             [
@@ -573,10 +779,28 @@ const PLAN = [
             "include": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/vnd.api+json"
+        ],
         "query": [
             "filter[route]",
             "filter[direction_id]",
             "include"
+        ],
+        "queryArgs": [
+            {
+                "name": "filter_direction_id",
+                "wire": "filter[direction_id]"
+            },
+            {
+                "name": "filter_route",
+                "wire": "filter[route]"
+            },
+            {
+                "name": "include",
+                "wire": "include"
+            }
         ],
         "auth": [
             [
@@ -628,6 +852,10 @@ const PLAN = [
             "sort": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/vnd.api+json"
+        ],
         "query": [
             "filter[id]",
             "filter[route]",
@@ -637,6 +865,40 @@ const PLAN = [
             "filter[radius]",
             "include",
             "sort"
+        ],
+        "queryArgs": [
+            {
+                "name": "filter_id",
+                "wire": "filter[id]"
+            },
+            {
+                "name": "filter_latitude",
+                "wire": "filter[latitude]"
+            },
+            {
+                "name": "filter_location_type",
+                "wire": "filter[location_type]"
+            },
+            {
+                "name": "filter_longitude",
+                "wire": "filter[longitude]"
+            },
+            {
+                "name": "filter_radius",
+                "wire": "filter[radius]"
+            },
+            {
+                "name": "filter_route",
+                "wire": "filter[route]"
+            },
+            {
+                "name": "include",
+                "wire": "include"
+            },
+            {
+                "name": "sort",
+                "wire": "sort"
+            }
         ],
         "auth": [
             [
@@ -700,6 +962,10 @@ const PLAN = [
             "sort": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/vnd.api+json"
+        ],
         "query": [
             "filter[id]",
             "filter[route]",
@@ -708,6 +974,36 @@ const PLAN = [
             "filter[name]",
             "include",
             "sort"
+        ],
+        "queryArgs": [
+            {
+                "name": "filter_direction_id",
+                "wire": "filter[direction_id]"
+            },
+            {
+                "name": "filter_id",
+                "wire": "filter[id]"
+            },
+            {
+                "name": "filter_name",
+                "wire": "filter[name]"
+            },
+            {
+                "name": "filter_route",
+                "wire": "filter[route]"
+            },
+            {
+                "name": "filter_route_pattern",
+                "wire": "filter[route_pattern]"
+            },
+            {
+                "name": "include",
+                "wire": "include"
+            },
+            {
+                "name": "sort",
+                "wire": "sort"
+            }
         ],
         "auth": [
             [
@@ -765,6 +1061,10 @@ const PLAN = [
             "sort": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/vnd.api+json"
+        ],
         "query": [
             "filter[id]",
             "filter[route]",
@@ -773,6 +1073,36 @@ const PLAN = [
             "filter[direction_id]",
             "include",
             "sort"
+        ],
+        "queryArgs": [
+            {
+                "name": "filter_direction_id",
+                "wire": "filter[direction_id]"
+            },
+            {
+                "name": "filter_id",
+                "wire": "filter[id]"
+            },
+            {
+                "name": "filter_label",
+                "wire": "filter[label]"
+            },
+            {
+                "name": "filter_route",
+                "wire": "filter[route]"
+            },
+            {
+                "name": "filter_trip",
+                "wire": "filter[trip]"
+            },
+            {
+                "name": "include",
+                "wire": "include"
+            },
+            {
+                "name": "sort",
+                "wire": "sort"
+            }
         ],
         "auth": [
             [

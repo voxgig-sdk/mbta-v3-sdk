@@ -79,6 +79,7 @@ module MbtaV3Config
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -169,14 +170,10 @@ module MbtaV3Config
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "filter_activity",
-                      "filter_route",
-                      "filter_stop",
-                      "include",
-                      "sort",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/vnd.api+json",
                   },
                 },
               ],
@@ -233,12 +230,10 @@ module MbtaV3Config
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "filter_stop",
-                      "filter_type",
-                      "include",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/vnd.api+json",
                   },
                 },
               ],
@@ -289,11 +284,10 @@ module MbtaV3Config
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "filter_id",
-                      "include",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/vnd.api+json",
                   },
                 },
               ],
@@ -368,15 +362,10 @@ module MbtaV3Config
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "filter_direction_id",
-                      "filter_route",
-                      "filter_stop",
-                      "filter_trip",
-                      "include",
-                      "sort",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/vnd.api+json",
                   },
                 },
               ],
@@ -404,6 +393,56 @@ module MbtaV3Config
               "input" => "data",
               "name" => "load",
               "points" => [
+                {
+                  "kind" => "http",
+                  "method" => "GET",
+                  "orig" => "/routes/{id}",
+                  "segments" => [
+                    {
+                      "lit" => "routes",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
+                  "parts" => [
+                    "routes",
+                    "{id}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "id",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "include",
+                        "orig" => "include",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "id",
+                    ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/vnd.api+json",
+                  },
+                },
                 {
                   "kind" => "http",
                   "method" => "GET",
@@ -456,61 +495,10 @@ module MbtaV3Config
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "filter_id",
-                      "filter_stop",
-                      "filter_type",
-                      "include",
-                      "sort",
-                    ],
-                  },
-                },
-                {
-                  "kind" => "http",
-                  "method" => "GET",
-                  "orig" => "/routes/{id}",
-                  "segments" => [
-                    {
-                      "lit" => "routes",
-                    },
-                    {
-                      "var" => "id",
-                    },
-                  ],
-                  "parts" => [
-                    "routes",
-                    "{id}",
-                  ],
-                  "rename" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "args" => {
-                    "params" => [
-                      {
-                        "name" => "id",
-                        "orig" => "id",
-                        "type" => "`$STRING`",
-                        "kind" => "param",
-                        "reqd" => true,
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "name" => "include",
-                        "orig" => "include",
-                        "type" => "`$STRING`",
-                        "kind" => "query",
-                      },
-                    ],
-                  },
-                  "select" => {
-                    "exist" => [
-                      "id",
-                      "include",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/vnd.api+json",
                   },
                 },
               ],
@@ -573,13 +561,10 @@ module MbtaV3Config
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "filter_direction_id",
-                      "filter_route",
-                      "filter_stop",
-                      "include",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/vnd.api+json",
                   },
                 },
               ],
@@ -672,18 +657,10 @@ module MbtaV3Config
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "filter_date",
-                      "filter_direction_id",
-                      "filter_max_time",
-                      "filter_min_time",
-                      "filter_route",
-                      "filter_stop",
-                      "filter_trip",
-                      "include",
-                      "sort",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/vnd.api+json",
                   },
                 },
               ],
@@ -740,12 +717,10 @@ module MbtaV3Config
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "filter_id",
-                      "filter_route",
-                      "include",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/vnd.api+json",
                   },
                 },
               ],
@@ -802,12 +777,10 @@ module MbtaV3Config
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "filter_direction_id",
-                      "filter_route",
-                      "include",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/vnd.api+json",
                   },
                 },
               ],
@@ -894,17 +867,10 @@ module MbtaV3Config
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "filter_id",
-                      "filter_latitude",
-                      "filter_location_type",
-                      "filter_longitude",
-                      "filter_radius",
-                      "filter_route",
-                      "include",
-                      "sort",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/vnd.api+json",
                   },
                 },
               ],
@@ -985,16 +951,10 @@ module MbtaV3Config
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "filter_direction_id",
-                      "filter_id",
-                      "filter_name",
-                      "filter_route",
-                      "filter_route_pattern",
-                      "include",
-                      "sort",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/vnd.api+json",
                   },
                 },
               ],
@@ -1075,16 +1035,10 @@ module MbtaV3Config
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "filter_direction_id",
-                      "filter_id",
-                      "filter_label",
-                      "filter_route",
-                      "filter_trip",
-                      "include",
-                      "sort",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/vnd.api+json",
                   },
                 },
               ],

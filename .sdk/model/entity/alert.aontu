@@ -56,14 +56,9 @@ main: kit: entity: alert: {
           }
           m: "GET"
           o: "/alerts"
-          q: {
-            exist: [
-              "filter_activity"
-              "filter_route"
-              "filter_stop"
-              "include"
-              "sort"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/vnd.api+json"
           }
           s: [
             {

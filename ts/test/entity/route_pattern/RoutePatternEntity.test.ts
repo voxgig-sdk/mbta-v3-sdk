@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { MbtaV3SDK, BaseFeature, stdutil } from '../../..'
+import { MbtaV3SDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('RoutePatternEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = MbtaV3SDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.RoutePattern().load({"filter_direction_id":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.MBTA_V3_TEST_LIVE
@@ -51,7 +63,7 @@ describe('RoutePatternEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"route_pattern","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /route_patterns","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"filter_direction_id","or":"filter[direction_id]","r":false,"t":"`$INTEGER`","index$":0},{"a":true,"k":"query","n":"filter_route","or":"filter[route]","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"filter_stop","or":"filter[stop]","r":false,"t":"`$STRING`","index$":2},{"a":true,"k":"query","n":"include","or":"include","r":false,"t":"`$STRING`","index$":3}]},"k":"http","m":"GET","o":"/route_patterns","q":{"exist":["filter_direction_id","filter_route","filter_stop","include"]},"r":{},"s":[{"lit":"route_patterns"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"route_pattern","name__orig":"route_pattern","Name":"RoutePattern","name_":"route_pattern","name-":"route-pattern","NAME":"ROUTE_PATTERN","index$":5}, {"active":true,"entity":"route_pattern","key$":"BasicRoutePatternFlow","kind":"basic","name":"BasicRoutePatternFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"route_pattern_ref01","srcdatavar":"route_pattern_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-route_pattern_ref01"}}],"index$":0}]}, 'RoutePattern', {"GET /route_patterns":{"protocol":"http","parameters":[{"name":"filter[route]","in":"query","description":"Filter by route ID","schema":{"type":"string"},"index$":0},{"name":"filter[direction_id]","in":"query","description":"Filter by direction (0 or 1)","schema":{"type":"integer","enum":[0,1]},"index$":1},{"name":"filter[stop]","in":"query","description":"Filter by stop ID","schema":{"type":"string"},"index$":2},{"name":"include","in":"query","description":"Include related resources (comma-separated)","schema":{"type":"string"},"index$":3}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"route_pattern","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /route_patterns","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"filter_direction_id","or":"filter[direction_id]","r":false,"t":"`$INTEGER`","index$":0},{"a":true,"k":"query","n":"filter_route","or":"filter[route]","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"filter_stop","or":"filter[stop]","r":false,"t":"`$STRING`","index$":2},{"a":true,"k":"query","n":"include","or":"include","r":false,"t":"`$STRING`","index$":3}]},"k":"http","m":"GET","o":"/route_patterns","q":{},"r":{},"rs":{"kind":"json","media":"application/vnd.api+json"},"s":[{"lit":"route_patterns"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"route_pattern","name__orig":"route_pattern","Name":"RoutePattern","name_":"route_pattern","name-":"route-pattern","NAME":"ROUTE_PATTERN","index$":5}, {"active":true,"entity":"route_pattern","key$":"BasicRoutePatternFlow","kind":"basic","name":"BasicRoutePatternFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"route_pattern_ref01","srcdatavar":"route_pattern_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-route_pattern_ref01"}}],"index$":0}]}, 'RoutePattern', {"GET /route_patterns":{"protocol":"http","parameters":[{"name":"filter[route]","in":"query","description":"Filter by route ID","schema":{"type":"string"},"index$":0},{"name":"filter[direction_id]","in":"query","description":"Filter by direction (0 or 1)","schema":{"type":"integer","enum":[0,1]},"index$":1},{"name":"filter[stop]","in":"query","description":"Filter by stop ID","schema":{"type":"string"},"index$":2},{"name":"include","in":"query","description":"Include related resources (comma-separated)","schema":{"type":"string"},"index$":3}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('RoutePatternEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

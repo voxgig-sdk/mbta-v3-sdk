@@ -84,18 +84,9 @@ main: kit: entity: schedule: {
           }
           m: "GET"
           o: "/schedules"
-          q: {
-            exist: [
-              "filter_date"
-              "filter_direction_id"
-              "filter_max_time"
-              "filter_min_time"
-              "filter_route"
-              "filter_stop"
-              "filter_trip"
-              "include"
-              "sort"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/vnd.api+json"
           }
           s: [
             {

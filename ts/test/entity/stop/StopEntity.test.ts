@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { MbtaV3SDK, BaseFeature, stdutil } from '../../..'
+import { MbtaV3SDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('StopEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = MbtaV3SDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Stop().load({"filter_id":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.MBTA_V3_TEST_LIVE
@@ -51,7 +63,7 @@ describe('StopEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"stop","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /stops","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"filter_id","or":"filter[id]","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"filter_latitude","or":"filter[latitude]","r":false,"t":"`$NUMBER`","index$":1},{"a":true,"k":"query","n":"filter_location_type","or":"filter[location_type]","r":false,"t":"`$INTEGER`","index$":2},{"a":true,"k":"query","n":"filter_longitude","or":"filter[longitude]","r":false,"t":"`$NUMBER`","index$":3},{"a":true,"k":"query","n":"filter_radius","or":"filter[radius]","r":false,"t":"`$NUMBER`","index$":4},{"a":true,"k":"query","n":"filter_route","or":"filter[route]","r":false,"t":"`$STRING`","index$":5},{"a":true,"k":"query","n":"include","or":"include","r":false,"t":"`$STRING`","index$":6},{"a":true,"k":"query","n":"sort","or":"sort","r":false,"t":"`$STRING`","index$":7}]},"k":"http","m":"GET","o":"/stops","q":{"exist":["filter_id","filter_latitude","filter_location_type","filter_longitude","filter_radius","filter_route","include","sort"]},"r":{},"s":[{"lit":"stops"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"stop","name__orig":"stop","Name":"Stop","name_":"stop","name-":"stop","NAME":"STOP","index$":9}, {"active":true,"entity":"stop","key$":"BasicStopFlow","kind":"basic","name":"BasicStopFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"stop_ref01","srcdatavar":"stop_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-stop_ref01"}}],"index$":0}]}, 'Stop', {"GET /stops":{"protocol":"http","parameters":[{"name":"filter[id]","in":"query","description":"Filter by stop ID","schema":{"type":"string"},"index$":0},{"name":"filter[route]","in":"query","description":"Filter by route ID","schema":{"type":"string"},"index$":1},{"name":"filter[location_type]","in":"query","description":"Filter by location type","schema":{"type":"integer"},"index$":2},{"name":"filter[latitude]","in":"query","description":"Filter by latitude","schema":{"type":"number","format":"double"},"index$":3},{"name":"filter[longitude]","in":"query","description":"Filter by longitude","schema":{"type":"number","format":"double"},"index$":4},{"name":"filter[radius]","in":"query","description":"Filter by radius (requires latitude and longitude)","schema":{"type":"number","format":"double"},"index$":5},{"name":"include","in":"query","description":"Include related resources (comma-separated)","schema":{"type":"string"},"index$":6},{"name":"sort","in":"query","description":"Sort field","schema":{"type":"string"},"index$":7}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"stop","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /stops","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"filter_id","or":"filter[id]","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"filter_latitude","or":"filter[latitude]","r":false,"t":"`$NUMBER`","index$":1},{"a":true,"k":"query","n":"filter_location_type","or":"filter[location_type]","r":false,"t":"`$INTEGER`","index$":2},{"a":true,"k":"query","n":"filter_longitude","or":"filter[longitude]","r":false,"t":"`$NUMBER`","index$":3},{"a":true,"k":"query","n":"filter_radius","or":"filter[radius]","r":false,"t":"`$NUMBER`","index$":4},{"a":true,"k":"query","n":"filter_route","or":"filter[route]","r":false,"t":"`$STRING`","index$":5},{"a":true,"k":"query","n":"include","or":"include","r":false,"t":"`$STRING`","index$":6},{"a":true,"k":"query","n":"sort","or":"sort","r":false,"t":"`$STRING`","index$":7}]},"k":"http","m":"GET","o":"/stops","q":{},"r":{},"rs":{"kind":"json","media":"application/vnd.api+json"},"s":[{"lit":"stops"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"stop","name__orig":"stop","Name":"Stop","name_":"stop","name-":"stop","NAME":"STOP","index$":9}, {"active":true,"entity":"stop","key$":"BasicStopFlow","kind":"basic","name":"BasicStopFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"stop_ref01","srcdatavar":"stop_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-stop_ref01"}}],"index$":0}]}, 'Stop', {"GET /stops":{"protocol":"http","parameters":[{"name":"filter[id]","in":"query","description":"Filter by stop ID","schema":{"type":"string"},"index$":0},{"name":"filter[route]","in":"query","description":"Filter by route ID","schema":{"type":"string"},"index$":1},{"name":"filter[location_type]","in":"query","description":"Filter by location type","schema":{"type":"integer"},"index$":2},{"name":"filter[latitude]","in":"query","description":"Filter by latitude","schema":{"type":"number","format":"double"},"index$":3},{"name":"filter[longitude]","in":"query","description":"Filter by longitude","schema":{"type":"number","format":"double"},"index$":4},{"name":"filter[radius]","in":"query","description":"Filter by radius (requires latitude and longitude)","schema":{"type":"number","format":"double"},"index$":5},{"name":"include","in":"query","description":"Include related resources (comma-separated)","schema":{"type":"string"},"index$":6},{"name":"sort","in":"query","description":"Sort field","schema":{"type":"string"},"index$":7}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('StopEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

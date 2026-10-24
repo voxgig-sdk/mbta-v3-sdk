@@ -3,5 +3,13 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "API key required for requests. Default rate limit is 1,000 requests per minute with a valid key.",
+      "Production API Server",
+      "Successful response",
+      "The V3 API provides fast and easy access to Massachusetts Bay Transportation Authority schedules, alerts, and real-time transportation information. It follows the JSON API format, allowing developers to quickly integrate and utilize public transit data. The API presents General Transit Feed Specification (GTFS), GTFS Realtime, and MBTA-specific data."
+    ]
+  }
 }
